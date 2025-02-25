@@ -15,10 +15,17 @@ function getMySQLTimestamp() {
 }
 
 
-export const getErreserbas = async (req, res) => {
+export const getErreserbak = async (req, res) => {
   try {
     const [results] = await dbConnection.query("SELECT * FROM erreserba");
-    res.status(200).json(results);  
+    
+    if(results.length === 0){
+      res.status(404).json({ error: 'erreserbak ez dira existitzen' });
+    }
+    else{
+      res.status(200).json(results); 
+    }
+
   } catch (error) {
     res.status(500).json({ error: 'errorea erreserbak eskuratzean' });
   }
@@ -35,7 +42,13 @@ export const getErreserba = async (req, res) => {
   
   try {
     const [results] = await dbConnection.query(sqlQuery, id);
-    res.status(200).json(results);
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'erreserba not found' });
+    }
+    else{
+      res.status(200).json(results);
+    }
+
   } catch (error) {
     res.status(500).json({ error: 'errorea erreserba eskuratzean' });
   }
