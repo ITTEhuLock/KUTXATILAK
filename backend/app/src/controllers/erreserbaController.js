@@ -44,7 +44,7 @@ export const getErreserba = async (req, res) => {
 export const createNewerreserba = async (req, res) => {
   const erreserba = req.body;
 
-  if (!erreserba.egoera || !erreserba.end_time || !erreserba.idKutxatila || !erreserba.username || !erreserba.start_time) {
+  if ( !erreserba.end_time || !erreserba.idKutxatila || !erreserba.idUser || !erreserba.start_time) {
     return res.status(400).json({
       ErrorCode: 204,
       Message: 'Fields cannot be empty',
@@ -52,19 +52,19 @@ export const createNewerreserba = async (req, res) => {
   }
 
   const erreserbaObj = [
-    erreserba.egoera,
+    "0",
     erreserba.start_time,
     erreserba.end_time,
     erreserba.idKutxatila,
-    erreserba.username
+    erreserba.idUser
   ];
 console.log(erreserbaObj);
-  const sqlQuery = 'INSERT INTO erreserba (egoera, start_time, end_time, idKutxatila, username) VALUES (?, ?, ?, ?, ?)';
+  const sqlQuery = 'INSERT INTO erreserba (egoera, start_time, end_time, idKutxatila, idUser) VALUES (?, ?, ?, ?, ?)';
 
   try {
     const [result] = await dbConnection.execute(sqlQuery, erreserbaObj);
-    const iderreserba = result.insertId;
-    res.status(201).json({ iderreserba });
+    const idErreserba = result.insertId;
+    res.status(201).json({ idErreserba });
   } catch (error) {
     res.status(500).json({ error: 'Error creating erreserba' });
   }
@@ -85,7 +85,7 @@ export const updateErreserba = async (req, res) => {
       erreserba.fill_time,
       erreserba.empty_time
     ];
-    const sqlQuery = 'UPDATE erreserba SET egoera = ?, start_time = ?, end_time = ?, erreserba.fill_time = ?, errserba.empty_time = ? WHERE idErreserba = ?';
+    const sqlQuery = 'UPDATE erreserba SET egoera = ?, start_time = ?, end_time = ?,fill_time = ?,empty_time = ? WHERE idErreserba = ?';
     await dbConnection.execute(sqlQuery, erreserbaObj);
     res.status(200).json({ message: 'erreserba updated' });
   } catch (error) {
