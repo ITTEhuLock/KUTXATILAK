@@ -65,3 +65,46 @@ export const createNewKutxatila = async (req, res) => {
     }
 
 }
+
+export const updateKutxatila = async (req, res) => {
+    const id = parseInt(req.body.idKutxatila);
+    const kutxatila = req.body;
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+      }
+    if(!kutxatila.kodea || !kutxatila.kokapena){
+        return res.status(400).json({
+            ErrorCode: 204,
+            Message: 'Fields cannot be empty',
+        });
+    }
+    const kutxatilaObj = [
+        kutxatila.kodea,
+        kutxatila.kokapena,
+        kutxatila.egoera,
+        id
+    ];
+    
+    const sqlQuery = `UPDATE kutxatila SET kodea = ?, kokapena = ?, egoera = ? WHERE idKutxatila = ?`;
+    try {
+        await dbConnection.query(sqlQuery, kutxatilaObj);
+        res.status(201).json({ id });
+    } catch (error) {
+        res.status(500).json({ error: 'errorea kutxatila eguneratzean' });  
+    }
+
+}
+
+export const deleteKutxatila = async (req, res) => {
+    const id = parseInt(req.body.idKutxatila);
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+    }
+    const sqlQuery = `DELETE FROM kutxatila WHERE idKutxatila = ?`;
+    try {
+        await dbConnection.query(sqlQuery, id);
+        res.status(200).json({ Message: 'Kutxatila deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'errorea kutxatila ezabatzean' });
+    }
+}
