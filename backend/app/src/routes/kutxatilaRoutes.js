@@ -1,12 +1,12 @@
 import express from 'express';
-import * as eC from '../controllers/kutxatilaController.js';
+import * as kC from '../controllers/kutxatilaController.js';
 const router = express.Router();
 
-router.get('/', eC.getKutxatilak); // 3000/kutxatila/
-router.get('/:idKutxatila', eC.getKutxatila); // 3000/kutxatila/1
-router.delete('/delete/', eC.deleteKutxatila); // 3000/kutxatila/delete/
-router.put('/update/', eC.updateKutxatila); //3000/kutxatila/update/
-router.post('/add', eC.createNewKutxatila); // 3000/kutxatila/add
+router.get('/', kC.getKutxatilak); // 3000/kutxatila/
+router.get('/:idKutxatila', kC.getKutxatila); // 3000/kutxatila/1
+router.delete('/delete/', kC.deleteKutxatila); // 3000/kutxatila/delete/
+router.put('/update/',kC.updateKutxatila); //3000/kutxatila/update/
+router.post('/add', kC.createNewKutxatila); // 3000/kutxatila/add
 
 
 
