@@ -1,5 +1,5 @@
 import dbConnection from '../database/database.js';
-import { getMySQLTimestamp } from '../konstanteak.js';
+
 
 export const getUsers = async (req, res) => {
     try {
@@ -52,11 +52,11 @@ export const createNewUser = async (req, res) => {
         user.username,
         user.password,
         user.email,
-        user.role,
-        getMySQLTimestamp()
+        user.role
+       
     ];
 
-    const sqlQuery = `INSERT INTO user (username, password, email, role, create_time) VALUES (?, ?, ?, ?)`;
+    const sqlQuery = `INSERT INTO user (username, password, email, role) VALUES (?, ?, ?)`;
 
     try {
         const [results] = await dbConnection.query(sqlQuery, userObj);

@@ -1,5 +1,5 @@
 import dbConnection from '../database/database.js';
-import { getMySQLTimestamp } from '../konstanteak.js';
+
 
 export const getErreserbak = async (req, res) => {
   try {
@@ -53,14 +53,13 @@ export const createNewerreserba = async (req, res) => {
 
   const erreserbaObj = [
     erreserba.egoera,
-    getMySQLTimestamp(),
     erreserba.start_time,
     erreserba.end_time,
     erreserba.idKutxatila,
     erreserba.username
   ];
 console.log(erreserbaObj);
-  const sqlQuery = 'INSERT INTO erreserba (egoera, create_time, start_time, end_time, idKutxatila, username) VALUES (?, ?, ?, ?, ?, ?)';
+  const sqlQuery = 'INSERT INTO erreserba (egoera, start_time, end_time, idKutxatila, username) VALUES (?, ?, ?, ?, ?)';
 
   try {
     const [result] = await dbConnection.execute(sqlQuery, erreserbaObj);

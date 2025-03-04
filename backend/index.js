@@ -7,7 +7,7 @@ import router from './app/router.js';
 const app = express();
 
 //* Configuration
-const host = '192.168.137.1';
+const host = '10.247.209.2';
 //const host = 'localhost';
 const port = 3000;
 

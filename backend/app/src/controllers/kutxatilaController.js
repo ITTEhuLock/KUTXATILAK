@@ -1,4 +1,4 @@
-import {dbConnection} from '../database/database.js';
+import dbConnection from '../database/database.js';
 
 export const getKutxatilak = async (req, res) => {
     try {
