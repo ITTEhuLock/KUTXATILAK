@@ -18,16 +18,17 @@ WHERE e.idKutxatila = ?
         const [results] = await dbConnection.query(sqlQuery, infoObj);
         if (results.length > 0) {
 
-            if(results[0].egoera_kutxatila == 0){
-                
-            res.status(200).json({ message: 'IREKI' });
+            if(results[0].egoera_kutxatila == 0){     
+                res.status(200).json({ baimena:'baimenduta', ekintza: 'ireki' });
+                dbConnection.query(`UPDATE kutxatila SET egoera = 1 WHERE idKutxatila = ?`, [infoObj[0]]);  
             }
             else{
-                res.status(200).json({ message: 'ITXI' });
+                res.status(200).json({ baimena: 'baimenduta', ekintza: 'itxi' });
+                dbConnection.query(`UPDATE kutxatila SET egoera = 0 WHERE idKutxatila = ?`, [infoObj[0]]);
             }
         }
         else {
-            res.status(404).json({ error: 'Erreserba ez da egokia' });
+            res.status(404).json({ baimena: 'ezbaimenduta', message: 'ez da erreserbarik aurkitu' });
         }
     } catch (error) {
         res.status(500).json({ error: 'errorea erreserba egiaztatzean' });

@@ -32,7 +32,7 @@ def main():
         else :
             print("Ekintza ez da zuzena")
 
-    elif response == "ezbaimenduta":
+    elif response.baimena == "ezbaimenduta":
         print("Erabiltzailea ez dago baimenduta kutxatila irekitzeko")
     else :
         print("Baimena ez da zuzena")
