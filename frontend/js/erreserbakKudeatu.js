@@ -1,0 +1,49 @@
+import * as e from "./erreserba.js";
+export async function loadErreserbak(){
+    const erreserbakCont = document.getElementById('erreserbak');
+    const erreserbak = await e.getErabiltzailearenErreserbak();
+    if(!erreserbak){
+        const abisua = document.createElement('h1');
+        abisua.textContent = 'Ez daukazu erreserbarik';
+        erreserbakCont.appendChild(abisua);
+        return;
+    }
+
+    const taula = document.createElement('table');
+    const l1 = taula.insertRow();
+    l1.insertCell().textContent = 'Erreserbaren ID';
+    l1.insertCell().textContent = 'Kutxatilaren ID';
+    l1.insertCell().textContent = 'Erreserbaren hasiera';
+    l1.insertCell().textContent = 'Erreserbaren amaiera';
+    l1.insertCell().textContent = 'Erreserbaren egoera';
+    l1.insertCell().textContent = 'Ekintza';
+
+    erreserbak.forEach(erreserba => {
+        const l = taula.insertRow();
+        l.insertCell().textContent = erreserba.idErreserba;
+        l.insertCell().textContent = erreserba.idKutxatila;
+        l.insertCell().textContent = erreserba.start_time;
+        l.insertCell().textContent = erreserba.end_time;
+        l.insertCell().textContent = parseInt(erreserba.egoera) === 0
+        ? "Hasigabea"
+        : parseInt(erreserba.egoera) === 1
+        ? "Martxan"
+        : "Amaituta";
+        l.insertCell().innerHTML = `<button name = "ezabatuButton" id = "${erreserba.idErreserba}" >Ezabatu</button>`;
+       });
+    erreserbakCont.appendChild(taula);
+
+    document.getElementsByName('ezabatuButton').forEach(e => {
+        e.addEventListener('click', (event) => {
+            erreserbaEzabatu(event);
+        });
+    });
+
+}
+
+function erreserbaEzabatu(event){
+    e.deleteErreserba(event);
+    document.getElementById('erreserbak').innerHTML = '';
+    loadErreserbak();
+    
+}
