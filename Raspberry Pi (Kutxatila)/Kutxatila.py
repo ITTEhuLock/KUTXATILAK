@@ -1,4 +1,4 @@
-import requests, time, nfc
+import requests, time, json
 
 global id
 def main():
@@ -9,19 +9,21 @@ def main():
     #Identifikazioa jaso da, JSON bihurtu 
 
     # REST POST
-    response = requests.get("IdentifikazioaBidaliURL",json=id)
-    if response.baimena == "baimenduta":
+    response = requests.post("http://192.168.137.1:3000/raspberry/check", data={'idUser': id})
+    erantzuna = json.loads(response.text)
+    print(erantzuna)
+    if erantzuna["baimena"] == "baimenduta":
         
         print("Erabiltzailea baimenduta dago")
         
-        if response.ekintza == "ireki":
+        if erantzuna["ekintza"] == "ireki":
             ireki()
-        elif response.ekintza == "itxi":
+        elif erantzuna["ekintza"] == "itxi":
             itxi()
         else :
             print("Ekintza ez da zuzena")
 
-    elif response.baimena == "ezbaimenduta":
+    elif erantzuna["baimena"] == "ezbaimenduta":
         print("Erabiltzailea ez dago baimenduta kutxatila irekitzeko")
     else :
         print("Baimena ez da zuzena")
@@ -88,16 +90,6 @@ if __name__ == '__main__':
 
 
 
-
-    
-        
-def ireki():
-    ireki=1
-
-def itxi():
-    itxi=1
-
-if __name__ == '__main__':
-    main()   
+ 
 
 
