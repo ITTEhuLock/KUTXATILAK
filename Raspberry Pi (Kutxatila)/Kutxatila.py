@@ -1,19 +1,8 @@
-import requests, time
+import requests, time, nfc
 
-
+global id
 def main():
 
-    #Ordu bakoitzeko erreserbak lortu
-    while True:
-        response = requests.get("ErreserbakLortuURL")
-        ordukoErreserbak = response.json()
-
-        #Erreserbak badaude, atera begizta infinitutik
-        if len(ordukoErreserbak) != 0:
-            print("Ez daude erreserbak ordu honetarako\n")
-            break
-        #Hurrengo ordura arte itxaron
-        time.sleep(3600)
     
     #NFC identifikazioa itxaroten
     id = 1
@@ -36,6 +25,65 @@ def main():
         print("Erabiltzailea ez dago baimenduta kutxatila irekitzeko")
     else :
         print("Baimena ez da zuzena")
+
+
+
+def nfcread():
+    id = None
+    try:
+        clf = nfc.ContactlessFrontend('tty:S0')  
+        if clf:
+            print("PN532 NFC reader connected")
+            while id == None:
+                print("Waiting for an NFC tag...")
+                clf.connect(rdwr={'on-connect': on_connect})
+                time.sleep(1)  
+        else:
+            print("Failed to connect to PN532 NFC reader")
+    except KeyboardInterrupt:
+        print("Exiting...")
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        if clf:
+            clf.close()
+
+
+def on_connect(tag):
+    print(f"Tag detected: {tag}")
+    if tag.ndef:
+        print("NDEF is supported by this tag")
+        ndef_message = tag.ndef.message
+        if ndef_message:
+            id = ndef_message
+            print("NDEF Message:")
+            for record in ndef_message:
+                print(f"Record: {record}")
+                if record.type == 'text':
+                    print(f"Text: {record.text}")
+                elif record.type == 'uri':
+                    print(f"URI: {record.uri}")
+                else:
+                    print(f"Unsupported record type: {record.type}")
+        else:
+            print("No NDEF message found on the tag")
+    else:
+        print("NDEF is not supported by this tag")
+    return True  # Keep the connection alive
+
+        
+def ireki():
+    ireki=1
+    print("Kutxatila irekiko da")
+
+def itxi():
+    itxi=1
+    print("Kutxatila itxiko da")
+
+if __name__ == '__main__':
+    main()   
+
+
 
 
 
