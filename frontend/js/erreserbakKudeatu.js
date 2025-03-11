@@ -43,7 +43,6 @@ export async function loadErreserbak(){
 
 async function erreserbaEzabatu(event){
     await e.deleteErreserba(event);
-    document.getElementById('erreserbak').innerHTML = '';
     window.location.reload();
     
 }

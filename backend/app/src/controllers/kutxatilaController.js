@@ -56,36 +56,34 @@ export const createNewKutxatila = async (req, res) => {
     const sqlQuery = `INSERT INTO kutxatila (kodea, kokapena, egoera) VALUES (?, ?, ?)`;
 
     try {
-        await dbConnection.query(sqlQuery, kutxatilaObj);
+        const result = await dbConnection.query(sqlQuery, kutxatilaObj);
         const idKutxatila = result.insertId;
 
         res.status(201).json({ idKutxatila });
     } catch (error) {
-        res.status(500).json({ error: 'errorea kutxatila sortzean' });
+        res.status(500).json({ error: error.message });
     }
 
 }
 
-export const updateKutxatila = async (req, res) => {
+export const updateKutxatilaEgoera = async (req, res) => {
     const id = parseInt(req.body.idKutxatila);
     const kutxatila = req.body;
     if (isNaN(id)) {
         return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
       }
-    if(!kutxatila.kodea || !kutxatila.kokapena){
+    if(!kutxatila.egoera){
         return res.status(400).json({
             ErrorCode: 204,
             Message: 'Fields cannot be empty',
         });
     }
     const kutxatilaObj = [
-        kutxatila.kodea,
-        kutxatila.kokapena,
         kutxatila.egoera,
         id
     ];
     
-    const sqlQuery = `UPDATE kutxatila SET kodea = ?, kokapena = ?, egoera = ? WHERE idKutxatila = ?`;
+    const sqlQuery = `UPDATE kutxatila SET egoera = ? WHERE idKutxatila = ?`;
     try {
         await dbConnection.query(sqlQuery, kutxatilaObj);
         res.status(201).json({ id });
@@ -95,6 +93,59 @@ export const updateKutxatila = async (req, res) => {
 
 }
 
+export const updateKutxatilaKodea = async (req, res) => {
+    const id = parseInt(req.body.idKutxatila);
+    const kutxatila = req.body;
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+      }
+    if(!kutxatila.kodea){
+        return res.status(400).json({
+            ErrorCode: 204,
+            Message: 'Fields cannot be empty',
+        });
+    }
+    const kutxatilaObj = [
+        kutxatila.kodea,
+        id
+    ];
+    
+    const sqlQuery = `UPDATE kutxatila SET kodea = ? WHERE idKutxatila = ?`;
+    try {
+        await dbConnection.query(sqlQuery, kutxatilaObj);
+        res.status(201).json({ id });
+    } catch (error) {
+        res.status(500).json({ error: 'errorea kutxatila eguneratzean' });  
+    }
+
+};
+
+export const updateKutxatilaKokapena = async (req, res) => {
+    const kokapena = req.body.kokapena;
+    const id = parseInt(req.body.idKutxatila);
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+      }
+    if(!kokapena){
+        return res.status(400).json({
+            ErrorCode: 204,
+            Message: 'Fields cannot be empty',
+        });}
+
+    const kutxatilaObj = [
+        kokapena,
+        id
+    ];
+    
+    const sqlQuery = `UPDATE kutxatila SET kokapena = ? WHERE idKutxatila = ?`;
+    try {
+        await dbConnection.query(sqlQuery, kutxatilaObj);
+        res.status(201).json({ id });
+    } catch (error) {
+        res.status(500).json({ error: 'errorea kutxatila eguneratzean' });
+    }
+};
+
 export const deleteKutxatila = async (req, res) => {
     const id = parseInt(req.body.idKutxatila);
     if (isNaN(id)) {
@@ -102,9 +153,9 @@ export const deleteKutxatila = async (req, res) => {
     }
     const sqlQuery = `DELETE FROM kutxatila WHERE idKutxatila = ?`;
     try {
-        await dbConnection.query(sqlQuery, id);
+        await dbConnection.query(sqlQuery, [id]);
         res.status(200).json({ Message: 'Kutxatila deleted successfully' });
     } catch (error) {
-        res.status(500).json({ error: 'errorea kutxatila ezabatzean' });
+        res.status(500).json({ error: error.message });
     }
 }

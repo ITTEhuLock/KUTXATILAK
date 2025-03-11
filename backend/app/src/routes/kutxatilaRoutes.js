@@ -5,7 +5,9 @@ const router = express.Router();
 router.get('/', kC.getKutxatilak); // 3000/kutxatila/
 router.get('/:idKutxatila', kC.getKutxatila); // 3000/kutxatila/1
 router.delete('/delete/', kC.deleteKutxatila); // 3000/kutxatila/delete/
-router.put('/update/',kC.updateKutxatila); //3000/kutxatila/update/
+router.put('/updateEgoera/',kC.updateKutxatilaEgoera);
+router.put('/updateKodea/',kC.updateKutxatilaKodea); 
+router.put('/updateKokapena/',kC.updateKutxatilaKokapena); 
 router.post('/add', kC.createNewKutxatila); // 3000/kutxatila/add
 
 
