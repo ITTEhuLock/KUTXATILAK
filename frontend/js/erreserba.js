@@ -26,3 +26,27 @@ export const deleteErreserba = async (event) => {
         console.error('Errorea erreserba ezabatzean');
     }
 }
+
+export const createErreserba = async (event) => {
+    console.log("Erreserba sortzen");
+    event.preventDefault();
+    const erreserba = {
+        idUser: 1, // Hardcoded user id
+        idKutxatila: document.getElementById('idKutxatila').value,
+        start_time: document.getElementById('start_time').value,
+        end_time: document.getElementById('end_time').value
+
+    }
+    const response = await fetch(`${API_URL}/erreserba/add`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(erreserba)
+    });
+    if(response.ok){
+        console.log('Erreserba sortua');
+    }else{
+        console.error('Errorea erreserba sortzean');
+    }
+};

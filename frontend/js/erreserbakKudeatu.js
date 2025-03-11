@@ -41,9 +41,18 @@ export async function loadErreserbak(){
 
 }
 
-function erreserbaEzabatu(event){
-    e.deleteErreserba(event);
+async function erreserbaEzabatu(event){
+    await e.deleteErreserba(event);
     document.getElementById('erreserbak').innerHTML = '';
-    loadErreserbak();
+    window.location.reload();
     
+}
+
+export async function erreserbaSortu(event){
+    event.preventDefault();
+    await e.createErreserba(event);
+    document.getElementById('berriaForm').reset();
+    window.location.reload();
+
+   
 }
