@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <title>Identifikazioa</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <body style="background-color: rgba(115, 133, 137, 0.392);">
+
+<script>
+
+function egiaztatu() {
+
+	var user = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+
+	if (usuarios[username] && usuarios[username] === password) {
+                alert("dena ondo");
+                window.location.href = "./erreserbakIkusi.html";
+                
+            } else {
+                alert("Error");
+            }
+            return false;
+}
+</script>
+
+	<h1>ONGI ETORRI EHU-LOCK-era</h1> 
+
+	<form action="./erreserbakIkusi.html" method="post" onsubmit="return egiaztatu()">
+
+		USER: <input  type="text" id="username" name="usermane"  placeholder="1035898"  /> <br /> 
+		PASAHITZA: <input type="password"  id="password" name="password" /><br />
+		<input type="submit" value="Sartu" />
+	
+	</form>
+
+		
+
+
+	2024-2025 PTA
+    </body>
+</html>
