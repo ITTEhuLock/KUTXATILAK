@@ -22,8 +22,8 @@ export async function loadErreserbak(){
         const l = taula.insertRow();
         l.insertCell().textContent = erreserba.idErreserba;
         l.insertCell().textContent = erreserba.idKutxatila;
-        l.insertCell().textContent = erreserba.start_time;
-        l.insertCell().textContent = erreserba.end_time;
+        l.insertCell().textContent = erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0];
+        l.insertCell().textContent = erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0];
         l.insertCell().textContent = parseInt(erreserba.egoera) === 0
         ? "Hasigabea"
         : parseInt(erreserba.egoera) === 1
