@@ -14,10 +14,8 @@ export const getKutxatilak = async () => {
     }
 };
 
-export const deleteKutxatila = async (event) => {
-    event.preventDefault();
-    const idKutxatila = event.target.id.split("ezabatu")[1];
-    try {
+export async function deleteKutxatila(idKutxatila) {
+   try {
         await fetch(`${API_URL}/kutxatila/delete`, {
             method: 'DELETE',
             headers: {
@@ -30,12 +28,9 @@ export const deleteKutxatila = async (event) => {
     }
 };
 
-export const editKutxatilaEgoera = async (event) => { 
+export async function editKutxatilaEgoera (idKutxatila, egoeraZaharra) { 
  
-    event.preventDefault();
-    const idKutxatila = event.target.id.split("egoera")[1];
-    const egoeraZaharra = document.getElementById("egoera"+idKutxatila).textContent;
-    const egoera = egoeraZaharra === "Irekita" ? "0" : "1";
+    const egoera = egoeraZaharra === 1 ? "0" : "1";
     try {
         await fetch(`${API_URL}/kutxatila/updateEgoera`, {
             method: 'PUT',
@@ -49,10 +44,8 @@ export const editKutxatilaEgoera = async (event) => {
     }
 };
 
-export const editKutxatilaKodea = async (event) => {
-    event.preventDefault();
-    const idKutxatila = event.target.id;
-    const kodea = document.getElementById("kodea"+idKutxatila).value;
+export async function editKutxatilaKodea (idKutxatila, kodea) {
+   
     try {
         await fetch(`${API_URL}/kutxatila/updateKodea`, {
             method: 'PUT',
@@ -66,10 +59,8 @@ export const editKutxatilaKodea = async (event) => {
     }
 };
 
-export const editKutxatilaKokapena = async (event) => {
-    event.preventDefault();
-    const idKutxatila = event.target.id;
-    const kokapena = document.getElementById("kokapena"+idKutxatila).value;
+export async function editKutxatilaKokapena (idKutxatila, kokapena) {
+   
     try {
         await fetch(`${API_URL}/kutxatila/updateKokapena`, {
             method: 'PUT',

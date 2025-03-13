@@ -30,20 +30,24 @@ export async function loadErreserbak(){
         : parseInt(erreserba.egoera) === 1
         ? "Martxan"
         : "Amaituta";
-        l.insertCell().innerHTML = `<button name = "ezabatuButton" id = "${erreserba.idErreserba}" >Ezabatu</button>`;
+        const eB = document.createElement('button');
+        eB.name = 'ezabatuButton';
+        eB.id = erreserba.idErreserba;
+        eB.textContent = 'Ezabatu';
+        eB.addEventListener('click', (event) => {
+            event.preventDefault();
+            erreserbaEzabatu(erreserba.idErreserba);
+        });
+        l.insertCell().appendChild(eB);
+
+    
        });
     erreserbakCont.appendChild(taula);
 
-    document.getElementsByName('ezabatuButton').forEach(e => {
-        e.addEventListener('click', (event) => {
-            erreserbaEzabatu(event);
-        });
-    });
-
 }
 
-async function erreserbaEzabatu(event){
-    await e.deleteErreserba(event);
+async function erreserbaEzabatu(idErreserba){
+    await e.deleteErreserba(idErreserba);
     window.location.reload();
     
 }

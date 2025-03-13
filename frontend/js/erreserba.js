@@ -11,8 +11,7 @@ export const getErabiltzailearenErreserbak = async () => {
 
 };
 
-export const deleteErreserba = async (event) => {
-    const idErreserba = event.target.id;
+export async function deleteErreserba (idErreserba) {
     const response = await fetch(`${API_URL}/erreserba/delete`, {
         method: 'DELETE',
         headers: {
@@ -28,7 +27,6 @@ export const deleteErreserba = async (event) => {
 }
 
 export const createErreserba = async (event) => {
-    console.log("Erreserba sortzen");
     event.preventDefault();
     const erreserba = {
         idUser: 1, // Hardcoded user id

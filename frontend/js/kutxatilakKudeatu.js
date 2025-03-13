@@ -22,42 +22,40 @@ export async function loadKutxatilak(){
 
     kutxatilak.forEach(kutxatila => {
         const l = table.insertRow();
+        const b = document.createElement('button');
+        b.textContent = 'Ezabatu';
+        b.name = 'ezabatuButton';
+        b.addEventListener('click', (event) => {
+            event.preventDefault();
+            kutxatilaEzabatu(kutxatila.idKutxatila);
+        });
+        const b2 = document.createElement('button');
+        b2.textContent = parseInt(kutxatila.egoera) === 0? 'Irekita' : 'Itxita';
+        b2.name = 'egoeraButton';
+        b2.addEventListener('click', (event) => {
+            event.preventDefault();
+            egoeraEguneratu(kutxatila.idKutxatila, kutxatila.egoera);
+        });
         l.insertCell().innerHTML = kutxatila.idKutxatila;
         l.insertCell().textContent = kutxatila.kodea;
-        l.insertCell().innerHTML = parseInt(kutxatila.egoera) === 0
-        ? "<button name = 'egoeraButton' id = 'egoera"+kutxatila.idKutxatila+"'>Itxita</button>"
-        : "<button name='egoeraButton' id = 'egoera"+kutxatila.idKutxatila+"'>Irekita</button>"
+        l.insertCell().appendChild(b2);
 
         l.insertCell().textContent = kutxatila.kokapena;
-        l.insertCell().innerHTML = `<button name = "ezabatuButton" id = "ezabatu${kutxatila.idKutxatila}" >Ezabatu</button>`;
+        l.insertCell().appendChild(b);
     });
     kutxatilakCont.appendChild(table);
-    
-    document.getElementsByName('ezabatuButton').forEach(k => {
-        k.addEventListener('click', (event) => {
-           kutxatilaEzabatu(event);
-        });
-
-    });
-    document.getElementsByName('egoeraButton').forEach(k => {
-        k.addEventListener('click', (event) => {
-           egoeraEguneratu(event);
-        });
-
-    });
 
 }
 
-async function kutxatilaEzabatu(event){
-    event.preventDefault();
-    await k.deleteKutxatila(event);
+async function kutxatilaEzabatu(idKutxatila){
+
+    await k.deleteKutxatila(idKutxatila);
     window.location.reload();
     
 }
 
-async function egoeraEguneratu(event) {
-    event.preventDefault();
-    await k.editKutxatilaEgoera(event);
+async function egoeraEguneratu(idKutxatila, egoera) {
+    await k.editKutxatilaEgoera(idKutxatila, egoera);
     window.location.reload();
     
 }
