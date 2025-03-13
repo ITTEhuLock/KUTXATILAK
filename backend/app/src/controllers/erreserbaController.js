@@ -66,7 +66,7 @@ console.log(erreserbaObj);
     const idErreserba = result.insertId;
     res.status(201).json({ idErreserba });
   } catch (error) {
-    res.status(500).json({ error: 'Error creating erreserba' });
+    res.status(500).json({ error: error.message});
   }
 };
 

@@ -10,6 +10,7 @@ export async function loadErreserbak(){
     }
 
     const taula = document.createElement('table');
+    taula.className = 'taula';
     const l1 = taula.insertRow();
     l1.insertCell().textContent = 'Erreserbaren ID';
     l1.insertCell().textContent = 'Kutxatilaren ID';

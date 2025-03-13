@@ -12,6 +12,7 @@ export async function loadKutxatilak(){
     }
 
     const table = document.createElement('table');
+    table.className = 'taula';
     const l1 = table.insertRow();
     l1.insertCell().textContent = 'Id';
     l1.insertCell().textContent = 'Kodea';
