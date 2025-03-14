@@ -1,6 +1,6 @@
 import { API_URL } from "./konstanteak.js";
 export const getErabiltzailearenErreserbak = async () => {
-    const idUser = 1; // Hardcoded user id
+    const idUser = localStorage.getItem('idUser');
     const response = await fetch(`${API_URL}/erreserba/user/${idUser}`);
     if(response.ok){
         const data = await response.json();
@@ -29,7 +29,7 @@ export async function deleteErreserba (idErreserba) {
 export const createErreserba = async (event) => {
     event.preventDefault();
     const erreserba = {
-        idUser: 1, // Hardcoded user id
+        idUser: localStorage.getItem('idUser'),
         idKutxatila: document.getElementById('idKutxatila').value,
         start_time: document.getElementById('start_time').value,
         end_time: document.getElementById('end_time').value
