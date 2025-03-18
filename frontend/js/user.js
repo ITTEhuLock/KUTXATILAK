@@ -28,3 +28,17 @@ export async function getRole(idUser){
         else
             return false;
 };
+
+export async function createNewUser(username, password, email){
+    const response = await fetch (`${API_URL}/user/createNewUser`,{
+        method : 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username, password, email, role:'user'})   
+    });
+        if(response.ok){
+            const data = await response.json();
+            return data.idUser;
+        }
+        else
+            return null;
+    };

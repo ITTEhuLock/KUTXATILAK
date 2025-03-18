@@ -1,6 +1,10 @@
 import * as u from './user.js'
 
 export async function egiaztatu() {
+    if(document.getElementById('posta').hidden == true){
+        erregistratu();
+        return;
+    }
    if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
     const form = document.getElementById('form');
@@ -30,15 +34,21 @@ export async function egiaztatu() {
 
 }
 
-export async function toggleErregistratu(event) {
-    var reg = true;
-    const form = document.getElementById('form');
+export async function toggleErregistratu() {
+   
+    
     const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
-    reg = !reg;
-    event.preventDefault();
-    reg.hidden = reg;
-    posta.hidden = reg;
+    if(erregistratu.textContent == "Erregistratu"){
+        posta.hidden = false;
+        erregistratu.textContent = "Erregistratuta zaude? Hasi saioa"
+    }
+    else{
+        posta.hidden = true;
+        erregistratu.textContent = "Erregistratu";
+        
+    }
+    
   
        
 
@@ -46,5 +56,12 @@ export async function toggleErregistratu(event) {
 }
 
 export async function erregistratu() {
+    const form = document.getElementById('form');
+	const username = document.getElementById("username").value;
+	const password = document.getElementById("password").value;
+    const idUser = await u.createNewUser(username, password, email);
+    if(!idUser){
+        
+    }
 
 }
