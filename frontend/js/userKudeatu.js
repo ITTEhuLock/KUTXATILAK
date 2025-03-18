@@ -7,7 +7,8 @@ export async function egiaztatu() {
     }
    if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
-   
+   const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
    bideratu(username, password);
 
 }
