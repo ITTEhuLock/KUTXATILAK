@@ -29,3 +29,22 @@ export async function egiaztatu() {
     }
 
 }
+
+export async function toggleErregistratu(event) {
+    var reg = true;
+    const form = document.getElementById('form');
+    const posta = document.getElementById('posta');
+    const erregistratu = document.getElementById('erregistratu');
+    reg = !reg;
+    event.preventDefault();
+    reg.hidden = reg;
+    posta.hidden = reg;
+  
+       
+
+    
+}
+
+export async function erregistratu() {
+
+}

@@ -18,8 +18,9 @@
 
                 ERABILTZAILEA <input  type="text" id="username" name="usermane"  placeholder="1035898"  required/> <br /> 
                 PASAHITZA <input type="password"  id="password" name="password" required /><br />
+                <div hidden id="posta">POSTA ELEKTRONIKOA <input type="email" id="email" name="email"  /><br /></div>
                 <button type="submit" >Sartu</button>
-            
+                <button id = "erregistratu">Erregistratu</button>
             </form>
     </div>
 		
@@ -27,11 +28,15 @@
 
 	2024-2025 PTA
         <script type = "module">
-            import {egiaztatu} from '../js/userKudeatu.js';
+            import {egiaztatu, toggleErregistratu} from '../js/userKudeatu.js';
             document.getElementById('form').addEventListener('submit',(event)=>{
                 event.preventDefault();
                 egiaztatu();
-
+            
+            });
+            document.getElementById('erregistratu').addEventListener('click',(event)=>{
+                event.preventDefault();
+                toggle();
             });
         </script>
     </body>
