@@ -81,9 +81,10 @@ export const updateErreserba = async (req, res) => {
       erreserba.egoera,
       erreserba.start_time,
       erreserba.end_time,
-      idErreserba,
       erreserba.fill_time,
-      erreserba.empty_time
+      erreserba.empty_time,
+      idErreserba
+
     ];
     const sqlQuery = 'UPDATE erreserba SET egoera = ?, start_time = ?, end_time = ?,fill_time = ?,empty_time = ? WHERE idErreserba = ?';
     await dbConnection.execute(sqlQuery, erreserbaObj);
