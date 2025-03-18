@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Erabiltzailearen erreserbak kontsultatu</title>
+        <link rel="stylesheet" href="../css/style.css">
+    
+    
+    </head>
+    <body>
+       <h1>Erreserben kudeaketa</h1>
+       <button id = "newButton" > Erreserba berria sortu</button>
+       <div id = "berria" class = 'form-container' style = "margin-top:40px" hidden>
+            <form id = "berriaForm">
+                Kutxatilaren id-a
+                <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
+               Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
+               Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
+               <button type = "submit" id = "erreserbaSortu">Sortu</button>
+            </form>
+        </div> 
+    
+        <div id = "erreserbak" class = "taula" ></div>
+  
+    <script type = "module">
+        import {loadErreserbak, erreserbaSortu} from '../js/erreserbakKudeatu.js';
+        window.addEventListener('DOMContentLoaded', () => {
+           loadErreserbak();
+        });
+        const toggle = document.getElementById('newButton');
+        
+        toggle.addEventListener('click', () => {
+        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+        if(document.getElementById('erreserbak').style.marginTop == "350px")
+            document.getElementById('erreserbak').style.marginTop = "20px";
+        else
+        document.getElementById('erreserbak').style.marginTop = "350px";
+        
+    });
+        document.getElementById('berriaForm').addEventListener('submit', (event) => {
+        erreserbaSortu(event);
+    });
+    </script>
+    </body>
+
+</html>

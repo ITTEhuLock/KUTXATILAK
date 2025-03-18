@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Identifikazioa</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+   </head>
+
+    <body>
+    <div class = 'form-container' id = 'formBerria'>
+
+        <h1>ONGI ETORRI EHULOCKera</h1> 
+
+            <form id = "form" >
+
+                ERABILTZAILEA <input  type="text" id="username" name="usermane"  placeholder="1035898"  required/> <br /> 
+                PASAHITZA <input type="password"  id="password" name="password" required /><br />
+                <button type="submit" >Sartu</button>
+            
+            </form>
+    </div>
+		
+
+
+	2024-2025 PTA
+        <script type = "module">
+            import {egiaztatu} from '../js/userKudeatu.js';
+            document.getElementById('form').addEventListener('submit',(event)=>{
+                event.preventDefault();
+                egiaztatu();
+
+            });
+        </script>
+    </body>
+</html>
