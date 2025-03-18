@@ -56,7 +56,7 @@ export const createNewUser = async (req, res) => {
        
     ];
 
-    const sqlQuery = `INSERT INTO user (username, password, email, role) VALUES (?, ?, ?)`;
+    const sqlQuery = `INSERT INTO user (username, password, email, role) VALUES (?, ?, ?, ?)`;
 
     try {
         const [results] = await dbConnection.query(sqlQuery, userObj);
@@ -151,4 +151,21 @@ export const getRole = async (req, res) => {
         res.status(500).json({ error: 'errorea erabiltzailea egiaztatzean' });
     }
 
+}
+
+export const checkUser = async (req, res) => {
+    const username = req.body.username;
+    const email = req.body.email;
+    const sqlQuery = `SELECT * FROM user WHERE username = ? OR email = ?`;
+    try {
+        const [results] = await dbConnection.query(sqlQuery, [username, email]);
+        if (results.length > 0) {
+            return res.status(200).json({ egoera: false });
+        }
+        else { 
+            return res.status(200).json({ egoera: true });
+             }
+    } catch (error) {
+        res.status(500).json({ error: 'errorea erabiltzailea egiaztatzean' });
+    }
 }

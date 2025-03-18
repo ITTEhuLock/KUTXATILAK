@@ -30,7 +30,7 @@ export async function getRole(idUser){
 };
 
 export async function createNewUser(username, password, email){
-    const response = await fetch (`${API_URL}/user/createNewUser`,{
+    const response = await fetch (`${API_URL}/user/add`,{
         method : 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username, password, email, role:'user'})   
@@ -42,3 +42,22 @@ export async function createNewUser(username, password, email){
         else
             return null;
     };
+
+
+export async function checkUser(username, email) {
+
+    const response = await fetch (`${API_URL}/user/checkUser`,{
+        method : 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username, email})
+    });
+    if(response.ok){
+        const data = await response.json();
+        return data.egoera;
+    }
+    else
+        return null;
+}
+
+    
+    

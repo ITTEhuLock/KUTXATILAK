@@ -1,15 +1,18 @@
 import * as u from './user.js'
 
 export async function egiaztatu() {
-    if(document.getElementById('posta').hidden == true){
+    if(document.getElementById('erregistratu').textContent != "Erregistratu"){
         erregistratu();
         return;
     }
    if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
-    const form = document.getElementById('form');
-	const username = document.getElementById("username").value;
-	const password = document.getElementById("password").value;
+   
+   bideratu();
+
+}
+
+async function bideratu(username,password) {
     const idUser = await u.verifyUser(username, password);
     console.log(idUser);
     form.reset();
@@ -31,7 +34,7 @@ export async function egiaztatu() {
     else {
         window.location.href = './erreserbakIkusi.html';
     }
-
+    
 }
 
 export async function toggleErregistratu() {
@@ -59,9 +62,16 @@ export async function erregistratu() {
     const form = document.getElementById('form');
 	const username = document.getElementById("username").value;
 	const password = document.getElementById("password").value;
-    const idUser = await u.createNewUser(username, password, email);
-    if(!idUser){
-        
+    const email = document.getElementById('email').value;
+    const egoera = await u.checkUser(username, email);
+    if(!egoera){
+        const mezua = document.createElement('h2');
+        mezua.textContent = 'Izen edo posta horrekin dagoen erabiltzailea jada existizen da';
+        document.getElementById('formBerria').appendChild(mezua);
+        return;
     }
+    await u.createNewUser(username, password, email);
+    bideratu(username,password);
+    form.reset();
 
 }
