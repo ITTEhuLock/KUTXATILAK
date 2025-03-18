@@ -8,7 +8,7 @@ export async function egiaztatu() {
    if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
    
-   bideratu();
+   bideratu(username, password);
 
 }
 
@@ -29,10 +29,10 @@ async function bideratu(username,password) {
     const role = await u.getRole(idUser);
     
     if(role === 'admin'){
-        window.location.href = './administraria.html';
+        window.location.href = './html/administraria.html';
     }
     else {
-        window.location.href = './erreserbakIkusi.html';
+        window.location.href = './html/erreserbakIkusi.html';
     }
     
 }
