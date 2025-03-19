@@ -14,6 +14,21 @@ export const getKutxatilak = async () => {
     }
 };
 
+export async function getKutxatila(idKutxatila){
+    try{
+        const response = await fetch(`${API_URL}/kutxatila/${idKutxatila}`);
+    
+    if (response.ok) {
+        const data = await response.json();
+        return data[0];
+        }
+        return false;
+    } catch (error) {
+        console.error('errorea ', error);
+        return false;
+    }
+};;
+
 export async function deleteKutxatila(idKutxatila) {
    try {
         await fetch(`${API_URL}/kutxatila/delete`, {

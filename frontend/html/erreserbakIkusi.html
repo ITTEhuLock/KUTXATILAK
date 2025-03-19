@@ -9,7 +9,7 @@
     <body>
        <h1>Erreserben kudeaketa</h1>
        <button id = "newButton" > Erreserba berria sortu</button>
-       <div id = "berria" class = 'form-container' style = "margin-top:40px" hidden>
+       <div id = "berria" class = 'form-container' style = "margin-bottom:30px" hidden>
             <form id = "berriaForm">
                 Kutxatilaren id-a
                 <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
@@ -19,8 +19,8 @@
             </form>
         </div> 
     
-        <div id = "erreserbak" class = "taula" ></div>
-  
+        <div id = "erreserbak" class = "taulaDiv" ></div>
+    </body>
     <script type = "module">
         import {loadErreserbak, erreserbaSortu} from '../js/erreserbakKudeatu.js';
         window.addEventListener('DOMContentLoaded', () => {
@@ -40,6 +40,6 @@
         erreserbaSortu(event);
     });
     </script>
-    </body>
+   
 
 </html>

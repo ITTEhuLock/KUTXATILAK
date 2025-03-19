@@ -82,9 +82,8 @@ main {
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 100%;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 350px;
+    max-height: 400px;
     text-align: center;
     
   }

@@ -1,4 +1,5 @@
 import * as e from "./erreserba.js";
+import * as k from "./kutxatila.js";
 export async function loadErreserbak(){
     const erreserbakCont = document.getElementById('erreserbak');
     const erreserbak = await e.getErabiltzailearenErreserbak();
@@ -12,17 +13,19 @@ export async function loadErreserbak(){
     const taula = document.createElement('table');
     taula.className = 'taula';
     const l1 = taula.insertRow();
-    l1.insertCell().textContent = 'Erreserbaren ID';
-    l1.insertCell().textContent = 'Kutxatilaren ID';
-    l1.insertCell().textContent = 'Erreserbaren hasiera';
-    l1.insertCell().textContent = 'Erreserbaren amaiera';
-    l1.insertCell().textContent = 'Erreserbaren egoera';
+    
+    l1.insertCell().textContent = 'Kutxatila';
+    l1.insertCell().textContent = 'Hasiera';
+    l1.insertCell().textContent = 'Amaiera';
+    l1.insertCell().textContent = 'Egoera';
     l1.insertCell().textContent = 'Ekintza';
 
-    erreserbak.forEach(erreserba => {
+    
+    erreserbak.forEach(async (erreserba) =>{
+        console.log(erreserba.idKutxatila);
+        const ku = await k.getKutxatila(erreserba.idKutxatila);
         const l = taula.insertRow();
-        l.insertCell().textContent = erreserba.idErreserba;
-        l.insertCell().textContent = erreserba.idKutxatila;
+        l.insertCell().textContent = ku.kodea+', '+ku.kokapena+' eraikinean';
         l.insertCell().textContent = erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0];
         l.insertCell().textContent = erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0];
         l.insertCell().textContent = parseInt(erreserba.egoera) === 0
@@ -41,7 +44,8 @@ export async function loadErreserbak(){
         l.insertCell().appendChild(eB);
 
     
-       });
+});
+    
     erreserbakCont.appendChild(taula);
 
 }

@@ -9,7 +9,7 @@
 <body>
 <h1>Kutxatilen kudeaketa</h1>
 <button id = "newButton" > Kutxatila berria sortu</button>
-<div class = "form-container" style = "margin:30px" id = "berria" hidden>
+<div class = "form-container" style = "margin-bottom:20px" id = "berria" hidden>
     <form id = "berriaForm">
         <br> Kutxatilaren kodea<input type = "text" id = "kodea" placeholder = "P1M7A001,..." required></input>
         <br> Kutxatilaren kokapena<input type = "text" id = "kokapena" placeholder = "M eraikina, liburutegiaren alboan" required></input>
@@ -25,10 +25,10 @@
         const toggle = document.getElementById('newButton');
         toggle.addEventListener('click', () => {
         document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-        if(document.getElementById('kutxatilak').style.marginTop == "340px")
+        if(document.getElementById('kutxatilak').style.marginTop == "350px")
             document.getElementById('kutxatilak').style.marginTop = "30px";
         else
-            document.getElementById('kutxatilak').style.marginTop = "340px";
+            document.getElementById('kutxatilak').style.marginTop = "350px";
     });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
         kutxatilaSortu(event);
