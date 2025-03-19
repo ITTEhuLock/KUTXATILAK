@@ -39,7 +39,7 @@ main {
 .taulaDiv{
   position: relative; 
   padding: 10px;
-  max-width: 100%; 
+  max-width: 450px; 
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   overflow-x: auto; 
