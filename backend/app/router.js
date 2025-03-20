@@ -8,6 +8,7 @@ const router = (app) => {
     app.use('/user', userRoutes);
     app.use('/kutxatila', kutxatilaRoutes);
     app.use('/raspberry', raspberryRoutes);
+    
 
 
 };

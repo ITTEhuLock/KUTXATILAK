@@ -129,7 +129,7 @@ export const verifyUser = async (req, res) => {
             res.status(200).json({idUser: results[0].idUser });
         }
     } catch (error) {
-        res.status(500).json({ error: 'errorea erabiltzailea egiaztatzean' });
+        res.status(500).json({ error: error.message });
     }
 }
 
