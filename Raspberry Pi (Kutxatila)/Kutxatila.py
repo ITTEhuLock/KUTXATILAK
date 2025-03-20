@@ -1,15 +1,31 @@
-import requests, time, json
+import logging
+import requests, json
+from PN532 import PN532
+global idUser
 
-global id
+logging.basicConfig(level=logging.DEBUG)
+def callbackPN532(tag, id):
+    print('Found tag: {}, id: {}'.format(tag, id))
+
 def main():
 
+    #NFC modulua hasieratu
+    pn532 = PN532('tty:S0',"F0010203040506",callbackPN532)
     
     #NFC identifikazioa itxaroten
-    id = 1
-    #Identifikazioa jaso da, JSON bihurtu 
+    pn532.listen()
+    id = int(pn532.device_uid[:-4])
+    pn532.close()  
+ 
+    #Datuak JSON bihurtu
+    data = {
+        "idUser": id
+    }
+    json_data = json.dumps(data)
+
 
     # REST POST
-    response = requests.post("http://192.168.137.1:3000/raspberry/check", data={'idUser': id})
+    response = requests.post("http://192.168.137.1:3000/raspberry/check", data=json_data, headers ={"Content-Type": "application/json"})
     erantzuna = json.loads(response.text)
     print(erantzuna)
     if erantzuna["baimena"] == "baimenduta":
@@ -30,48 +46,6 @@ def main():
 
 
 
-def nfcread():
-    id = None
-    try:
-        clf = nfc.ContactlessFrontend('tty:S0')  
-        if clf:
-            print("PN532 NFC reader connected")
-            while id == None:
-                print("Waiting for an NFC tag...")
-                clf.connect(rdwr={'on-connect': on_connect})
-                time.sleep(1)  
-        else:
-            print("Failed to connect to PN532 NFC reader")
-    except KeyboardInterrupt:
-        print("Exiting...")
-    except Exception as e:
-        print(f"Error: {e}")
-    finally:
-        if clf:
-            clf.close()
-
-
-def on_connect(tag):
-    print(f"Tag detected: {tag}")
-    if tag.ndef:
-        print("NDEF is supported by this tag")
-        ndef_message = tag.ndef.message
-        if ndef_message:
-            id = ndef_message
-            print("NDEF Message:")
-            for record in ndef_message:
-                print(f"Record: {record}")
-                if record.type == 'text':
-                    print(f"Text: {record.text}")
-                elif record.type == 'uri':
-                    print(f"URI: {record.uri}")
-                else:
-                    print(f"Unsupported record type: {record.type}")
-        else:
-            print("No NDEF message found on the tag")
-    else:
-        print("NDEF is not supported by this tag")
-    return True  # Keep the connection alive
 
         
 def ireki():
