@@ -9,7 +9,6 @@ import android.widget.Toast;
 public class WebAppInterface {
     Context context;
 
-    // Constructor to pass the context
     WebAppInterface(Context context) {
         this.context = context;
     }
@@ -24,7 +23,6 @@ public class WebAppInterface {
         editor.apply();
         Log.d("WebAppInterface", "Received userId: " + userId);
 
-        // You can now use the userId for NFC or other native processes
-        // For example, start an NFC process here
+        
     }
 }
