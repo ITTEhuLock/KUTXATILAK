@@ -65,6 +65,8 @@ CREATE TABLE `kutxatila` (
   `kodea` varchar(45) NOT NULL,
   `egoera` tinyint NOT NULL,
   `kokapena` varchar(45) NOT NULL,
+  `hasiera_ordua` time NOT NULL,
+  `amaiera_ordua` time NOT NULL,
   PRIMARY KEY (`idKutxatila`),
   UNIQUE KEY `kodea_UNIQUE` (`kodea`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
@@ -76,7 +78,7 @@ CREATE TABLE `kutxatila` (
 
 LOCK TABLES `kutxatila` WRITE;
 /*!40000 ALTER TABLE `kutxatila` DISABLE KEYS */;
-INSERT INTO `kutxatila` VALUES (2,'P1M7A001',0,'M eraikina, liburutegiaren alboan'),(3,'P0B17002',1,'B eraikina, ordenagailuentzako kutxatila'),(5,'P0B17003',0,'B eraikina, ordenagailuentzako kutxatila');
+INSERT INTO `kutxatila` VALUES (2,'P1M7A001',0,'M eraikina, liburutegiaren alboan','23:23:00','21:21:00'),(3,'P0B17002',1,'B eraikina, ordenagailuentzako kutxatila','01:01:00','01:02:00'),(5,'P0B17003',0,'B eraikina, ordenagailuentzako kutxatila','01:01:00','01:02:00');
 /*!40000 ALTER TABLE `kutxatila` ENABLE KEYS */;
 UNLOCK TABLES;
 

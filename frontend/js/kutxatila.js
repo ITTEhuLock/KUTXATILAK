@@ -93,13 +93,15 @@ export const kutxatilaSortu = async (event) => {
     event.preventDefault();
     const kodea = document.getElementById("kodea").value;
     const kokapena = document.getElementById("kokapena").value;
+    const hasiera_ordua = document.getElementById("start_time").value;
+    const amaiera_ordua = document.getElementById("end_time").value;
     try {
         await fetch(`${API_URL}/kutxatila/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({kodea, kokapena})
+            body: JSON.stringify({kodea, kokapena, hasiera_ordua, amaiera_ordua})
         });
     } catch (error) {
         console.error('Errorea izan da kutxatila sortzean: ', error);

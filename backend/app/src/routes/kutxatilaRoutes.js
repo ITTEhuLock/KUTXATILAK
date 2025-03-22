@@ -8,6 +8,7 @@ router.delete('/delete/', kC.deleteKutxatila); // 3000/kutxatila/delete/
 router.put('/updateEgoera/',kC.updateKutxatilaEgoera);
 router.put('/updateKodea/',kC.updateKutxatilaKodea); 
 router.put('/updateKokapena/',kC.updateKutxatilaKokapena); 
+router.put('/updateTarteak/',kC.updateKutxatilaErabileraTartea); 
 router.post('/add', kC.createNewKutxatila); // 3000/kutxatila/add
 
 

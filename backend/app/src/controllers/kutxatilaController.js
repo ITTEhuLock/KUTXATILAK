@@ -39,7 +39,7 @@ export const getKutxatila = async (req, res) => {
 
 export const createNewKutxatila = async (req, res) => {
     const kutxatila = req.body;
-    if(!kutxatila.kodea || !kutxatila.kokapena){
+    if(!kutxatila.kodea || !kutxatila.kokapena || !kutxatila.hasiera_ordua || !kutxatila.amaiera_ordua){
         return res.status(400).json({
             ErrorCode: 204,
             Message: 'Fields cannot be empty',
@@ -49,11 +49,13 @@ export const createNewKutxatila = async (req, res) => {
 
         kutxatila.kodea,
         kutxatila.kokapena,
+        kutxatila.hasiera_ordua,
+        kutxatila.amaiera_ordua,
         "0"
 
     ];
 
-    const sqlQuery = `INSERT INTO kutxatila (kodea, kokapena, egoera) VALUES (?, ?, ?)`;
+    const sqlQuery = `INSERT INTO kutxatila (kodea, kokapena, hasiera_ordua, amaiera_ordua, egoera) VALUES (?, ?, ?, ?, ?)`;
 
     try {
         const result = await dbConnection.query(sqlQuery, kutxatilaObj);
@@ -145,6 +147,35 @@ export const updateKutxatilaKokapena = async (req, res) => {
         res.status(500).json({ error: 'errorea kutxatila eguneratzean' });
     }
 };
+
+export const updateKutxatilaErabileraTartea = async (req, res) => {
+    const hasiera_ordua = req.body.hasiera_ordua;
+    const amaiera_ordua = req.body.amaiera_ordua;
+    const id = parseInt(req.body.idKutxatila);
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+      }
+    if(!hasiera_ordua || !amaiera_ordua){
+        return res.status(400).json({
+            ErrorCode: 204,
+            Message: 'Fields cannot be empty',
+        });}
+
+    const kutxatilaObj = [
+        hasiera_ordua,
+        amaiera_ordua,
+        id
+    ];
+    
+    const sqlQuery = `UPDATE kutxatila SET hasiera_ordua = ?, amaiera_ordua = ?  WHERE idKutxatila = ?`;
+    try {
+        await dbConnection.query(sqlQuery, kutxatilaObj);
+        res.status(201).json({ id });
+    } catch (error) {
+        res.status(500).json({ error: 'errorea kutxatila eguneratzean' });
+    }
+};
+
 
 export const deleteKutxatila = async (req, res) => {
     const id = parseInt(req.body.idKutxatila);
