@@ -11,6 +11,18 @@ export const getErabiltzailearenErreserbak = async () => {
 
 };
 
+export const getErreserbaById = async () => {
+    const idErreserba = localStorage.getItem('idErreserba');
+    const response = await fetch(`${API_URL}/erreserba/${idErreserba}`);
+    if(response.ok){
+        const data = await response.json();
+        return data;
+    }else{
+        console.error('Errorea erreserbak lortzean');
+    }
+
+};
+
 export async function deleteErreserba (idErreserba) {
     const response = await fetch(`${API_URL}/erreserba/delete`, {
         method: 'DELETE',

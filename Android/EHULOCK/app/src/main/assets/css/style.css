@@ -14,54 +14,82 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgba(187, 195, 196, 0.392);
+   
 }
 
-.taula button {
+.taula button{
   display: block;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  width: 100%; 
+  height: 100%; 
+  box-sizing: border-box; 
 }
+
+
+
 
 main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
+    flex: 1; 
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto; 
+ 
 }
-
-.taulaDiv {
-  position: relative;
-  padding: 10px;
-  max-width: 100%;
+.taulaDiv{
+  position: relative; 
+  max-width: 80%;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
-  overflow-x: auto;
-  border: none;
+  overflow-x: auto; 
+  border: none; 
   margin: 42px 6px 6px 6px;
+  display: flex;
+
+}
+.taulaDiv2{
+  position: relative; 
+  max-width: 90%; 
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overflow-x: auto; 
+  border: none; 
+  margin: 42px 6px 6px 6px;
+  display: flex;
 
 }
 
-.taula {
-  margin-top: 20px;
-  width: 80%;
-  border-color: #333;
-  text-align: center;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
+.taula, .taulazehatza{
+    margin-top: 20px;
+    width: 90%;
+    border-color: #333;
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
 }
 
-.taula td,
-.taula th {
-  border: 1px solid #333;
+.taula td, .taula th, .taulazehatza td, .taulazehatza th {
+    border: 1px solid #333;
 }
+
 
 .taula > tbody > tr:first-of-type {
+    position: sticky;
+ 
+    background-color: #676b6c;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    text-align: center;
+    color: #f9f9f9;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.taulazehatza > tbody > tr > td:first-of-type {
   position: sticky;
+  left: 0; 
   background-color: #676b6c;
-  border-collapse: collapse;
   border: 1px solid #ddd;
   font-weight: bold;
   text-align: center;
@@ -71,143 +99,75 @@ main {
 }
 
 .form-container {
-  position: fixed;
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  overflow-x: auto;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 80%;
-  max-width: 300px;
-  max-height: 380px;
-  text-align: center;
-}
-
-h1 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-form input {
-  width: 100%;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.form-container button {
-  color: black;
-  border: 1px solid #000;
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button {
-  background-color: #676b6c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #333;
-  transition: background-color 0.3s ease;
-}
-
-/* Media Queries for Responsive Design */
-
-/* Mobile Screens (up to 600px) */
-@media (max-width: 1080px) {
-  body {
-    height: auto;
-    padding: 10px;
-  }
-
-  .taulaDiv {
-    margin: 20px 0;
-    max-height: none;
-  }
-
-  .form-container {
-    position: static;
-    max-width: 80%;
-    margin: 20px 0;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  form input {
-    font-size: 14px;
-  }
-
-  button {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-}
-
-/* Tablet Screens (601px to 900px) */
-@media (min-width: 1081px) and (max-width: 1600px) {
-  .taulaDiv {
-    max-width: 90%;
-  }
-
-  .form-container {
-    max-width: 400px;
-  }
-
-  h1 {
-    font-size: 22px;
-  }
-
-  form input {
-    font-size: 15px;
-  }
-
-  button {
-    padding: 10px 18px;
-    font-size: 15px;
-  }
-}
-
-/* Desktop Screens (901px and above) */
-@media (min-width: 1601px) {
-  .taulaDiv {
-    max-width: 80%;
-  }
-
-  .form-container {
-    max-width: 500px;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: auto;
+     background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 350px;
+    max-height: 450px;
+    text-align: center;
+    
   }
 
   h1 {
     font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
   }
-
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
   form input {
+    width: 100%;
+   
     font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+   .form-container button {
+   
+    color: black;
+    border: 1px solid #000;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
-  button {
-    padding: 12px 20px;
+  button{
+    background-color: #676b6c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
-}
+
+  #editatuButton, #ezabatuButton{
+    background-color: #676b6c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #333;
+    transition: background-color 0.3s ease;
+    
+  }

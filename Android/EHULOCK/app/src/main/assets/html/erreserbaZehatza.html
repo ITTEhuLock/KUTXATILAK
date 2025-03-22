@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Erabiltzailearen zehatza</title>
+        <link rel="stylesheet" href="../css/style.css">
+    
+    
+    </head>
+    <body>
+       <h1>Zehaztapenak</h1>
+           
+        <div id = "erreserbak" class = "taulazehatzaDiv" ></div>
+        <button id = "editatuButton" > Erreserba editatu</button>
+        <button id = "ezabatuButton" > Erreserba ezabatu</button>
+    </body>
+    <script type = "module">
+        import {loadErreserbak, erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
+        window.addEventListener('DOMContentLoaded', () => {
+           loadErreserbak();
+        });
+        const ezabatutoggle = document.getElementById('ezabatuButton');
+        const editatutoggle = document.getElementById('editatuButton');
+        ezabatutoggle.addEventListener('click', () => {
+            erreserbaEzabatu();
+        
+        });
+        editatutoggle.addEventListener('click', () => {
+            erresebaEditatu();
+        
+        });
+
+        document.getElementById('berriaForm').addEventListener('submit', (event) => {
+        erreserbaSortu(event);
+    });
+    </script>
+   
+
+</html>

@@ -9,14 +9,16 @@
 <body>
 <h1>Kutxatilen kudeaketa</h1>
 <button id = "newButton" > Kutxatila berria sortu</button>
-<div class = "form-container" style = "margin:30px" id = "berria" hidden>
+<div class = "form-container" style = "margin-bottom:20px" id = "berria" hidden>
     <form id = "berriaForm">
         <br> Kutxatilaren kodea<input type = "text" id = "kodea" placeholder = "P1M7A001,..." required></input>
         <br> Kutxatilaren kokapena<input type = "text" id = "kokapena" placeholder = "M eraikina, liburutegiaren alboan" required></input>
+        Kutxatilaren erabilera tartearen hasiera<input type = "time" id = "start_time"   required></input>
+        Kutxatilaren erabilera tartearen amaiera<input type = "time" id = "end_time" required></input>
         <br> <button type = "submit" id = "kutxatilaSortu">Sortu</button>
     </form>
 </div>
-    <div id = "kutxatilak" class = "taulaDiv"></div>
+    <div id = "kutxatilak" class = "taulaDiv2"></div>
     <script type = "module">
         import {loadKutxatilak, kutxatilaSortu} from '../js/kutxatilakKudeatu.js';
         window.addEventListener('DOMContentLoaded', () => {
@@ -25,7 +27,10 @@
         const toggle = document.getElementById('newButton');
         toggle.addEventListener('click', () => {
         document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-
+        if(document.getElementById('kutxatilak').style.marginTop == "350px")
+            document.getElementById('kutxatilak').style.marginTop = "30px";
+        else
+            document.getElementById('kutxatilak').style.marginTop = "350px";
     });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
         kutxatilaSortu(event);
