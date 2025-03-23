@@ -27,14 +27,8 @@ async function bideratu(username,password) {
     }
     
     localStorage.setItem("idUser", idUser);
-    const role = await u.getRole(idUser);
-    
-    if(role === 'admin'){
-        window.location.href = './html/administraria.html';
-    }
-    else {
-        window.location.href = './html/erreserbakIkusi.html';
-    }
+    window.location.href = './html/erreserbakIkusi.html';
+
     
 }
 

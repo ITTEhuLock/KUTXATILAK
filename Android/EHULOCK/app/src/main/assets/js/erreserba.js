@@ -38,6 +38,30 @@ export async function deleteErreserba (idErreserba) {
     }
 }
 
+
+export const updateErreserba = async (event) => {
+     const erreserba = {
+            idErreserba: localStorage.getItem("idErreserba"),
+            idKutxatila: document.getElementById('idKutxatila').value,
+            start_time: document.getElementById('start_time').value,
+            end_time: document.getElementById('end_time').value,
+            egoera: localStorage.getItem("erreserbaEgoera")
+
+        }
+    const response = await fetch(`${API_URL}/erreserba/update`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(erreserba)
+    });
+    if(response.ok){
+        console.log('Erreserba editatua');
+    }else{
+        console.error('Errorea erreserba editatzean');
+    }
+}
+
 export const createErreserba = async (event) => {
     event.preventDefault();
     const erreserba = {

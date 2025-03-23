@@ -8,8 +8,16 @@
     </head>
     <body>
        <h1>Zehaztapenak</h1>
-           
-        <div id = "erreserbak" class = "taulazehatzaDiv" ></div>
+       <div id = "berria" class = 'form-container' style = "margin-bottom:30px" hidden>
+           <form id = "berriaForm">
+               Kutxatilaren id-a
+               <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
+               Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
+               Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
+               <button type = "submit" id = "erreserbaEditatu">Editatu</button>
+           </form>
+       </div>
+       <div id = "erreserbak" class = "taulazehatzaDiv" ></div>
         <button id = "editatuButton" > Erreserba editatu</button>
         <button id = "ezabatuButton" > Erreserba ezabatu</button>
     </body>
@@ -21,17 +29,22 @@
         const ezabatutoggle = document.getElementById('ezabatuButton');
         const editatutoggle = document.getElementById('editatuButton');
         ezabatutoggle.addEventListener('click', () => {
-            erreserbaEzabatu();
+            const idErreserba = localStorage.getItem("idErreserba");
+            erreserbaEzabatu(idErreserba);
         
         });
         editatutoggle.addEventListener('click', () => {
-            erresebaEditatu();
-        
+            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+            if(document.getElementById('erreserbak').style.marginTop == "350px")
+                document.getElementById('erreserbak').style.marginTop = "20px";
+            else
+                document.getElementById('erreserbak').style.marginTop = "350px";
+            document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
         });
-
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
-        erreserbaSortu(event);
-    });
+            const idErreserba = localStorage.getItem("idErreserba");
+            erreserbaEditatu(event);
+        });
     </script>
    
 

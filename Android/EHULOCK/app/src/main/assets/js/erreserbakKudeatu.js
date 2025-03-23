@@ -22,6 +22,7 @@ export async function loadErreserbak(){
         lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
         lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0]);
         lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0]);
+        localStorage.setItem("erreserbaEgoera",erreserba.egoera);
         lerroaSortu("Egoera",parseInt(erreserba.egoera) === 0
         ? "Hasigabea"
         : parseInt(erreserba.egoera) === 1
@@ -74,13 +75,17 @@ export async function loadErreserbaLaburpena(){
 }
 
 export async function erreserbaEzabatu(idErreserba){
+    console.log(idErreserba);
     await e.deleteErreserba(idErreserba);
-    window.location.reload();
+    window.location.href = './erreserbakIkusi.html';
     
 }
 
-export async function erreserbaEditatu(idErreserba){
-
+export async function erreserbaEditatu(event){
+    event.preventDefault();
+    await e.updateErreserba(event);
+    document.getElementById('berriaForm').reset();
+    window.location.reload();
 }
 
 export async function erreserbaSortu(event){
