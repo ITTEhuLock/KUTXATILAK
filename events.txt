@@ -1,0 +1,15 @@
+/*EXEKUTATU MYSQL TERMINALEAN*/
+
+CREATE EVENT erreserba_hasi
+ON SCHEDULE EVERY 1 MINUTE
+DO
+  UPDATE erreserba
+  SET egoera = 1
+  WHERE start <= NOW() AND egoera = 0;
+
+CREATE EVENT erreserba_amaitu
+ON SCHEDULE EVERY 1 MINUTE
+DO
+  UPDATE erreserba
+  SET egoera = 2
+  WHERE end_time <= NOW() AND egoera = 1;
