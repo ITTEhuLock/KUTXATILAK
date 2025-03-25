@@ -234,11 +234,11 @@ button:hover {
 }
 
 .botoia{
-  margin-top: 60px;
-  display: flex;
+  margin: 10px;
   justify-content: center;
   align-items: center;
-  width: 40px;
+  box-sizing: border-box;
+  width: 150px;
 }
 
 .modal {

@@ -69,8 +69,8 @@ export async function getErreserbaLaburpena(){
     const erreserba = await e.getErreserbaAktiboa();
     if(!erreserba){
         const abisua = document.createElement('h1');
-        abisua.textContent = 'Ez daukazu erreserbarik';
-        document.getElementById('erreserbak').appendChild(abisua);
+        abisua.textContent = 'Ez daukazu erreserba aktiborik';
+        document.getElementById('erreserba').appendChild(abisua);
         return;
     }
     const erreserbakDiv = document.getElementById('erreserba');

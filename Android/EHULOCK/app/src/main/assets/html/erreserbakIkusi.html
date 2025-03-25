@@ -9,7 +9,7 @@
     <body>
        <h1>Erreserben kudeaketa</h1>
        <button id = "newButton" > Erreserba berria sortu</button>
-       <div id = "berria" class = 'form-container' style = "margin-bottom:30px" hidden>
+       <div id = "berria" class = 'form-container' style = "margin:30px" hidden>
             <form id = "berriaForm">
                 Kutxatila aukeratu
                 
@@ -37,10 +37,7 @@
         
         toggle.addEventListener('click', () => {
         document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-        if(document.getElementById('erreserbak').style.marginTop == "350px")
-            document.getElementById('erreserbak').style.marginTop = "20px";
-        else
-        document.getElementById('erreserbak').style.marginTop = "350px";
+  
         
     });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
@@ -61,9 +58,9 @@
                <button type = "submit" id = "erreserbaEditatu">Editatu</button>
            </form>
        </div>
-       <button id = "itxi" > Itxi</button><br/><br/>
-       <button id = "editatuButton" > Erreserba editatu</button>
-         <button id = "ezabatuButton" > Erreserba ezabatu</button><br/><br/><br/>
+       <button id = "itxi" class="botoia"> Itxi</button><br/>
+       <button id = "editatuButton" class= "botoia"> Erreserba editatu</button>
+         <button id = "ezabatuButton" class= "botoia" > Erreserba ezabatu</button>
        <div id = "erreserbak" class = "taulaDiv2" ></div>
 
     
