@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', eC.getErreserbak); // 3000/erreserba/
 router.get('/:iderreserba', eC.getErreserba); // 3000/erreserba/1
 router.get('/user/:idUser', eC.getErabiltzailearenErreserbak); // 3000/erreserba/user/1
-router.get('/lortu/aktiboa', eC.getErreserbaAktiboa); // 3000/erreserba/aktiboa
+router.get('/aktiboa/:idUser', eC.getErreserbaAktiboa); // 3000/erreserba/aktiboa/1
 router.get('/kutxatila/:idKutxatila', eC.getKutxatilarenErreserbak); // 3000/erreserba/kutxatila/1
 router.delete('/delete/', eC.deleteErreserba); // 3000/erreserba/delete/
 router.put('/update/', eC.updateErreserba); //3000/erreserba/update/

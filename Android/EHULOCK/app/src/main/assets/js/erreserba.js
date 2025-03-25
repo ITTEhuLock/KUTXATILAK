@@ -94,8 +94,9 @@ export const createErreserba = async (event) => {
 };
 
 export async function getErreserbaAktiboa() {
+    const idUser = localStorage.getItem('idUser');
     try {
-        const response = await fetch(`${API_URL}/erreserba/lortu/aktiboa`);
+        const response = await fetch(`${API_URL}/erreserba/aktiboa/${idUser}`);
         if (response.ok) {
             const data = await response.json();
             return data[0];

@@ -147,9 +147,13 @@ export const getKutxatilarenErreserbak = async (req, res) => {
 };
 
 export const getErreserbaAktiboa = async (req, res) => {
+  const idUser = parseInt(req.params.idUser);
+  if (isNaN(idUser)) {
+    return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+  }
   try {
-    const sqlQuery = `SELECT * FROM erreserba WHERE egoera = 1`;
-    const [results] = await dbConnection.query(sqlQuery);
+    const sqlQuery = `SELECT * FROM erreserba WHERE egoera = 1 and idUser = ?`;
+    const [results] = await dbConnection.query(sqlQuery, idUser);
     if (results.length === 0) {
       return res.status(404).json({ error: 'erreserba not found' });
     }
