@@ -22,7 +22,7 @@ export async function loadErreserbak(){
         lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
         lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0]);
         lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0]);
-        localStorage.setItem("erreserbaEgoera",erreserba.egoera);
+        localStorage.setItem("erreserbaEgoera",erreserba.egoera); // ez du ezer egiten?? behin eta berriro zapaltzen da
         lerroaSortu("Egoera",parseInt(erreserba.egoera) === 0
         ? "Hasigabea"
         : parseInt(erreserba.egoera) === 1
@@ -64,7 +64,7 @@ export async function loadErreserbaLaburpena(){
         eB.textContent = 'Hedatu';
         eB.addEventListener('click', (event) => {
             event.preventDefault();
-            localStorage.setItem("idErreserba", erreserba.idErreserba);
+            localStorage.setItem("idErreserba", erreserba.idErreserba); // ???
             window.location.href = './erreserbaZehatza.html';
         });
         l.insertCell().appendChild(eB);

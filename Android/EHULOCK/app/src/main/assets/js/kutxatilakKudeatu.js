@@ -80,9 +80,7 @@ export async function kutxatilaSortu(event){
     document.getElementById('berriaForm').reset();
     window.location.reload();
 }
-<<<<<<< HEAD
 
-=======
 export async function loadOpenKutxatilak(){
     const kutxatilak = await k.getKutxatilaByEgoera(1);
     const kutxatilakCont = document.getElementById('berriaForm');
@@ -112,4 +110,3 @@ export async function loadOpenKutxatilak(){
     kutxatilakCont.appendChild(table);
 
 }
->>>>>>> d3b58ddd31c8f811d32d7176aaabd3e900fd5134
