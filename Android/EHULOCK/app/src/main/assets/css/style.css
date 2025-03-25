@@ -62,7 +62,7 @@ main {
 
 .taula, .taula2 {
   width: 100%;
-  height: 50%;
+  max-height: 70%;
   border-color: #333;
   text-align: center;
   border-collapse: collapse;
@@ -70,6 +70,7 @@ main {
 
 .taula td, .taula th, .taula2 td, .taula2 th {
   border: 1px solid #333;
+  padding: 10px;
 }
 
 .taula > tbody > tr:first-of-type {
@@ -141,7 +142,7 @@ form {
 
 form input {
   width: 100%;
- 
+  font-size: 25px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -192,3 +193,8 @@ button:hover {
   border-collapse: collapse;
 }
   
+.atzera button{
+  position: absolute;
+  top : 5%;
+  left: 5%;
+}
