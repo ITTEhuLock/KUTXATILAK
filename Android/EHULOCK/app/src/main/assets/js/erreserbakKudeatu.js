@@ -2,7 +2,7 @@ import * as e from "./erreserba.js";
 import * as k from "./kutxatila.js";
 export async function loadErreserbak(){
     const erreserbakCont = document.getElementById('erreserbak');
-    const erreserbak = await e.getErreserbaById();
+    const erreserba = await e.getErreserbaById();
 
     const taula = document.createElement('table');
     taula.className = 'taula2';
@@ -15,7 +15,7 @@ export async function loadErreserbak(){
     };
 
         
-    erreserbak.forEach(async (erreserba) =>{
+    
         console.log(erreserba.idKutxatila);
         const ku = await k.getKutxatila(erreserba.idKutxatila);
         
@@ -29,7 +29,7 @@ export async function loadErreserbak(){
         ? "Martxan"
         : "Amaituta");
         
-    });
+    
     
     
     erreserbakCont.appendChild(taula);
@@ -63,9 +63,12 @@ export async function loadErreserbaLaburpena(){
         eB.id = erreserba.idErreserba;
         eB.textContent = 'Hedatu';
         eB.addEventListener('click', (event) => {
+            console.log(erreserba.idErreserba)
             event.preventDefault();
-            localStorage.setItem("idErreserba", erreserba.idErreserba); // ???
-            window.location.href = './erreserbaZehatza.html';
+            /*localStorage.setItem("idErreserba", erreserba.idErreserba); // ???
+            window.location.href = './erreserbaZehatza.html';*/
+            loadZehaztapenak(event);
+            
         });
         l.insertCell().appendChild(eB);
 
@@ -117,3 +120,69 @@ export async function getErreserbaLaburpena(){
 
 };
 
+
+
+/*
+
+        import {loadErreserbak, erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
+        window.addEventListener('DOMContentLoaded', () => {
+           loadErreserbak();
+        });
+        const ezabatutoggle = document.getElementById('ezabatuButton');
+        const editatutoggle = document.getElementById('editatuButton');
+        ezabatutoggle.addEventListener('click', () => {
+            const idErreserba = localStorage.getItem("idErreserba");
+            erreserbaEzabatu(idErreserba);
+        
+        });
+        editatutoggle.addEventListener('click', () => {
+            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+            document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
+        });
+        document.getElementById('berriaForm').addEventListener('submit', (event) => {
+            const idErreserba = localStorage.getItem("idErreserba");
+            erreserbaEditatu(event);
+        });
+*/
+
+export async function loadZehaztapenak(event){
+    event.preventDefault();
+    const zehaztapenak = document.getElementById('zehaztapenak');
+    const zehaztapenakCont = document.querySelector('.modal-content');
+    const t = document.querySelector('.taula2');
+    if(t)
+    t.remove();
+    zehaztapenak.style.display = 'flex';
+    const idErreserba = event.target.id;
+    const erreserba = await e.getErreserba(idErreserba);
+    
+    const taula = document.createElement('table');
+    taula.className = 'taula2';
+    const l1 = taula.insertRow();
+    
+    const lerroaSortu = (izenburua, data) => {
+        const l = taula.insertRow();
+        l.insertCell().textContent = izenburua; 
+        l.insertCell().textContent = data; 
+    };
+
+        
+   
+        console.log(erreserba.idKutxatila);
+        const ku = await k.getKutxatila(erreserba.idKutxatila);
+        
+        lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
+        lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0]);
+        lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0]);
+        lerroaSortu("Egoera",parseInt(erreserba.egoera) === 0
+        ? "Hasigabea"
+        : parseInt(erreserba.egoera) === 1
+        ? "Martxan"
+        : "Amaituta");
+
+
+    zehaztapenakCont.appendChild(taula);
+    }
+    
+
+    

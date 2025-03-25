@@ -22,7 +22,15 @@ export const getErreserbaById = async () => {
     }
 
 };
-
+export async function getErreserba(idErreserba){
+    const response = await fetch(`${API_URL}/erreserba/${idErreserba}`);
+    if(response.ok){
+        const data = await response.json();
+        return data[0];
+    }else{
+        console.error('Errorea erreserbak lortzean');
+    }
+};
 export async function deleteErreserba (idErreserba) {
     const response = await fetch(`${API_URL}/erreserba/delete`, {
         method: 'DELETE',

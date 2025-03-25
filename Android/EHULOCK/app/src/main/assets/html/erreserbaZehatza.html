@@ -29,27 +29,7 @@
       <tr><td> <button id = "ezabatuButton" > Erreserba ezabatu</button>
       </td></tr> </table>
     </body>
-    <script type = "module">
-        import {loadErreserbak, erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
-        window.addEventListener('DOMContentLoaded', () => {
-           loadErreserbak();
-        });
-        const ezabatutoggle = document.getElementById('ezabatuButton');
-        const editatutoggle = document.getElementById('editatuButton');
-        ezabatutoggle.addEventListener('click', () => {
-            const idErreserba = localStorage.getItem("idErreserba");
-            erreserbaEzabatu(idErreserba);
-        
-        });
-        editatutoggle.addEventListener('click', () => {
-            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-            document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
-        });
-        document.getElementById('berriaForm').addEventListener('submit', (event) => {
-            const idErreserba = localStorage.getItem("idErreserba");
-            erreserbaEditatu(event);
-        });
-    </script>
+
    
 
 </html>

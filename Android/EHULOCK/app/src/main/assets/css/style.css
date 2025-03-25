@@ -185,7 +185,10 @@ button:hover {
   background-color: #333;
   transition: background-color 0.3s ease;
 }
-
+.botoiTaula{
+  
+  align-items: center;
+}
 .botoiTaula button{
 
   width: 100%;
@@ -224,4 +227,26 @@ button:hover {
   justify-content: center;
   align-items: center;
   width: 40px;
+}
+
+.modal {
+  display: none; 
+  position: fixed;
+  align-items: center;
+  z-index: 1000;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }

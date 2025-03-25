@@ -30,6 +30,7 @@
         window.addEventListener('DOMContentLoaded', () => {
            loadErreserbaLaburpena();
            loadOpenKutxatilak();
+           document.getElementById('zehaztapenak').style.display = 'none';
         });
 
         const toggle = document.getElementById('newButton');
@@ -46,6 +47,52 @@
         erreserbaSortu(event);
     });
     </script>
+
+   <div id = "zehaztapenak" class = "modal" >
+    <div class = "modal-content" >
+    <h1>Zehaztapenak</h1>
+    
+       <div id = "berria" class = 'form-container'  hidden>
+           <form id = "berriaForm">
+               Kutxatilaren id-a
+               <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
+               Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
+               Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
+               <button type = "submit" id = "erreserbaEditatu">Editatu</button>
+           </form>
+       </div>
+       <div id = "erreserbak" class = "taulaDiv2" ></div>
+       <button id = "itxi" > Itxi</button><br/><br/>
+      <button id = "editatuButton" > Erreserba editatu</button>
+        <button id = "ezabatuButton" > Erreserba ezabatu</button><br/><br/><br/>
+    
+     
+    </table>
+   </div> 
+   </div>
    
+   <script type = "module">
+    import {erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
+    const botoia = document.getElementById('zehaztapenak');
+ 
+    const ezabatutoggle = document.getElementById('ezabatuButton');
+    const editatutoggle = document.getElementById('editatuButton');
+    ezabatutoggle.addEventListener('click', () => {
+        const idErreserba = localStorage.getItem("idErreserba");
+        erreserbaEzabatu(idErreserba);
+    
+    });
+    editatutoggle.addEventListener('click', () => {
+        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+        document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
+    });
+    document.getElementById('berriaForm').addEventListener('submit', (event) => {
+        const idErreserba = localStorage.getItem("idErreserba");
+        erreserbaEditatu(event);
+    });
+    document.getElementById('itxi').addEventListener('click', () => {
+        document.getElementById('zehaztapenak').style.display = 'none';
+    });
+</script>
 
 </html>
