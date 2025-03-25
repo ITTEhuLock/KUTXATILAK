@@ -25,21 +25,20 @@ async function bideratu(username,password) {
         document.getElementById('formBerria').appendChild(mezua);
         return;
     }
-        const role = await u.getRole(idUser);
-        
-        if(role === 'user'){
-            window.location.href =  './html/erreserbakIkusi.html';
-        }
-        else {
-           const mezua = document.createElement('h2');
-            mezua.textContent = 'Aplikazio hau erabiltzaileentzat soilik da.';
-            mezua.id = 'mezua';
-            document.getElementById('formBerria').appendChild(mezua);
-            return;
-        }
-    localStorage.setItem("idUser", idUser);
     
-
+    localStorage.setItem("idUser", idUser);
+    const role = await u.getRole(idUser);
+    
+    if(role === 'admin'){
+        window.location.href = '../admin';
+    }
+    else {
+       const mezua = document.createElement('h2');
+        mezua.textContent = 'Aplikazio hau administrarientzat soilik da.';
+        mezua.id = 'mezua';
+        document.getElementById('formBerria').appendChild(mezua);
+        return;
+    }
     
 }
 

@@ -14,82 +14,79 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgba(187, 195, 196, 0.392);
-   
+  font-size: 30px;
 }
 
-.taula button{
+.taula button {
   display: block;
-  width: 100%; 
-  height: 100%; 
-  box-sizing: border-box; 
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
-
-
-
 
 main {
-    flex: 1; 
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: auto; 
- 
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
 }
-.taulaDiv{
-  position: relative; 
-  max-width: 80%;
+
+.taulaDiv {
+  position: relative;
+  width: 50%;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
-  overflow-x: auto; 
-  border: none; 
+  overflow-x: auto;
+  border: none;
   margin: 42px 6px 6px 6px;
   display: flex;
-
+  justify-content: center;
+  align-items: center;
 }
-.taulaDiv2{
-  position: relative; 
-  max-width: 90%; 
-  max-height: calc(100vh - 120px);
+
+.taulaDiv2 {
+
+  position: relative;
+  width: 80%;
+  height: 30%;
   overflow-y: auto;
-  overflow-x: auto; 
-  border: none; 
-  margin: 42px 6px 6px 6px;
+  overflow-x: auto;
+  border: none;
+  
   display: flex;
-
+  justify-content: center;
+  align-items: center;
 }
 
-.taula, .taulazehatza{
-    margin-top: 20px;
-    width: 90%;
-    border-color: #333;
-    text-align: center;
-    border-collapse: collapse;
-    margin: auto;
+.taula, .taula2 {
+  width: 100%;
+  height: 50%;
+  border-color: #333;
+  text-align: center;
+  border-collapse: collapse;
 }
 
-.taula td, .taula th, .taulazehatza td, .taulazehatza th {
-    border: 1px solid #333;
+.taula td, .taula th, .taula2 td, .taula2 th {
+  border: 1px solid #333;
 }
-
 
 .taula > tbody > tr:first-of-type {
-    position: sticky;
- 
-    background-color: #676b6c;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    font-weight: bold;
-    text-align: center;
-    color: #f9f9f9;
-    text-transform: uppercase;
-    z-index: 10;
-}
-
-.taulazehatza > tbody > tr > td:first-of-type {
   position: sticky;
-  left: 0; 
   background-color: #676b6c;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-weight: bold;
+  text-align: center;
+  color: #f9f9f9;
+  text-transform: uppercase;
+  z-index: 10;
+}
+.taula2 td:first-child {
+  position: sticky;
+  background-color: #676b6c;
+  border-collapse: collapse;
   border: 1px solid #ddd;
   font-weight: bold;
   text-align: center;
@@ -99,76 +96,99 @@ main {
 }
 
 .form-container {
-    position:fixed;
-    top: 200px;
-    overflow-y: auto;
-    overflow-x: auto;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 350px;
-    max-height: 450px;
-    text-align: center;
-    
-  }
+  position: relative;
+  overflow-y: auto;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 50%;
+  height: 20%;
+  text-align: center;
+}
 
-  h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
+.form-container2 {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+  max-height: 60%;
+  text-align: center;
+  font-size: 15px;
+
+}
+.form-container2 h1{
+  font-size: 30px;
+}
+
+h1 {
+  font-size: 40px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+form input {
+  width: 100%;
+ 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.form-container button {
+
+  border: 1px solid #000;
+  padding: 5px;
+
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container2 button {
+
+  border: 1px solid #000;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button {
+  background-color: #676b6c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+}
+
+button:hover {
+  background-color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.botoiTaula button{
+
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
   
-  form input {
-    width: 100%;
-   
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-   .form-container button {
-   
-    color: black;
-    border: 1px solid #000;
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  button{
-    background-color: #676b6c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  #editatuButton, #ezabatuButton{
-    background-color: #676b6c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px;
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #333;
-    transition: background-color 0.3s ease;
-    
-  }

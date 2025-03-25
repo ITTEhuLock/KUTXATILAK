@@ -8,7 +8,7 @@
     </head>
     <body>
        <h1>Zehaztapenak</h1>
-       <div id = "berria" class = 'form-container' style = "margin-bottom:30px" hidden>
+       <div id = "berria" class = 'form-container'  hidden>
            <form id = "berriaForm">
                Kutxatilaren id-a
                <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
@@ -17,9 +17,11 @@
                <button type = "submit" id = "erreserbaEditatu">Editatu</button>
            </form>
        </div>
-       <div id = "erreserbak" class = "taulazehatzaDiv" ></div>
-        <button id = "editatuButton" > Erreserba editatu</button>
-        <button id = "ezabatuButton" > Erreserba ezabatu</button>
+       <div id = "erreserbak" class = "taulaDiv2" ></div>
+       <table class = "botoiTaula">
+      <tr><td><button id = "editatuButton" > Erreserba editatu</button></td></tr>  
+      <tr><td> <button id = "ezabatuButton" > Erreserba ezabatu</button>
+      </td></tr> </table>
     </body>
     <script type = "module">
         import {loadErreserbak, erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
@@ -35,10 +37,6 @@
         });
         editatutoggle.addEventListener('click', () => {
             document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-            if(document.getElementById('erreserbak').style.marginTop == "350px")
-                document.getElementById('erreserbak').style.marginTop = "20px";
-            else
-                document.getElementById('erreserbak').style.marginTop = "350px";
             document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
         });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {

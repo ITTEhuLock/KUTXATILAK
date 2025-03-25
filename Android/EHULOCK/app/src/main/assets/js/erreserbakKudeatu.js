@@ -5,7 +5,7 @@ export async function loadErreserbak(){
     const erreserbak = await e.getErreserbaById();
 
     const taula = document.createElement('table');
-    taula.className = 'taulazehatza';
+    taula.className = 'taula2';
     const l1 = taula.insertRow();
     
     const lerroaSortu = (izenburua, data) => {
