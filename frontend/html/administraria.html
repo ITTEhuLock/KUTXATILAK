@@ -12,7 +12,15 @@
 <div class = "form-container" style = "margin-bottom:20px" id = "berria" hidden>
     <form id = "berriaForm">
         <br> Kutxatilaren kodea<input type = "text" id = "kodea" placeholder = "P1M7A001,..." required></input>
-        <br> Kutxatilaren kokapena<input type = "text" id = "kokapena" placeholder = "M eraikina, liburutegiaren alboan" required></input>
+        <br> Kutxatilaren kokapena<select id = "kokapena" required>
+        <select>
+            <item value="M">M</item>
+            <item value="A">A</item>
+            <item value="I">I</item>
+            <item value="B">B</item>
+            <item value="G">G</item>
+            <item value="C">C</item>
+        </select>
         Kutxatilaren erabilera tartearen hasiera<input type = "time" id = "start_time"   required></input>
         Kutxatilaren erabilera tartearen amaiera<input type = "time" id = "end_time" required></input>
         <br> <button type = "submit" id = "kutxatilaSortu">Sortu</button>
