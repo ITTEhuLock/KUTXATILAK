@@ -39,7 +39,7 @@ export async function deleteErreserba (idErreserba) {
 }
 
 
-export const updateErreserba = async (event) => {
+export const updateErreserba = async () => {
      const erreserba = {
             idErreserba: localStorage.getItem("idErreserba"),
             idKutxatila: document.getElementById('idKutxatila').value,
@@ -82,5 +82,19 @@ export const createErreserba = async (event) => {
         console.log('Erreserba sortua');
     }else{
         console.error('Errorea erreserba sortzean');
+    }
+};
+
+export async function getErreserbaAktiboa() {
+    try {
+        const response = await fetch(`${API_URL}/erreserba/lortu/aktiboa`);
+        if (response.ok) {
+            const data = await response.json();
+            return data[0];
+        }
+        return false;
+    } catch (error) {
+        console.error('Aplikazioak errorea izan du erreserba aktiboa jasotzean: ', error);
+        return false;
     }
 };

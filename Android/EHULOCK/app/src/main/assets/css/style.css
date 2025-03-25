@@ -202,7 +202,9 @@ button:hover {
 .form-container2 input{
   font-size: 15px;
 }
-
+.ireki{
+  margin-top: 50px;
+}
 .ireki button{
   aspect-ratio: 1;
   border-radius: 50%;
@@ -214,4 +216,12 @@ button:hover {
 .ireki button:hover{
   background-color: green;
   transition: background-color 0.3s ease;
+}
+
+.botoia{
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
 }

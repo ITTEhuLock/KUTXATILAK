@@ -80,3 +80,4 @@ export async function kutxatilaSortu(event){
     document.getElementById('berriaForm').reset();
     window.location.reload();
 }
+

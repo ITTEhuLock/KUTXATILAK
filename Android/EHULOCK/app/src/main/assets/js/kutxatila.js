@@ -107,3 +107,4 @@ export const kutxatilaSortu = async (event) => {
         console.error('Errorea izan da kutxatila sortzean: ', error);
     }
 };
+
