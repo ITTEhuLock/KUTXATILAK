@@ -80,4 +80,36 @@ export async function kutxatilaSortu(event){
     document.getElementById('berriaForm').reset();
     window.location.reload();
 }
+<<<<<<< HEAD
 
+=======
+export async function loadOpenKutxatilak(){
+    const kutxatilak = await k.getKutxatilaByEgoera(1);
+    const kutxatilakCont = document.getElementById('berriaForm');
+    console.log(kutxatilak);
+    if(!kutxatilak || kutxatilak === null){
+        const mezua = document.createElement('h2');
+        mezua.textContent = 'Ez dago kutxatilarik';
+        kutxatilakCont.appendChild(mezua);
+        return;
+    }
+
+    const table = document.createElement('table');
+    table.className = 'taula';
+    const l1 = table.insertRow();
+    l1.insertCell().textContent = 'Id';
+    l1.insertCell().textContent = 'Kodea';
+    l1.insertCell().textContent = 'Egoera';
+    l1.insertCell().textContent = 'Kokapena';
+    l1.insertCell().textContent = 'Ekintza';
+
+    kutxatilak.forEach(kutxatila => {
+        const l = table.insertRow();
+        l.insertCell().innerHTML = kutxatila.idKutxatila;
+        l.insertCell().textContent = kutxatila.kodea;
+        l.insertCell().textContent = kutxatila.kokapena;
+    });
+    kutxatilakCont.appendChild(table);
+
+}
+>>>>>>> d3b58ddd31c8f811d32d7176aaabd3e900fd5134

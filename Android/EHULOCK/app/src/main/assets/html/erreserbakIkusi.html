@@ -9,28 +9,37 @@
     <body>
        <h1>Erreserben kudeaketa</h1>
        <button id = "newButton" > Erreserba berria sortu</button>
-       <div id = "berria" class = 'form-container' style = "margin:40px" hidden>
+       <div id = "berria" class = 'form-container' style = "margin-bottom:30px" hidden>
             <form id = "berriaForm">
-                Kutxatilaren id-a
-                <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
+                Kutxatila aukeratu
+                
+                <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>                
                Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
                Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
                <button type = "submit" id = "erreserbaSortu">Sortu</button>
             </form>
         </div> 
     
-        <div id = "erreserbak" class = "taulaDiv2" ></div>
+        <div id = "erreserbak" class = "taulaDiv" ></div>
     </body>
+
     <script type = "module">
-        import {loadErreserbaLaburpena, erreserbaSortu} from '../js/erreserbakKudeatu.js';
+        import {loadErreserbak, erreserbaSortu} from '../js/erreserbakKudeatu.js';
+        import { loadOpenKutxatilak} from '../js/kutxatilakKudeatu.js';
+        
         window.addEventListener('DOMContentLoaded', () => {
-           loadErreserbaLaburpena();
+           loadErreserbak();
+           loadOpenKutxatilak();
         });
+
         const toggle = document.getElementById('newButton');
         
         toggle.addEventListener('click', () => {
         document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-
+        if(document.getElementById('erreserbak').style.marginTop == "350px")
+            document.getElementById('erreserbak').style.marginTop = "20px";
+        else
+        document.getElementById('erreserbak').style.marginTop = "350px";
         
     });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
