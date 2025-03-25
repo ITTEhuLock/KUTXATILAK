@@ -14,8 +14,19 @@
     </div>
     <div id="erreserba"></div>
     <div id="kutxatila"></div>
-    <div class="ireki">
+    <div id = "ireki" class="ireki" hidden>
         <button>IREKI</button>
     </div>
 </body>
+
+<form class ="botoia" action ="erreserbakIkusi.html">
+    <button>Erreserba berria</button>
+</form>
+<script type="module">
+import {getErreserbaLaburpena} from '../js/erreserbakKudeatu.js';
+window.addEventListener('DOMContentLoaded', () => {
+    getErreserbaLaburpena();
+});
+
+</script>
 </html>

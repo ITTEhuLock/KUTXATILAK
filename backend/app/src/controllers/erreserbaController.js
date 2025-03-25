@@ -145,3 +145,18 @@ export const getKutxatilarenErreserbak = async (req, res) => {
     res.status(500).json({ error: 'errorea erreserba eskuratzean' });
   }
 };
+
+export const getErreserbaAktiboa = async (req, res) => {
+  try {
+    const sqlQuery = `SELECT * FROM erreserba WHERE egoera = 1`;
+    const [results] = await dbConnection.query(sqlQuery);
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'erreserba not found' });
+    }
+    else{
+      res.status(200).json(results);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'errorea erreserba eskuratzean' });
+  }
+};

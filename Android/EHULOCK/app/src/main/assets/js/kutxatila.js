@@ -29,6 +29,23 @@ export async function getKutxatila(idKutxatila){
     }
 };;
 
+export async function getKutxatilaByEgoera(egoera){
+    try{
+        const response = await fetch(`${API_URL}/kutxatila`);
+        var IrekitaDaudenKutxatilak=[];
+        if (response.ok) {
+
+        const data = await response.json();
+        
+         IrekitaDaudenKutxatilak = data.filter(kutxatila => kutxatila.egoera === 1);
+        }
+        return IrekitaDaudenKutxatilak;
+    } catch (error) {   
+        console.error('errorea ', error);
+        return false;
+    }
+};;             
+
 export async function deleteKutxatila(idKutxatila) {
    try {
         await fetch(`${API_URL}/kutxatila/delete`, {
@@ -107,3 +124,4 @@ export const kutxatilaSortu = async (event) => {
         console.error('Errorea izan da kutxatila sortzean: ', error);
     }
 };
+
