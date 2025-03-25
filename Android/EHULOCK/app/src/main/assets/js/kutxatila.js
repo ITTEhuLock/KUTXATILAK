@@ -37,7 +37,7 @@ export async function getKutxatilaByEgoera(egoera){
 
         const data = await response.json();
         
-         IrekitaDaudenKutxatilak = data.filter(kutxatila => kutxatila.egoera === 1);
+         IrekitaDaudenKutxatilak = data.filter(kutxatila => kutxatila.egoera === 0);
         }
         return IrekitaDaudenKutxatilak;
     } catch (error) {   

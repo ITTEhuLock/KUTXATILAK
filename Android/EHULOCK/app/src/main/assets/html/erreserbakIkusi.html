@@ -11,9 +11,8 @@
        <button id = "newButton" > Erreserba berria sortu</button>
        <div id = "berria" class = 'form-container' style = "margin-bottom:30px" hidden>
             <form id = "berriaForm">
-                Kutxatila aukeratu
-                
-                <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>                
+             
+               Aukeratu kutxatila bat <div id="menua" ></div>
                Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
                Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
                <button type = "submit" id = "erreserbaSortu">Sortu</button>
@@ -27,9 +26,11 @@
         import {loadErreserbak, erreserbaSortu} from '../js/erreserbakKudeatu.js';
         import { loadOpenKutxatilak} from '../js/kutxatilakKudeatu.js';
         
+
         window.addEventListener('DOMContentLoaded', () => {
            loadErreserbak();
            loadOpenKutxatilak();
+          
         });
 
         const toggle = document.getElementById('newButton');
@@ -48,4 +49,5 @@
     </script>
    
 
+   
 </html>
