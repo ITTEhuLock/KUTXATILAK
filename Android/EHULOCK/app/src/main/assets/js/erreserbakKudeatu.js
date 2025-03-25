@@ -1,40 +1,6 @@
 import * as e from "./erreserba.js";
 import * as k from "./kutxatila.js";
-export async function loadErreserbak(){
-    const erreserbakCont = document.getElementById('erreserbak');
-    const erreserba = await e.getErreserbaById();
 
-    const taula = document.createElement('table');
-    taula.className = 'taula2';
-    const l1 = taula.insertRow();
-    
-    const lerroaSortu = (izenburua, data) => {
-        const l = taula.insertRow();
-        l.insertCell().textContent = izenburua; 
-        l.insertCell().textContent = data; 
-    };
-
-        
-    
-        console.log(erreserba.idKutxatila);
-        const ku = await k.getKutxatila(erreserba.idKutxatila);
-        
-        lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
-        lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0]);
-        lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0]);
-        localStorage.setItem("erreserbaEgoera",erreserba.egoera); // ez du ezer egiten?? behin eta berriro zapaltzen da
-        lerroaSortu("Egoera",parseInt(erreserba.egoera) === 0
-        ? "Hasigabea"
-        : parseInt(erreserba.egoera) === 1
-        ? "Martxan"
-        : "Amaituta");
-        
-    
-    
-    
-    erreserbakCont.appendChild(taula);
-
-}
 export async function loadErreserbaLaburpena(){
     const erreserbakCont = document.getElementById('erreserbak');
     const erreserbak = await e.getErabiltzailearenErreserbak();
@@ -84,10 +50,9 @@ export async function erreserbaEzabatu(idErreserba){
     
 }
 
-export async function erreserbaEditatu(event){
-    event.preventDefault();
-    await e.updateErreserba(event);
-    document.getElementById('berriaForm').reset();
+export async function erreserbaEditatu(idErreserba, egoera){
+    await e.updateErreserba(idErreserba, egoera);
+    document.getElementById('berriaForm2').reset();
     window.location.reload();
 }
 
@@ -121,29 +86,6 @@ export async function getErreserbaLaburpena(){
 };
 
 
-
-/*
-
-        import {loadErreserbak, erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
-        window.addEventListener('DOMContentLoaded', () => {
-           loadErreserbak();
-        });
-        const ezabatutoggle = document.getElementById('ezabatuButton');
-        const editatutoggle = document.getElementById('editatuButton');
-        ezabatutoggle.addEventListener('click', () => {
-            const idErreserba = localStorage.getItem("idErreserba");
-            erreserbaEzabatu(idErreserba);
-        
-        });
-        editatutoggle.addEventListener('click', () => {
-            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-            document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
-        });
-        document.getElementById('berriaForm').addEventListener('submit', (event) => {
-            const idErreserba = localStorage.getItem("idErreserba");
-            erreserbaEditatu(event);
-        });
-*/
 
 export async function loadZehaztapenak(event){
     event.preventDefault();
@@ -180,7 +122,16 @@ export async function loadZehaztapenak(event){
         ? "Martxan"
         : "Amaituta");
 
-
+    const edit = document.getElementById('berriaForm2');
+    edit.addEventListener('submit', (event) => {
+        event.preventDefault();
+        erreserbaEditatu(erreserba.idErreserba, erreserba.egoera);
+            });
+    const ezabatu = document.getElementById('ezabatuButton');
+    ezabatu.addEventListener('click', (event) => {
+        event.preventDefault();
+        erreserbaEzabatu(erreserba.idErreserba);
+            });
     zehaztapenakCont.appendChild(taula);
     }
     

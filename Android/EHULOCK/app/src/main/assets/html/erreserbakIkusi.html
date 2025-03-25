@@ -52,19 +52,20 @@
     <div class = "modal-content" >
     <h1>Zehaztapenak</h1>
     
-       <div id = "berria" class = 'form-container'  hidden>
-           <form id = "berriaForm">
+       <div id = "berria2" class = 'form-container3'   hidden>
+           <form id = "berriaForm2">
                Kutxatilaren id-a
-               <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>
-               Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
-               Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
+               <input type = "text" id = "idKutxatila2" placeholder = "1, 2, 3,..." required></input>
+               Erreserbaren hasiera<input type = "datetime-local" id = "start_time2"   required></input>
+               Erreserbaren amaiera<input type = "datetime-local" id = "end_time2" required></input>
                <button type = "submit" id = "erreserbaEditatu">Editatu</button>
            </form>
        </div>
-       <div id = "erreserbak" class = "taulaDiv2" ></div>
        <button id = "itxi" > Itxi</button><br/><br/>
-      <button id = "editatuButton" > Erreserba editatu</button>
-        <button id = "ezabatuButton" > Erreserba ezabatu</button><br/><br/><br/>
+       <button id = "editatuButton" > Erreserba editatu</button>
+         <button id = "ezabatuButton" > Erreserba ezabatu</button><br/><br/><br/>
+       <div id = "erreserbak" class = "taulaDiv2" ></div>
+
     
      
     </table>
@@ -77,19 +78,12 @@
  
     const ezabatutoggle = document.getElementById('ezabatuButton');
     const editatutoggle = document.getElementById('editatuButton');
-    ezabatutoggle.addEventListener('click', () => {
-        const idErreserba = localStorage.getItem("idErreserba");
-        erreserbaEzabatu(idErreserba);
     
-    });
     editatutoggle.addEventListener('click', () => {
-        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+        document.getElementById('berria2').hidden = !document.getElementById('berria2').hidden;
         document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
     });
-    document.getElementById('berriaForm').addEventListener('submit', (event) => {
-        const idErreserba = localStorage.getItem("idErreserba");
-        erreserbaEditatu(event);
-    });
+    
     document.getElementById('itxi').addEventListener('click', () => {
         document.getElementById('zehaztapenak').style.display = 'none';
     });

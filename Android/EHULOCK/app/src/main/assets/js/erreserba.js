@@ -47,13 +47,13 @@ export async function deleteErreserba (idErreserba) {
 }
 
 
-export const updateErreserba = async () => {
+export async function updateErreserba (idErreserba, egoera) {
      const erreserba = {
-            idErreserba: localStorage.getItem("idErreserba"),
-            idKutxatila: document.getElementById('idKutxatila').value,
-            start_time: document.getElementById('start_time').value,
-            end_time: document.getElementById('end_time').value,
-            egoera: localStorage.getItem("erreserbaEgoera")
+            idErreserba: idErreserba,
+            idKutxatila: document.getElementById('idKutxatila2').value,
+            start_time: document.getElementById('start_time2').value,
+            end_time: document.getElementById('end_time2').value,
+            egoera: egoera
 
         }
     const response = await fetch(`${API_URL}/erreserba/update`, {
