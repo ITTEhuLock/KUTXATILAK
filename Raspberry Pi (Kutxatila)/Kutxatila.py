@@ -11,8 +11,8 @@ def main():
     #Mugikorraren aplikazioa NFC eskaera jaso dezan erabili behar den id-a
     AID = "F0010203040506"
     
-    led_ireki = LED(17)
-    led_itxi = LED(18)
+    #led_ireki = LED(17)
+    #led_itxi = LED(18)
       
     
     #NFC modulua hasieratu
@@ -22,7 +22,9 @@ def main():
     pn532.listen()
     
     if len(pn532.device_uid) > 4 and pn532.device_uid[-4:] == "9000" :
-        id = int(pn532.device_uid[:-4])
+        codepoint = int(pn532.device_uid[:-4], 16)  # "32" → 0x32 (50 in decimal)
+        decoded_char = chr(codepoint)  # 50 → '2'
+        id = int(decoded_char)      
         pn532.close()  
         if id != 0:
             
