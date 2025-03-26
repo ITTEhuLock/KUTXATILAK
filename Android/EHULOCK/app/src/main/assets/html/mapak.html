@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapen kudeaketa</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+</head>
+<body>
+    <div id="header" class="header"></div>
+<div class="footer" id = "footer"></div>
+</body>
+<script type = "module">
+    import {loadFooter, loadHeader} from '../js/app.js';
+    window.addEventListener('DOMContentLoaded', () => {
+        loadFooter();
+        loadHeader();
+    });
+
+</script>
+</html>

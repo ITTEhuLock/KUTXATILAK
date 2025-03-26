@@ -48,11 +48,12 @@ export async function deleteErreserba (idErreserba) {
 
 
 export async function updateErreserba (idErreserba, egoera) {
-     const erreserba = {
+    const form = document.getElementById('berriaForm2');
+    const erreserba = {
             idErreserba: idErreserba,
-            idKutxatila: document.getElementById('idKutxatila2').value,
-            start_time: document.getElementById('start_time2').value,
-            end_time: document.getElementById('end_time2').value,
+            idKutxatila: form.menua.value,
+            start_time: form.start_time2.value,
+            end_time: form.end_time2.value,
             egoera: egoera
 
         }
@@ -72,11 +73,12 @@ export async function updateErreserba (idErreserba, egoera) {
 
 export const createErreserba = async (event) => {
     event.preventDefault();
+    const form = document.getElementById('berriaForm');
     const erreserba = {
         idUser: localStorage.getItem('idUser'),
-        idKutxatila: document.getElementById('idKutxatila').value,
-        start_time: document.getElementById('start_time').value,
-        end_time: document.getElementById('end_time').value
+        idKutxatila: form.menua.value,
+        start_time: form.start_time.value,
+        end_time: form.end_time.value
 
     }
     const response = await fetch(`${API_URL}/erreserba/add`, {

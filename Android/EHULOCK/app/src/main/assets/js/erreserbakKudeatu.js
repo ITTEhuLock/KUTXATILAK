@@ -21,9 +21,11 @@ export async function loadErreserbaLaburpena(){
 
     erreserbak.forEach(async (erreserba) =>{
         console.log(erreserba.idKutxatila);
+       
         const l = taula.insertRow();
         l.insertCell().textContent = erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0];
         l.insertCell().textContent = erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0];
+        const c = l.insertCell();
         const eB = document.createElement('button');
         eB.name = 'hedatuButton';
         eB.id = erreserba.idErreserba;
@@ -36,7 +38,18 @@ export async function loadErreserbaLaburpena(){
             loadZehaztapenak(event);
             
         });
-        l.insertCell().appendChild(eB);
+        if(parseInt(erreserba.egoera) === 1){
+            const iB = document.createElement('button');
+            iB.textContent = 'Ireki';
+            iB.addEventListener('click', (event) => {
+                event.preventDefault();
+                window.location.href = './kutxatilaIreki.html';
+            });
+
+            c.appendChild(iB);
+
+        }
+        c.appendChild(eB);
 
     });
     

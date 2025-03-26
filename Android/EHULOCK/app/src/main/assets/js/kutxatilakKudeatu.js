@@ -82,31 +82,27 @@ export async function kutxatilaSortu(event){
 }
 
 export async function loadOpenKutxatilak(){
-    const kutxatilak = await k.getKutxatilaByEgoera(1);
-    const kutxatilakCont = document.getElementById('berriaForm');
+    const kutxatilak = await k.getKutxatilaByEgoera(0);
+    const berriaForm = document.getElementById('berriaForm');
+    const menuaDiv = document.getElementById('menuaDiv');
     console.log(kutxatilak);
-    if(!kutxatilak || kutxatilak === null){
+    if(!kutxatilak){
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Ez dago kutxatilarik';
-        kutxatilakCont.appendChild(mezua);
+        mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
+        berriaForm.appendChild(mezua);
         return;
     }
 
-    const table = document.createElement('table');
-    table.className = 'taula';
-    const l1 = table.insertRow();
-    l1.insertCell().textContent = 'Id';
-    l1.insertCell().textContent = 'Kodea';
-    l1.insertCell().textContent = 'Egoera';
-    l1.insertCell().textContent = 'Kokapena';
-    l1.insertCell().textContent = 'Ekintza';
-
+    const menua = document.createElement('select');
+    menua.id = 'menua';
+    
+    
     kutxatilak.forEach(kutxatila => {
-        const l = table.insertRow();
-        l.insertCell().innerHTML = kutxatila.idKutxatila;
-        l.insertCell().textContent = kutxatila.kodea;
-        l.insertCell().textContent = kutxatila.kokapena;
+        const option = document.createElement('option');
+        option.value = kutxatila.idKutxatila;
+        option.textContent = kutxatila.kodea;
+        menua.appendChild(option);
     });
-    kutxatilakCont.appendChild(table);
-
+    
+    menuaDiv.appendChild(menua);
 }

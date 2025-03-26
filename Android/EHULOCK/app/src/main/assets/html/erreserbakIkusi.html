@@ -7,13 +7,14 @@
     
     </head>
     <body>
+        <div id = "header" class="header"></div>
        <h1>Erreserben kudeaketa</h1>
        <button id = "newButton" > Erreserba berria sortu</button>
        <div id = "berria" class = 'form-container' style = "margin:30px" hidden>
             <form id = "berriaForm">
                 Kutxatila aukeratu
                 
-                <input type = "text" id = "idKutxatila" placeholder = "1, 2, 3,..." required></input>                
+                <div  id = "menuaDiv" ></div>                
                Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
                Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
                <button type = "submit" id = "erreserbaSortu">Sortu</button>
@@ -21,15 +22,17 @@
         </div> 
     
         <div id = "erreserbak" class = "taulaDiv" ></div>
-    </body>
+    
 
     <script type = "module">
         import {loadErreserbaLaburpena, erreserbaSortu} from '../js/erreserbakKudeatu.js';
         import { loadOpenKutxatilak} from '../js/kutxatilakKudeatu.js';
-        
+        import {loadFooter, loadHeader} from '../js/app.js';
         window.addEventListener('DOMContentLoaded', () => {
-           loadErreserbaLaburpena();
-           loadOpenKutxatilak();
+            loadHeader();
+            loadFooter();
+          loadErreserbaLaburpena();
+          loadOpenKutxatilak();
            document.getElementById('zehaztapenak').style.display = 'none';
         });
 
@@ -51,9 +54,9 @@
     
        <div id = "berria2" class = 'form-container3'   hidden>
            <form id = "berriaForm2">
-               Kutxatilaren id-a
-               <input type = "text" id = "idKutxatila2" placeholder = "1, 2, 3,..." required></input>
-               Erreserbaren hasiera<input type = "datetime-local" id = "start_time2"   required></input>
+            Kutxatila aukeratu
+            <div  id = "menuaDiv" ></div>       
+                Erreserbaren hasiera<input type = "datetime-local" id = "start_time2"   required></input>
                Erreserbaren amaiera<input type = "datetime-local" id = "end_time2" required></input>
                <button type = "submit" id = "erreserbaEditatu">Editatu</button>
            </form>
@@ -68,8 +71,14 @@
     </table>
    </div> 
    </div>
+   <div id = "footer" class="footer"></div>
+</body>
    
-   <script type = "module">
+   
+   
+   
+   
+<script type = "module">
     import {erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
     const botoia = document.getElementById('zehaztapenak');
  
