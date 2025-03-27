@@ -30,7 +30,7 @@ async function bideratu(username,password) {
     const role = await u.getRole(idUser);
     
     if(role === 'admin'){
-        window.location.href = '../admin';
+        window.location.href = './home.html';
     }
     else {
        const mezua = document.createElement('h2');

@@ -105,19 +105,16 @@ export async function editKutxatilaKokapena (idKutxatila, kokapena) {
     }
 };
 
-export const kutxatilaSortu = async (event) => {
-    event.preventDefault();
-    const kodea = document.getElementById("kodea").value;
-    const kokapena = document.getElementById("kokapena").value;
-    const hasiera_ordua = document.getElementById("start_time").value;
-    const amaiera_ordua = document.getElementById("end_time").value;
+export async function kutxatilaSortu  (kutxatila)  {
+
+
     try {
         await fetch(`${API_URL}/kutxatila/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({kodea, kokapena, hasiera_ordua, amaiera_ordua})
+            body: JSON.stringify(kutxatila)
         });
     } catch (error) {
         console.error('Errorea izan da kutxatila sortzean: ', error);

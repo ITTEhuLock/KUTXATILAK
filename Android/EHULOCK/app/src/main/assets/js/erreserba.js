@@ -1,6 +1,5 @@
 import { API_URL } from "./konstanteak.js";
-export const getErabiltzailearenErreserbak = async () => {
-    const idUser = localStorage.getItem('idUser');
+export async function getErabiltzailearenErreserbak  (idUser) {
     const response = await fetch(`${API_URL}/erreserba/user/${idUser}`);
     if(response.ok){
         const data = await response.json();
@@ -11,17 +10,7 @@ export const getErabiltzailearenErreserbak = async () => {
 
 };
 
-export const getErreserbaById = async () => {
-    const idErreserba = localStorage.getItem('idErreserba');
-    const response = await fetch(`${API_URL}/erreserba/${idErreserba}`);
-    if(response.ok){
-        const data = await response.json();
-        return data;
-    }else{
-        console.error('Errorea erreserbak lortzean');
-    }
 
-};
 export async function getErreserba(idErreserba){
     const response = await fetch(`${API_URL}/erreserba/${idErreserba}`);
     if(response.ok){
@@ -71,16 +60,9 @@ export async function updateErreserba (idErreserba, egoera) {
     }
 }
 
-export const createErreserba = async (event) => {
-    event.preventDefault();
-    const form = document.getElementById('berriaForm');
-    const erreserba = {
-        idUser: localStorage.getItem('idUser'),
-        idKutxatila: form.menua.value,
-        start_time: form.start_time.value,
-        end_time: form.end_time.value
+export async function createErreserba (erreserba)  {
+   
 
-    }
     const response = await fetch(`${API_URL}/erreserba/add`, {
         method: 'POST',
         headers: {
@@ -95,8 +77,8 @@ export const createErreserba = async (event) => {
     }
 };
 
-export async function getErreserbaAktiboa() {
-    const idUser = localStorage.getItem('idUser');
+export async function getErreserbaAktiboa(idUser) {
+    
     try {
         const response = await fetch(`${API_URL}/erreserba/aktiboa/${idUser}`);
         if (response.ok) {

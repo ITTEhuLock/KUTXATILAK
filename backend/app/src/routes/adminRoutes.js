@@ -9,12 +9,9 @@ const basePath = isPkg
 
     const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'index.html'));
-});
-router.get('/admin', (req, res) => {
-    res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'administraria.html'));
-});
+
+router.use('/pics', express.static(path.join(basePath, 'app', 'src', 'views', 'pics')));
+router.use('/', express.static(path.join(basePath, 'app', 'src', 'views', 'html')));
 router.use('/css', express.static(path.join(basePath, 'app', 'src', 'views', 'css')));
 router.use('/js', express.static(path.join(basePath, 'app', 'src', 'views', 'js')));
 

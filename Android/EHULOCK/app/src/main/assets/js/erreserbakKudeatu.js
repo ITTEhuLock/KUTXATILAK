@@ -3,7 +3,7 @@ import * as k from "./kutxatila.js";
 
 export async function loadErreserbaLaburpena(){
     const erreserbakCont = document.getElementById('erreserbak');
-    const erreserbak = await e.getErabiltzailearenErreserbak();
+    const erreserbak = await e.getErabiltzailearenErreserbak(localStorage.getItem("idUser"));
     if(!erreserbak){
         const abisua = document.createElement('h1');
         abisua.textContent = 'Ez daukazu erreserbarik';
@@ -71,15 +71,23 @@ export async function erreserbaEditatu(idErreserba, egoera){
 
 export async function erreserbaSortu(event){
     event.preventDefault();
-    await e.createErreserba(event);
-    document.getElementById('berriaForm').reset();
+        const form = document.getElementById('berriaForm');
+        const erreserba = {
+            idUser: localStorage.getItem('idUser'),
+            idKutxatila: form.menua.value,
+            start_time: form.start_time.value,
+            end_time: form.end_time.value
+    
+        }
+    await e.createErreserba(erreserba);
+    form.reset();
     window.location.reload();
 
    
 }
 
 export async function getErreserbaLaburpena(){
-    const erreserba = await e.getErreserbaAktiboa();
+    const erreserba = await e.getErreserbaAktiboa(localStorage.getItem('idUser'));
     if(!erreserba){
         const abisua = document.createElement('h1');
         abisua.textContent = 'Ez daukazu erreserba aktiborik';

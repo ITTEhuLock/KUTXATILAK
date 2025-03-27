@@ -76,8 +76,15 @@ async function kokapenaEguneratu(event) {
 
 export async function kutxatilaSortu(event){
     event.preventDefault();
-    await k.kutxatilaSortu(event);
-    document.getElementById('berriaForm').reset();
+        const form = document.getElementById("berriaForm");
+        const kutxatila = {
+            kodea: form.kodea.value,
+            kokapena: form.kokapena.value,
+            hasiera_ordua: form.start_time.value,
+            amaiera_ordua: form.end_time.value
+        }
+    await k.kutxatilaSortu(kutxatila);
+    form.reset();
     window.location.reload();
 }
 
