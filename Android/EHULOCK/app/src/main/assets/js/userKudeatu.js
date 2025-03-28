@@ -28,7 +28,7 @@ async function bideratu(username,password) {
         const role = await u.getRole(idUser);
         
         if(role === 'user'){
-            window.location.href =  './html/erreserbakIkusi.html';
+            window.location.href =  './html/home.html';
         }
         else {
            const mezua = document.createElement('h2');
@@ -81,3 +81,4 @@ export async function erregistratu() {
     form.reset();
 
 }
+

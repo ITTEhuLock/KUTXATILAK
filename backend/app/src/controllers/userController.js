@@ -83,9 +83,25 @@ export const deleteUser = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: 'errorea erabiltzailea ezabatzean' });
+        console.log(error.message);
     }
 }
-
+export const changePassword = async (req, res) => {
+    const idUser = parseInt(req.body.idUser);
+    const password = req.body.password;
+    const sqlQuery = `UPDATE user SET password = ? WHERE idUser = ?`;
+    try {
+        const [results] = await dbConnection.query(sqlQuery, [password, idUser]);
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: 'erabiltzailea ez da existitzen' });
+        }
+        else {
+            res.status(200).json({ Message: 'Password changed successfully' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
 export const updateUser = async (req, res) => { 
     const user = req.body;
     if (!user.idUser || !user.username || !user.password || !user.email || !user.role) {

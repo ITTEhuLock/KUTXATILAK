@@ -37,6 +37,27 @@ export const getKutxatila = async (req, res) => {
     }
 }
 
+export const getKutxatilaIrekia = async (req,res) => {
+    const egoera = parseInt(req.params.egoera);
+    if (isNaN(egoera)) {
+        return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
+      }
+    const sqlQuery = `SELECT * FROM kutxatila WHERE egoera = ?`;
+    try{
+        const [results] = await dbConnection.query(sqlQuery, egoera);
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'kutxatila ez da existitzen' });
+        }
+        else{
+            res.status(200).json(results);
+        }
+
+    }
+    catch (error) {
+        res.status(500).json({ error: 'errorea kutxatila eskuratzean' });
+    }
+}
+
 export const createNewKutxatila = async (req, res) => {
     const kutxatila = req.body;
     if(!kutxatila.kodea || !kutxatila.kokapena || !kutxatila.hasiera_ordua || !kutxatila.amaiera_ordua){

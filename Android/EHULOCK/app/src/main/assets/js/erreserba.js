@@ -1,6 +1,5 @@
 import { API_URL } from "./konstanteak.js";
-export const getErabiltzailearenErreserbak = async () => {
-    const idUser = localStorage.getItem('idUser');
+export async function getErabiltzailearenErreserbak  (idUser) {
     const response = await fetch(`${API_URL}/erreserba/user/${idUser}`);
     if(response.ok){
         const data = await response.json();
@@ -11,18 +10,16 @@ export const getErabiltzailearenErreserbak = async () => {
 
 };
 
-export const getErreserbaById = async () => {
-    const idErreserba = localStorage.getItem('idErreserba');
+
+export async function getErreserba(idErreserba){
     const response = await fetch(`${API_URL}/erreserba/${idErreserba}`);
     if(response.ok){
         const data = await response.json();
-        return data;
+        return data[0];
     }else{
         console.error('Errorea erreserbak lortzean');
     }
-
 };
-
 export async function deleteErreserba (idErreserba) {
     const response = await fetch(`${API_URL}/erreserba/delete`, {
         method: 'DELETE',
@@ -39,13 +36,14 @@ export async function deleteErreserba (idErreserba) {
 }
 
 
-export const updateErreserba = async () => {
-     const erreserba = {
-            idErreserba: localStorage.getItem("idErreserba"),
-            idKutxatila: document.getElementById('idKutxatila').value,
-            start_time: document.getElementById('start_time').value,
-            end_time: document.getElementById('end_time').value,
-            egoera: localStorage.getItem("erreserbaEgoera")
+export async function updateErreserba (idErreserba, egoera) {
+    const form = document.getElementById('berriaForm2');
+    const erreserba = {
+            idErreserba: idErreserba,
+            idKutxatila: form.menua.value,
+            start_time: form.start_time2.value,
+            end_time: form.end_time2.value,
+            egoera: egoera
 
         }
     const response = await fetch(`${API_URL}/erreserba/update`, {
@@ -62,15 +60,9 @@ export const updateErreserba = async () => {
     }
 }
 
-export const createErreserba = async (event) => {
-    event.preventDefault();
-    const erreserba = {
-        idUser: localStorage.getItem('idUser'),
-        idKutxatila: document.getElementById('idKutxatila').value,
-        start_time: document.getElementById('start_time').value,
-        end_time: document.getElementById('end_time').value
+export async function createErreserba (erreserba)  {
+   
 
-    }
     const response = await fetch(`${API_URL}/erreserba/add`, {
         method: 'POST',
         headers: {
@@ -85,9 +77,10 @@ export const createErreserba = async (event) => {
     }
 };
 
-export async function getErreserbaAktiboa() {
+export async function getErreserbaAktiboa(idUser) {
+    
     try {
-        const response = await fetch(`${API_URL}/erreserba/lortu/aktiboa`);
+        const response = await fetch(`${API_URL}/erreserba/aktiboa/${idUser}`);
         if (response.ok) {
             const data = await response.json();
             return data[0];
