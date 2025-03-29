@@ -11,9 +11,7 @@ def main():
     #Mugikorraren aplikazioa NFC eskaera jaso dezan erabili behar den id-a
     AID = "F0010203040506"
     
-    #led_ireki = LED(17)
-    #led_itxi = LED(18)
-      
+    led_ireki = LED(17)      
     
     #NFC modulua hasieratu
     pn532 = PN532('tty:S0',AID,callbackPN532)
@@ -45,20 +43,11 @@ def main():
             if erantzuna["baimena"] == "baimenduta":
                 print("Erabiltzailea baimenduta dago")
 
-                if erantzuna["ekintza"] == "ireki":
-                    led_ireki.on()
-                    print("Kutxatila irekiko da")
-                    time.sleep(5)
-                    led_ireki.off()
+                led_ireki.on()
+                print("Kutxatila irekiko da")
+                time.sleep(5)
+                led_ireki.off()
 
-                elif erantzuna["ekintza"] == "itxi":
-                    led_itxi.on()
-                    print("Kutxatila itxiko da")
-                    time.sleep(5)
-                    led_itxi.off()
-
-                else :
-                    print("Ekintza ez da zuzena")
 
             elif erantzuna["baimena"] == "ezbaimenduta":
                 print("Erabiltzailea ez dago baimenduta kutxatila irekitzeko")

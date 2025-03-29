@@ -19,12 +19,26 @@ WHERE e.idKutxatila = ?
         if (results.length > 0) {
 
             if(results[0].egoera_kutxatila == 0){     
-                res.status(200).json({ baimena:'baimenduta', ekintza: 'ireki' });
-                dbConnection.query(`UPDATE kutxatila SET egoera = 1 WHERE idKutxatila = ?`, [infoObj[0]]);  
+                res.status(200).json({ baimena:'baimenduta' });
+                const now = new Date();
+                const fill_time = now.toISOString().slice(0, 19).replace('T', ' ');
+                const updateObj = [
+                    fill_time,
+                    results[0].idErreserba
+                ];
+                dbConnection.query(`UPDATE kutxatila SET egoera = 1 WHERE idKutxatila = ?`, [infoObj[0]]);
+                dbConnection.query(`UPDATE erreserba SET fill_time = ? WHERE idErreserba= ?`, [updateObj]);   
             }
             else{
-                res.status(200).json({ baimena: 'baimenduta', ekintza: 'itxi' });
+                res.status(200).json({ baimena: 'baimenduta' });
+                const now = new Date();
+                const empty_time = now.toISOString().slice(0, 19).replace('T', ' ');
+                const updateObj = [
+                    empty_time,
+                    results[0].idErreserba
+                ];
                 dbConnection.query(`UPDATE kutxatila SET egoera = 0 WHERE idKutxatila = ?`, [infoObj[0]]);
+                dbConnection.query(`UPDATE erreserba SET empty_time = ? WHERE idErreserba= ?`, [updateObj]);
             }
         }
         else {

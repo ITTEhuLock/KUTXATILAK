@@ -23,8 +23,8 @@ export async function loadErreserbaLaburpena(){
         console.log(erreserba.idKutxatila);
        
         const l = taula.insertRow();
-        l.insertCell().textContent = erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0];
-        l.insertCell().textContent = erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0];
+        l.insertCell().textContent = erreserba.start_time.split('T')[0] + " " + erreserba.start_time.split('T')[1].substring(0, 5);
+        l.insertCell().textContent = erreserba.end_time.split('T')[0] + " " + erreserba.end_time.split('T')[1].substring(0, 5);
         const c = l.insertCell();
         const eB = document.createElement('button');
         eB.name = 'hedatuButton';

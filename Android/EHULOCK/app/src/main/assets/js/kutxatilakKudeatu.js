@@ -98,6 +98,7 @@ export async function loadOpenKutxatilak(i){
         berriaForm.appendChild(mezua);
         return;
     }
+
     var menua;
     if(i == 0)
     menua = document.getElementById('menuaDiv2')
@@ -115,6 +116,4 @@ export async function loadOpenKutxatilak(i){
   
         menua.appendChild(select);
    
-   
-
 }
