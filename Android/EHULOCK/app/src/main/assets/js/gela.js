@@ -13,6 +13,7 @@ export const getGelak = async () => {
         console.log(error);
     }
 };
+
 export const getGela = async (idGela) => {
     try{
         const response = await fetch(`${API_URL}/gela/${idGela}`);
@@ -20,6 +21,20 @@ export const getGela = async (idGela) => {
     if (response.ok) {
         const data = await response.json();
         return data[0];
+        }
+        return false;
+    } catch (error) {
+        console.error('errorea ', error);
+        return false;
+    }
+};
+
+export const getKoordenatuak = async () => {
+    try {
+        const response = await fetch(`${API_URL}/gela/lortu/koordenatuak`);
+        if (response.ok) {
+            const data = await response.json();
+            return data[0];
         }
         return false;
     } catch (error) {

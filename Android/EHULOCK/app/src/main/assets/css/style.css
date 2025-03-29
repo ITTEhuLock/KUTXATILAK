@@ -134,8 +134,9 @@ main {
   max-height: 60%;
   text-align: center;
   font-size: 15px;
-  width: 85%
-
+  align-items: center;
+  width: 85%;
+  margin: auto;
 }
 
 .form-container2 h1{
@@ -283,6 +284,7 @@ button:hover {
   align-items: center;
   background-color: #ced2d2;
   justify-content: space-between;
+  
 }
 .footer button, .header button{
   
@@ -388,3 +390,36 @@ button:hover {
   justify-content: space-between;
   background-color: #ced2d2;
 }
+
+
+
+.mapaContainer {
+  width: 100%;                
+  height: auto;          
+  overflow: auto;  
+  position: relative;   
+  border: 1px solid #ccc;   
+}
+
+
+.mapa {
+  width: 250%;           
+  height: auto;            
+}
+
+
+.koordenatua {
+  position: absolute;      
+  width: 20px; 
+  height: 20px;
+  background-color: red;     
+  border-radius: 50%;       
+  cursor: pointer;        
+  transform: translate(-50%, -50%);  
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+}
+
+
+

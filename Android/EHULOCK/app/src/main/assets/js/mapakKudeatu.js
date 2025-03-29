@@ -5,6 +5,14 @@ export async function loadMenuak(){
     const menuposizioa = document.getElementById("menuposizioa");
     const menuondokoa = document.getElementById("menuondokoa");
     const gelak = await g.getGelak();
+    const def = document.createElement("option");
+    def.value = 0;
+    def.text = "Jatorria";
+    menuposizioa.appendChild(def);
+    const def2 = document.createElement("option");
+    def2.value = 0;
+    def2.text = "Helmuga";
+    menuondokoa.appendChild(def2);
     gelak.forEach(gela => {
         const option = document.createElement("option");
         option.value = gela.idGela;
@@ -42,13 +50,87 @@ export async function ibilbideaBilatu(posizioa, ondokoa){
     if(!ibilbidea)
         return;
     document.getElementById("berriaForm").hidden = true;
-    document.getElementById("mapa").hidden = false;
-     document.getElementById("mapa").innerHTML = "Ibilbidea: ";
+    document.getElementById("ibilbidea").innerHTML = "Ibilbidea: ";
     ibilbidea.forEach(  async (i) => {
         const ge = await g.getGela(i);
      
 
-        document.getElementById("mapa").innerHTML += ge[0].kodea +"→ ";
+        document.getElementById("ibilbidea").innerHTML += ge[0].kodea +"→ ";
 
     });
+    ibilbideaBistaratu(ibilbidea);
    }
+
+   export async function ibilbideaBistaratu(ibilbidea){
+       const jatorria = await g.getGela(ibilbidea[0]);
+       const helmuga = await g.getGela(ibilbidea[ibilbidea.length-1]);
+       console.log(jatorria);
+       const botoiajatorria = document.getElementById(jatorria[0].idGela);
+       console.log(botoiajatorria);
+
+       const botoihelmuga = document.getElementById(helmuga[0].idGela);
+       botoiajatorria.style.backgroundColor = "black";
+       botoihelmuga.style.backgroundColor = "black";
+
+
+   }
+
+   export async function loadMapa(){
+      
+       const botoiak = document.getElementById("botoiak");
+       const gelak = await g.getGelak();
+       const mapa = document.getElementById("mapa");
+       const mapaW = mapa.width;
+       const mapaH = mapa.height;
+       gelak.forEach(async (gela) => {
+            if(gela.x == null || gela.y == null)
+                return;
+           const button = document.createElement("button");
+            button.id = gela.idGela;
+           button.className = "koordenatua";
+            const x = gela.x*mapaW/100;
+            const y = gela.y*mapaH/100;
+           button.style.left = x+"px";
+           button.style.top = y+"px";
+           button.innerText = gela.kodea;
+           botoiak.appendChild(button);
+
+           button.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const inpPos = document.getElementById("inputposizioa");
+            const inpOnd = document.getElementById("inputondokoa");
+            const menuPos = document.getElementById("menuposizioa");
+            const menuOnd = document.getElementById("menuondokoa");
+            if (inpPos.hidden){
+                inpPos.hidden = false;
+                inpPos.value = gela.kodea;
+                menuPos.value = gela.idGela;
+                menuPos.hidden = true;
+            }
+            else if (inpOnd.hidden){
+                inpOnd.hidden = false;
+                inpOnd.value = gela.kodea;
+                menuOnd.value = gela.idGela;
+                menuOnd.hidden = true;
+            }
+            
+            
+           
+            
+  
+           });
+
+              });
+   }
+
+
+document.getElementById("garbitu").addEventListener("click", async (event) => {
+    event.preventDefault();
+    const form = document.getElementById("berria");
+    form.menuondokoa.hidden = false;    
+    form.menuposizioa.hidden = false;
+    form.inputondokoa.hidden = true;
+    form.inputposizioa.hidden = true;
+    form.reset();
+});
+      

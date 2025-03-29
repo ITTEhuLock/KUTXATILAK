@@ -19,3 +19,12 @@ export const getGela = async (req, res) => {
     }
 };
 
+
+export const getKoordenatuak = async (req, res) => {
+    try {
+        const koordenatuak = await dbConnection.query('SELECT x,y FROM gela');
+        res.status(200).json(koordenatuak);
+    } catch (error) {
+        res.status(500).json({ message: 'Error in getKoordenatuak' });
+    }
+};
