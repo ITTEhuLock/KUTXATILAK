@@ -9,17 +9,12 @@
     <body>
         <div id = "header" class="header"></div>
        <h1>Erreserben kudeaketa</h1>
-       <button id = "newButton" > Erreserba berria sortu</button>
+       <button id = "newButton" >Erreserba berria sortu</button>
        <div id = "berria" class = 'form-container' style = "margin:30px" hidden>
             <form id = "berriaForm">
-<<<<<<< HEAD
-             
-               Aukeratu kutxatila bat <div id="menua" ></div>
-=======
                 Kutxatila aukeratu
                 
                 <div  id = "menuaDiv" ></div>                
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
                Erreserbaren hasiera<input type = "datetime-local" id = "start_time"   required></input>
                Erreserbaren amaiera<input type = "datetime-local" id = "end_time" required></input>
                <button type = "submit" id = "erreserbaSortu">Sortu</button>
@@ -32,34 +27,27 @@
     <script type = "module">
         import {loadErreserbaLaburpena, erreserbaSortu} from '../js/erreserbakKudeatu.js';
         import { loadOpenKutxatilak} from '../js/kutxatilakKudeatu.js';
-<<<<<<< HEAD
-        
-
-        window.addEventListener('DOMContentLoaded', () => {
-           loadErreserbaLaburpena();
-           loadOpenKutxatilak();
-          
-=======
         import {loadFooter, loadHeader} from '../js/app.js';
         window.addEventListener('DOMContentLoaded', () => {
             loadHeader();
             loadFooter();
-          loadErreserbaLaburpena();
-          loadOpenKutxatilak();
-           document.getElementById('zehaztapenak').style.display = 'none';
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
+            loadErreserbaLaburpena();
+            loadOpenKutxatilak();
+            document.getElementById('zehaztapenak').style.display = 'none';
         });
 
         const toggle = document.getElementById('newButton');
-        
+        const texts = ["Erreserba berria sortu", "Itxi"];
+        let currentIndex = 0;
         toggle.addEventListener('click', () => {
-        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-  
+            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+            currentIndex = (currentIndex + 1) % texts.length;
+            toggle.textContent = texts[currentIndex];
         
-    });
+        });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
-        erreserbaSortu(event);
-    });
+            erreserbaSortu(event);
+        });
     </script>
 
    <div id = "zehaztapenak" class = "modal" >
@@ -69,7 +57,7 @@
        <div id = "berria2" class = 'form-container3'   hidden>
            <form id = "berriaForm2">
             Kutxatila aukeratu
-            <div  id = "menuaDiv" ></div>       
+            <div  id = "menuaDiv2" ></div>
                 Erreserbaren hasiera<input type = "datetime-local" id = "start_time2"   required></input>
                Erreserbaren amaiera<input type = "datetime-local" id = "end_time2" required></input>
                <button type = "submit" id = "erreserbaEditatu">Editatu</button>
@@ -78,7 +66,7 @@
        <button id = "itxi" class="botoia"> Itxi</button><br/>
        <button id = "editatuButton" class= "botoia"> Erreserba editatu</button>
          <button id = "ezabatuButton" class= "botoia" > Erreserba ezabatu</button>
-       <div id = "erreserbak" class = "taulaDiv2" ></div>
+       <div id = "erreserbak2" class = "taulaDiv2" ></div>
 
     
      
@@ -109,5 +97,4 @@
     });
 </script>
 
-   
 </html>

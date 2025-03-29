@@ -35,12 +35,12 @@ main {
 
 .taulaDiv {
   position: relative;
-  width: 50%;
+  width: 80%;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   overflow-x: auto;
   border: none;
-  margin: 42px 6px 6px 6px;
+  margin: 6px 6px 6px 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,11 +66,13 @@ main {
   border-color: #333;
   text-align: center;
   border-collapse: collapse;
+  justify-content: center;
 }
 
 .taula td, .taula th, .taula2 td, .taula2 th {
   border: 1px solid #333;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .taula > tbody > tr:first-of-type {
@@ -103,9 +105,9 @@ main {
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 50%;
-  max-height: 25%;
+  padding: 15px;
+  width: 80%;
+  max-height: 45%;
   text-align: center;
 }
 
@@ -132,6 +134,7 @@ main {
   max-height: 60%;
   text-align: center;
   font-size: 15px;
+  width: 85%
 
 }
 
@@ -152,11 +155,7 @@ form {
   width: 100%;
 }
 
-<<<<<<< HEAD
-form input, select {
-=======
 form input , form select{
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
   width: 100%;
   font-size: 20px;
   border: 1px solid #ccc;
@@ -237,8 +236,6 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
-<<<<<<< HEAD
-=======
 .botoia{
   margin: 10px;
   justify-content: center;
@@ -252,7 +249,7 @@ button:hover {
   position: fixed;
   align-items: center;
   z-index: 1000;
-  width: 50%;
+  width: 85%;
   height: 50%;
   display: flex;
   align-items: center;
@@ -298,9 +295,6 @@ button:hover {
 .footer .irudia, .header .irudia{
   width: 40px;
 }
-<<<<<<< HEAD
->>>>>>> 039a163fa8f13d1258701e823ef6092acb79879f
-=======
 #lock {
   display: none;
 }
@@ -393,4 +387,3 @@ button:hover {
   background-color: #ced2d2;
 }
 
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96

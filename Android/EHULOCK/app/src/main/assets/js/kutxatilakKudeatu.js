@@ -90,12 +90,8 @@ export async function kutxatilaSortu(event){
 
 export async function loadOpenKutxatilak(){
     const kutxatilak = await k.getKutxatilaByEgoera(0);
-<<<<<<< HEAD
-    const kutxatilakCont = document.getElementById('menua');
-=======
     const berriaForm = document.getElementById('berriaForm');
     const menuaDiv = document.getElementById('menuaDiv');
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
     console.log(kutxatilak);
     if(!kutxatilak){
         const mezua = document.createElement('h2');
@@ -104,20 +100,6 @@ export async function loadOpenKutxatilak(){
         return;
     }
 
-<<<<<<< HEAD
-
-    const menua = document.getElementById('menua');
-    const select = document.createElement('select');
-    kutxatilak.forEach(kutxatila => {
-        const option = document.createElement('option');
-        option.value = kutxatila.idKutxatila;
-        option.textContent = kutxatila.kodea+', '+kutxatila.kokapena+' eraikinean';
-        select.appendChild(option);
-    });
-    menua.appendChild(select);
-
-}
-=======
     const menua = document.createElement('select');
     menua.id = 'menua';
     
@@ -131,4 +113,3 @@ export async function loadOpenKutxatilak(){
     
     menuaDiv.appendChild(menua);
 }
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
