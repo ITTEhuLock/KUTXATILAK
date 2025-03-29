@@ -88,14 +88,9 @@ export async function kutxatilaSortu(event){
     window.location.reload();
 }
 
-export async function loadOpenKutxatilak(){
+export async function loadOpenKutxatilak(i){
     const kutxatilak = await k.getKutxatilaByEgoera(0);
-<<<<<<< HEAD
-    const kutxatilakCont = document.getElementById('menua');
-=======
-    const berriaForm = document.getElementById('berriaForm');
-    const menuaDiv = document.getElementById('menuaDiv');
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
+
     console.log(kutxatilak);
     if(!kutxatilak){
         const mezua = document.createElement('h2');
@@ -103,32 +98,23 @@ export async function loadOpenKutxatilak(){
         berriaForm.appendChild(mezua);
         return;
     }
-
-<<<<<<< HEAD
-
-    const menua = document.getElementById('menua');
+    var menua;
+    if(i == 0)
+    menua = document.getElementById('menuaDiv2')
+    else
+    menua = document.getElementById('menuaDiv');
     const select = document.createElement('select');
+    select.id = 'menua';
     kutxatilak.forEach(kutxatila => {
         const option = document.createElement('option');
         option.value = kutxatila.idKutxatila;
         option.textContent = kutxatila.kodea+', '+kutxatila.kokapena+' eraikinean';
         select.appendChild(option);
+
     });
-    menua.appendChild(select);
+  
+        menua.appendChild(select);
+   
+   
 
 }
-=======
-    const menua = document.createElement('select');
-    menua.id = 'menua';
-    
-    
-    kutxatilak.forEach(kutxatila => {
-        const option = document.createElement('option');
-        option.value = kutxatila.idKutxatila;
-        option.textContent = kutxatila.kodea;
-        menua.appendChild(option);
-    });
-    
-    menuaDiv.appendChild(menua);
-}
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96

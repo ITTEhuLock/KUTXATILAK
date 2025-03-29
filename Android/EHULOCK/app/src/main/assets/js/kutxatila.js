@@ -35,14 +35,8 @@ export async function getKutxatilaByEgoera(egoera){
        
         if (response.ok) {
 
-<<<<<<< HEAD
-        const data = await response.json();
-        
-         IrekitaDaudenKutxatilak = data.filter(kutxatila => kutxatila.egoera === 0);
-=======
             const data = await response.json();
             return data;
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
         }
         
     } catch (error) {   

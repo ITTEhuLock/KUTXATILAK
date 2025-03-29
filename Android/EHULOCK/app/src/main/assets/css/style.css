@@ -152,11 +152,7 @@ form {
   width: 100%;
 }
 
-<<<<<<< HEAD
-form input, select {
-=======
 form input , form select{
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
   width: 100%;
   font-size: 20px;
   border: 1px solid #ccc;
@@ -237,8 +233,8 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
-<<<<<<< HEAD
-=======
+
+
 .botoia{
   margin: 10px;
   justify-content: center;
@@ -298,9 +294,7 @@ button:hover {
 .footer .irudia, .header .irudia{
   width: 40px;
 }
-<<<<<<< HEAD
->>>>>>> 039a163fa8f13d1258701e823ef6092acb79879f
-=======
+
 #lock {
   display: none;
 }
@@ -392,5 +386,3 @@ button:hover {
   justify-content: space-between;
   background-color: #ced2d2;
 }
-
->>>>>>> 8ab2a28302a3cd55f67f7ddf4a1a959cf698fb96
