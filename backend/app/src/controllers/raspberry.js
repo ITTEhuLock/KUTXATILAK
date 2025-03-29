@@ -2,7 +2,7 @@ import dbConnection from "../database/database.js";
 export const checkErreserba = async (req, res) => {
     const info = req.body;
     const infoObj = [
-        "1" , //hardkodeatuta dago, raspberry-aren id-a
+        "5" , //hardkodeatuta dago, raspberry-aren id-a
         info.idUser
         
     ];
@@ -27,7 +27,7 @@ WHERE e.idKutxatila = ?
                     results[0].idErreserba
                 ];
                 dbConnection.query(`UPDATE kutxatila SET egoera = 1 WHERE idKutxatila = ?`, [infoObj[0]]);
-                dbConnection.query(`UPDATE erreserba SET fill_time = ? WHERE idErreserba= ?`, [updateObj]);   
+                dbConnection.query(`UPDATE erreserba SET fill_time = ? WHERE idErreserba = ?`, updateObj);   
             }
             else{
                 res.status(200).json({ baimena: 'baimenduta' });
@@ -38,7 +38,7 @@ WHERE e.idKutxatila = ?
                     results[0].idErreserba
                 ];
                 dbConnection.query(`UPDATE kutxatila SET egoera = 0 WHERE idKutxatila = ?`, [infoObj[0]]);
-                dbConnection.query(`UPDATE erreserba SET empty_time = ? WHERE idErreserba= ?`, [updateObj]);
+                dbConnection.query(`UPDATE erreserba SET egoera = 2, empty_time = ? WHERE idErreserba= ?`, updateObj);
             }
         }
         else {
