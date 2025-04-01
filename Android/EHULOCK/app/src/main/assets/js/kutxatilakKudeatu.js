@@ -117,3 +117,5 @@ export async function loadOpenKutxatilak(i){
         menua.appendChild(select);
    
 }
+
+
