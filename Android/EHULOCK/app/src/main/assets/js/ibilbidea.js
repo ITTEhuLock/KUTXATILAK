@@ -1,5 +1,6 @@
 import { API_URL } from "./konstanteak.js";
 
+
 export async function getUserrenIbilbideak  (idUser)  {
     try {
         const response = await fetch(API_URL + `/ibilibidea/user/${idUser}`);

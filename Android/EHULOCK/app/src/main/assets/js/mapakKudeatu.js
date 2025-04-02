@@ -1,6 +1,7 @@
 import * as g from './gela.js';
 import * as p from  './pausoa.js';
 import * as i from './ibilbidea.js';	
+import { gridp6 } from './konstanteak.js';
 export async function loadMenuak(){
     const menuposizioa = document.getElementById("menuposizioa");
     const menuondokoa = document.getElementById("menuondokoa");
@@ -52,14 +53,7 @@ export async function ibilbideaBilatu(posizioa, ondokoa){
         return;
     document.getElementById("berriaForm").hidden = true;
     document.getElementById("ibilbidea").innerHTML = "Ibilbidea: ";
-    ibilbidea.forEach(  async (i) => {
-        const ge = await g.getGela(i);
-     
-
-        document.getElementById("ibilbidea").innerHTML += ge[0].kodea +"→ ";
-
-    });
-    ibilbideaBistaratu(ibilbidea);
+    ibilbideaBistaratu2(ibilbidea);
    }
 
    export async function ibilbideaBistaratu(ibilbidea){
@@ -94,6 +88,44 @@ export async function ibilbideaBilatu(posizioa, ondokoa){
        })
 
 
+
+   }
+
+export async function ibilbideaBistaratu2(path) {
+const mapa = document.getElementById('mapa');
+
+const mapaContainer = document.getElementById('ibilbidea');
+mapaContainer.style.left = mapa.offsetLeft + 'px';
+mapaContainer.style.top = mapa.offsetTop + 'px';
+mapaContainer.style.width = mapa.offsetWidth + 'px';
+mapaContainer.style.height = mapa.offsetHeight + 'px';
+
+const rows = gridp6.length; // Número de columnas de tu cuadrícula
+const cols =  gridp6[0] ? gridp6[0].length : 0;; // Número de filas de tu cuadrícula
+
+
+for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+        const celda = document.createElement('div');
+        celda.classList.add('celda');
+        mapaContainer.appendChild(celda);
+    }
+}
+
+// Dibuja el camino sobre el mapa
+path.forEach(([x, y]) => {
+    const point = document.createElement('div');
+    point.classList.add('pathPoint');
+    
+    // Calcular las posiciones absolutas de los puntos dentro del mapa
+    const cellWidth = mapaContainer.offsetWidth / cols;
+    const cellHeight = mapaContainer.offsetHeight / rows;
+    
+// Ajusta las posiciones de los puntos considerando el tamaño total de la imagen del mapa
+    point.style.left = `${x * cellWidth}px`;
+    point.style.top = `${y * cellHeight}px`;
+    mapaContainer.appendChild(point);
+});
 
    }
 

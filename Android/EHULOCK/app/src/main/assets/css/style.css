@@ -393,24 +393,6 @@ button:hover {
 
 
 
-.mapaContainer {
-  transform: rotate(90deg);   
-  width: 125%;                
-  height: auto;          
-  overflow: auto;  
-  position: flex;
-  border: 1px solid #ccc;   
-  margin-bottom: 150px;
-
-}
-
-
-
-.mapa {
-  width: 250%;           
-  height: auto;    
- 
-}
 
 
 .koordenatua {
@@ -427,19 +409,47 @@ button:hover {
   padding: 10px;
 }
 
-.laukizuzena {
-  position: absolute;      
-  width: 2px; 
-  height: 15px;
-  background-color: red;           
-  cursor: pointer;        
-  transform: translate(-50%, -50%);  
-  transform: rotate(-90deg);
-  color: black;
-  font-size: 15px;
-  padding: 10px;
+.mapaContainer {
+  position: relative;
+  transform: rotate(90deg);
+  width: 125%;
+  height: auto;
+  overflow-x: auto; 
+ 
+  border: 1px solid #ccc;
+  margin-bottom: 150px;
 }
 
+.mapa {
+  width: 250%; /* Ajusta según necesites */
+  height: auto;
+}
 
+.mapaI {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250%; /* Igual al tamaño de .mapa */
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 20px); /* 100 columnas de 20px */
+  grid-template-rows: repeat(10, 20px); /* 100 filas de 20px */
+  z-index: 10;
+  pointer-events: none; /* No bloquea interacciones con .mapa */
+}
 
+.celda {
+  width: 20px;
+  height: 20px;
 
+  box-sizing: border-box;
+}
+
+.pathPoint {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}

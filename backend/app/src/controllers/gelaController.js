@@ -10,6 +10,7 @@ export const getGelak = async (req, res) => {
     }
 };
 
+
 export const getGela = async (req, res) => {
     try {
         const gela = await dbConnection.query('SELECT * FROM gela WHERE idGela = ?', [req.params.idGela]);
