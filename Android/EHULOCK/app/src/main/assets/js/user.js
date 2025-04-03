@@ -99,3 +99,33 @@ export async function changePassword(idUser, password){
         else
             return false;
 };
+
+export async function autentikatu(){
+    const username = localStorage.getItem('username');
+    const div = document.createElement('div');
+    const button = document.createElement('button');
+    button.textContent = 'Saioa hasi';
+    button.addEventListener('click',async (event)=>{
+        event.preventDefault();
+        window.location.href = './index.html';
+    });
+    const mezua = document.createElement('h1');
+    mezua.textContent = 'Aplikazioaren zati honetara sartzeko saioa hasi behar duzu';
+    div.appendChild(mezua);
+    div.appendChild(button);
+
+    if(!username|| username == null || username == 'undefined'){
+        document.body.innerHTML = '';
+        document.body.appendChild(div);
+        return;
+    }
+
+    const role = await getRole(username);
+    if(role == !'user'){
+        document.body.innerHTML = '';
+        document.body.appendChild(div);
+        return;
+    }
+    console.log('erabiltzailea ondo autentikatu da');
+    return;
+};

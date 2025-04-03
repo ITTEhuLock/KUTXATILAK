@@ -154,3 +154,7 @@ document.getElementById("garbitu").addEventListener("click", async (event) => {
     form.reset();
 });
       
+document.addEventListener('DOMContentLoaded', () => {
+  loadMenuak();
+  loadMapa();
+});

@@ -3,6 +3,8 @@
     <head>
         <title>Erabiltzailearen erreserbak kontsultatu</title>
         <link rel="stylesheet" href="../css/style.css">
+        <script type = "module" src = "../js/erreserbakKudeatu.js"></script>
+        <script type = "module" src = "../js/app.js"></script>
     
     
     </head>
@@ -25,32 +27,7 @@
         <div id = "erreserbak" class = "taulaDiv" ></div>
     
 
-    <script type = "module">
-        import {loadErreserbaLaburpena, erreserbaSortu} from '../js/erreserbakKudeatu.js';
-        import { loadOpenKutxatilak} from '../js/kutxatilakKudeatu.js';
-        import {loadFooter, loadHeader} from '../js/app.js';
-        window.addEventListener('DOMContentLoaded', () => {
-            loadHeader();
-            loadFooter();
-          loadErreserbaLaburpena();
-          loadOpenKutxatilak();
-           document.getElementById('zehaztapenak').style.display = 'none';
-
-        });
-
-        const toggle = document.getElementById('newButton');
-        const texts = ["Erreserba berria sortu", "Itxi"];
-        let currentIndex = 0;
-        toggle.addEventListener('click', () => {
-            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-            currentIndex = (currentIndex + 1) % texts.length;
-            toggle.textContent = texts[currentIndex];
-        
-        });
-        document.getElementById('berriaForm').addEventListener('submit', (event) => {
-            erreserbaSortu(event);
-        });
-    </script>
+   
 
    <div id = "zehaztapenak" class = "modal" >
     <div class = "modal-content" >
@@ -61,9 +38,8 @@
             Kutxatila aukeratu
 
             <div  id = "menuaDiv2" ></div>
-
                 Erreserbaren hasiera<input type = "datetime-local" id = "start_time2"   required></input>
-               Erreserbaren amaiera<input type = "datetime-local" id = "end_time2" required></input>
+                Erreserbaren amaiera<input type = "datetime-local" id = "end_time2" required></input>
                <button type = "submit" id = "erreserbaEditatu">Editatu</button>
            </form>
        </div>
@@ -79,26 +55,5 @@
 </body>
    
    
-   
-   
-   
-<script type = "module">
-    import {erreserbaEzabatu, erreserbaEditatu} from '../js/erreserbakKudeatu.js';
-    import {loadOpenKutxatilak} from '../js/kutxatilakKudeatu.js';
-    const botoia = document.getElementById('zehaztapenak');
- 
-    const ezabatutoggle = document.getElementById('ezabatuButton');
-    const editatutoggle = document.getElementById('editatuButton');
-    
-    editatutoggle.addEventListener('click', () => {
-        loadOpenKutxatilak(0);
-        document.getElementById('berria2').hidden = !document.getElementById('berria2').hidden;
-        document.getElementById('editatuButton').hidden = !document.getElementById('editatuButton').hidden;
-    });
-    
-    document.getElementById('itxi').addEventListener('click', () => {
-        document.getElementById('zehaztapenak').style.display = 'none';
-    });
-</script>
 
 </html>

@@ -81,3 +81,8 @@ export async function loadHeader(){
     header.appendChild(buttonBirkargatu);
     
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadFooter();
+    loadHeader();
+});

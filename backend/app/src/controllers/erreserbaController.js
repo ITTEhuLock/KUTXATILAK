@@ -164,3 +164,21 @@ export const getErreserbaAktiboa = async (req, res) => {
     res.status(500).json({ error: 'errorea erreserba eskuratzean' });
   }
 };
+
+export const checkAvailability = async (req, res) => {
+  const start_time = req.body.start_time;
+  const end_time = req.body.end_time;
+  const idKutxatila = parseInt(req.body.idKutxatila);
+  const sqlQuery = `SELECT * FROM erreserba WHERE start_time >= ? AND end_time AND idKutxatila = ?`;
+  try {
+    const [results] = await dbConnection.query(sqlQuery, [start_time, end_time, idKutxatila]);
+    if (results.length === 0) {
+      return res.status(200).json({ available: true });
+    }
+    else{
+      return res.status(200).json({ available: false });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'errorea erreserba eskuratzean' });
+  }
+};

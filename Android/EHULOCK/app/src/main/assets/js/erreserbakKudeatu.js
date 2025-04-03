@@ -1,6 +1,75 @@
 import * as e from "./erreserba.js";
 import * as k from "./kutxatila.js";
 
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadErreserbaLaburpena();
+  loadOpenKutxatilak();
+  loadToggle();
+    document.getElementById('zehaztapenak').style.display = 'none';
+
+});
+
+
+
+let currentIndex = 0;
+export async function loadToggle(){
+        const toggle = document.getElementById('newButton');
+        const texts = ["Erreserba berria sortu", "Itxi"];
+       
+        toggle.addEventListener('click', () => {
+            document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+            currentIndex = (currentIndex + 1) % texts.length;
+            toggle.textContent = texts[currentIndex];
+        
+        });
+        document.getElementById('berriaForm').addEventListener('submit', (event) => {
+            erreserbaSortu(event);
+        });
+
+        document.getElementById('editatuButton').addEventListener('click', (event) => { 
+            document.getElementById('berria2').hidden = false;
+            document.getElementById('berria').hidden = true;
+        });
+}
+
+
+
+
+export async function loadOpenKutxatilak(i){
+    const kutxatilak = await k.getKutxatilaByEgoera(0);
+
+    console.log(kutxatilak);
+    if(!kutxatilak){
+        const mezua = document.createElement('h2');
+        mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
+        berriaForm.appendChild(mezua);
+        return;
+    }
+
+    var menua;
+    if(i == 0)
+    menua = document.getElementById('menuaDiv2')
+    else
+    menua = document.getElementById('menuaDiv');
+    const select = document.createElement('select');
+    if(i==0)
+        select.id = 'menua2';
+    else
+        select.id = 'menua';
+    kutxatilak.forEach(kutxatila => {
+        const option = document.createElement('option');
+        option.value = kutxatila.idKutxatila;
+        option.textContent = kutxatila.kodea+', '+kutxatila.kokapena+' eraikinean';
+        select.appendChild(option);
+
+    });
+  
+        menua.appendChild(select);
+   
+}
+
+
 export async function loadErreserbaLaburpena(){
     const erreserbakCont = document.getElementById('erreserbak');
     const erreserbak = await e.getErabiltzailearenErreserbak(localStorage.getItem("idUser"));
@@ -33,9 +102,7 @@ export async function loadErreserbaLaburpena(){
         eB.addEventListener('click', (event) => {
             console.log(erreserba.idErreserba)
             event.preventDefault();
-            /*localStorage.setItem("idErreserba", erreserba.idErreserba); // ???
-            window.location.href = './erreserbaZehatza.html';*/
-            loadZehaztapenak(event);
+            loadZehaztapenak(erreserba.idErreserba);
             
         });
         if(parseInt(erreserba.egoera) === 1){
@@ -63,8 +130,14 @@ export async function erreserbaEzabatu(idErreserba){
     
 }
 
-export async function erreserbaEditatu(idErreserba, egoera){
-    await e.updateErreserba(idErreserba, egoera);
+export async function erreserbaEditatu(erreserba){
+    const u = await e.updateErreserba(erreserba);
+    if(!u){
+        const mezua = document.createElement('h1');
+        mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
+        document.getElementById('berriaForm2').appendChild(mezua);
+        return;
+    }
     document.getElementById('berriaForm2').reset();
     window.location.reload();
 }
@@ -79,44 +152,32 @@ export async function erreserbaSortu(event){
             end_time: form.end_time.value
     
         }
-    await e.createErreserba(erreserba);
+    const a = await e.createErreserba(erreserba);
+    if(!a){
+        const mezua = document.createElement('h1');
+        mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
+        document.getElementById('berriaForm').appendChild(mezua);
+        return;
+    }
     form.reset();
     window.location.reload();
 
    
 }
 
-export async function getErreserbaLaburpena(){
-    const erreserba = await e.getErreserbaAktiboa(localStorage.getItem('idUser'));
-    if(!erreserba){
-        const abisua = document.createElement('h1');
-        abisua.textContent = 'Ez daukazu erreserba aktiborik';
-        document.getElementById('erreserba').appendChild(abisua);
-        return;
-    }
-    const erreserbakDiv = document.getElementById('erreserba');
-    const p1 = document.createElement('h3');
-    const p2 = document.createElement('h3');
-
-    p1.textContent = `Erreserba: ${erreserba.start_time.split("T")[1].split(".")[0]} - ${erreserba.end_time.split("T")[1].split(".")[0]}`;
-    p2.textContent =`Kutxatila: ${erreserba.idKutxatila}`;
-    erreserbakDiv.appendChild(p1);
-    erreserbakDiv.appendChild(p2);
-    document.getElementById('ireki').hidden = false;
-
-};
 
 
 
-export async function loadZehaztapenak(event){
-    event.preventDefault();
+export async function loadZehaztapenak(idErreserba){
+   
+    loadOpenKutxatilak(0);
     const zehaztapenak = document.getElementById('zehaztapenak');
     const zehaztapenakCont = document.querySelector('.modal-content');
     const t = document.querySelector('.taula2');
     if(t)
     t.remove();
     zehaztapenak.style.display = 'flex';
-    const idErreserba = event.target.id;
+    
     const erreserba = await e.getErreserba(idErreserba);
     
     const taula = document.createElement('table');
@@ -146,15 +207,33 @@ export async function loadZehaztapenak(event){
     const edit = document.getElementById('berriaForm2');
     edit.addEventListener('submit', (event) => {
         event.preventDefault();
-        erreserbaEditatu(erreserba.idErreserba, erreserba.egoera);
+        const data = {
+            idErreserba: erreserba.idErreserba,
+            start_time: edit.start_time2.value,
+            end_time: edit.end_time2.value,
+            idKutxatila: edit.menua2.value,
+            egoera: erreserba.egoera
+        };
+
+        
+        erreserbaEditatu(data);
             });
     const ezabatu = document.getElementById('ezabatuButton');
     ezabatu.addEventListener('click', (event) => {
         event.preventDefault();
         erreserbaEzabatu(erreserba.idErreserba);
             });
+    const itxi = document.getElementById('itxi');
+    itxi.addEventListener('click', () => {
+
+        document.getElementById('menuaDiv2').innerHTML = "";
+        document.getElementById('zehaztapenak').style.display = 'none';
+    });
     zehaztapenakCont.appendChild(taula);
     }
+
+
+
     
 
     

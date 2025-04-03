@@ -4,7 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kutxatila ireki</title>
     <link rel="stylesheet" href="../css/style.css">
-</head>
+    <script src="../js/app.js" type = "module"></script>
+    <script src="../js/kutxatilaIreki.js" type = "module"></script>
+  </head>
 <body>
     <div id ="header"class="header"> </div>
     <div id="erreserba"></div>
@@ -43,14 +45,5 @@
 <form class ="botoia" action ="erreserbakIkusi.html">
     <button>Erreserba berria</button>
 </form>
-<script type="module">
-import {getErreserbaLaburpena} from '../js/erreserbakKudeatu.js';
-import {loadFooter, loadHeader} from '../js/app.js';
-window.addEventListener('DOMContentLoaded', () => {
-    loadHeader();
-    loadFooter();
-    getErreserbaLaburpena();
-});
 
-</script>
 </html>

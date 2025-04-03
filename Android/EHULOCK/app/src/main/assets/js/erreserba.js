@@ -36,16 +36,12 @@ export async function deleteErreserba (idErreserba) {
 }
 
 
-export async function updateErreserba (idErreserba, egoera) {
-    const form = document.getElementById('berriaForm2');
-    const erreserba = {
-            idErreserba: idErreserba,
-            idKutxatila: form.menua.value,
-            start_time: form.start_time2.value,
-            end_time: form.end_time2.value,
-            egoera: egoera
+export async function updateErreserba (erreserba) {
+    
+const availability = await checkAvailability(erreserba.start_time, erreserba.end_time, erreserba.idKutxatila);
+    if(!availability)
+        return false;
 
-        }
     const response = await fetch(`${API_URL}/erreserba/update`, {
         method: 'PUT',
         headers: {
@@ -58,10 +54,13 @@ export async function updateErreserba (idErreserba, egoera) {
     }else{
         console.error('Errorea erreserba editatzean');
     }
+return true;
 }
 
 export async function createErreserba (erreserba)  {
-   
+   const availability = await checkAvailability(erreserba.start_time, erreserba.end_time, erreserba.idKutxatila);
+    if(!availability)
+        return false;
 
     const response = await fetch(`${API_URL}/erreserba/add`, {
         method: 'POST',
@@ -75,6 +74,7 @@ export async function createErreserba (erreserba)  {
     }else{
         console.error('Errorea erreserba sortzean');
     }
+return true;
 };
 
 export async function getErreserbaAktiboa(idUser) {
@@ -91,3 +91,18 @@ export async function getErreserbaAktiboa(idUser) {
         return false;
     }
 };
+
+async function checkAvailability(start_time, end_time, idKutxatila) {
+    const response = await fetch(`${API_URL}/erreserba/checkAvailability`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ start_time, end_time, idKutxatila })
+    });
+    if (response.ok) {
+        const data = await response.json();
+        return data.availability;
+    }
+    return false;
+}

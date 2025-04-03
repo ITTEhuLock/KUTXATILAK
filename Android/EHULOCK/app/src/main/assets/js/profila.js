@@ -45,3 +45,25 @@ export async function pasahitzaAldatu(){
     document.getElementById('pasahitzaForm').appendChild(mezua);
 }
 }
+
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    loadProfila();
+
+});
+document.getElementById('profilaLogout').addEventListener('click', () => {
+    logout();
+});
+document.getElementById('pasahitzaForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    pasahitzaAldatu();
+});
+
+document.getElementById('profilaEzabatu').addEventListener('click', () => {
+    profilaEzabatu();
+});
+document.getElementById('profilaEditatu').addEventListener('click', () => {
+   document.getElementById('form').hidden = !document.getElementById('form').hidden;
+   document.getElementById('profila').hidden = !document.getElementById('profila').hidden;
+});
