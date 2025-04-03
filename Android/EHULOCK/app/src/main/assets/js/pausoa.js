@@ -1,6 +1,6 @@
 import {API_URL, gridp6} from './konstanteak.js';
 import { getGelak, getGela } from './gela.js';
-import { getOztopoakSolairuka } from './oztopoa.js';
+
 import PF from "https://esm.sh/pathfinding";
 
 export const getBideraketa = async () => {
@@ -43,43 +43,6 @@ return path;
 }
 
     
-export async function bideratzeAlgoritmoaold(hasiera, amaiera) {
-    const gelak = await getGelak();
-    const gela_h = await getGela(hasiera);
-    const gela_a = await getGela(amaiera);
-    const oztopoak = await getOztopoakSolairuka(gela_h[0].solairua, gela_a[0].eraikina);
-
-    const rows = 100;
-    const cols = 100;
-    const grid = new PF.Grid(cols, rows);
-    const gridSize = 50;
-
-console.log("gelak", gelak);
-console.log("oztopoak", oztopoak);
-for (const oztopoa of oztopoak[0]) {
-    setArea(grid, oztopoa.x, oztopoa.y, oztopoa.ax, oztopoa.ay, gridSize, false )
-}
-
-for(const gela of gelak) {
-   setArea(grid, gela.x, gela.y, gela.azalera_x, gela.azalera_y, gridSize, true);
-
-    console.log(gela_h[0]);
-    console.log(gela_a[0]);
-    const h = { x: gela_h[0].x, y: gela_h[0].y }; 
-    const a = { x: gela_a[0].x, y: gela_a[0].y }; 
-    console.log(h);
-    console.log(a);
-    console.log(grid);
-    const gridBackup = grid.clone();
-    const finder = new PF.AStarFinder();
-    
-    const path = finder.findPath(h.x, h.y, a.x, a.y, gridBackup);
-
-    console.log(path); 
-    printGrid(grid);
-    return path;
-}
-}
 
 function printGrid(grid) {
     const rows = grid.height;

@@ -52,44 +52,10 @@ export async function ibilbideaBilatu(posizioa, ondokoa){
     if(!ibilbidea)
         return;
     document.getElementById("berriaForm").hidden = true;
-    document.getElementById("ibilbidea").innerHTML = "Ibilbidea: ";
     ibilbideaBistaratu2(ibilbidea);
    }
 
-   export async function ibilbideaBistaratu(ibilbidea){
-    const mapaContainer = document.getElementById('botoiak');
-    const mapa = document.getElementById('mapa');
-    const mapaW = mapa.width;
-    const mapaH = mapa.height;
-       const jatorria = await g.getGela(ibilbidea[0]);
-       const helmuga = await g.getGela(ibilbidea[ibilbidea.length-1]);
-       console.log(jatorria);
-       const botoiajatorria = document.getElementById(jatorria[0].idGela);
-       console.log(botoiajatorria);
 
-       const botoihelmuga = document.getElementById(helmuga[0].idGela);
-       botoiajatorria.style.backgroundColor = "black";
-       botoihelmuga.style.backgroundColor = "black";
-
-       ibilbidea.forEach(async (ge) => {
-           const gela = await g.getGela(ge);
-           console.log(gela[0]);
-
-           const puntua = document.createElement('button');
-           puntua.className = 'laukizuzena';
-           puntua.style.backgroundColor = 'black';
-           const x = gela[0].x*mapaW/100;
-           const d = gela[0].d*mapaH/100;
-           puntua.style.left = x+"px";
-           puntua.style.top = d+"px";
-           mapaContainer.appendChild(puntua);
-
-
-       })
-
-
-
-   }
 
 export async function ibilbideaBistaratu2(path) {
 const mapa = document.getElementById('mapa');
