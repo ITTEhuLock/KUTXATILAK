@@ -28,7 +28,6 @@ CREATE TABLE `erreserba` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
-  `abisua` datetime DEFAULT NULL,
   `fill_time` timestamp NULL DEFAULT NULL,
   `empty_time` timestamp NULL DEFAULT NULL,
   `idUser` int NOT NULL,
@@ -41,15 +40,12 @@ CREATE TABLE `erreserba` (
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `erreserba`
---
 
-LOCK TABLES `erreserba` WRITE;
-/*!40000 ALTER TABLE `erreserba` DISABLE KEYS */;
-INSERT INTO `erreserba` VALUES (10,2,'2025-03-25 12:11:22','2025-03-20 12:00:00','2025-03-13 13:00:00',NULL,NULL,NULL,1,2),(13,2,'2025-03-29 14:13:53','2025-03-29 15:13:00','2025-03-30 15:13:00',NULL,NULL,NULL,2,9),(18,2,'2025-03-27 13:10:22','2025-03-27 14:06:00','2025-03-27 14:10:00',NULL,NULL,NULL,4,9),(19,1,'2025-03-29 19:13:46','2025-03-29 17:57:00','2025-03-30 17:57:00',NULL,NULL,NULL,2,3);
-/*!40000 ALTER TABLE `erreserba` ENABLE KEYS */;
-UNLOCK TABLES;
+
+
+
+
+
 
 --
 -- Table structure for table `gela`
@@ -186,6 +182,7 @@ CREATE TABLE `user` (
   `password` varchar(32) NOT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `role` enum('user','admin') NOT NULL,
+  `token` varchar(255),
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `idUser_UNIQUE` (`idUser`)
@@ -198,7 +195,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'paula','paula@ehu.eus','1234','2025-03-04 15:20:29','admin'),(2,'user','user@ehu.eus','user','2025-03-25 14:39:24','user'),(4,'Puti','irati@ikasle.ehu','tufyf','2025-03-27 13:05:44','user');
+INSERT INTO `user` VALUES (1,'paula','paula@ehu.eus','1234','2025-03-04 15:20:29','admin',null),(2,'user','user@ehu.eus','user','2025-03-25 14:39:24','user',null),(4,'Puti','irati@ikasle.ehu','tufyf','2025-03-27 13:05:44','user',null);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

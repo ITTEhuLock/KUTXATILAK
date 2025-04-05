@@ -1,5 +1,24 @@
 import dbConnection from '../database/database.js';
+import schedule from 'node-schedule';
+import { checkNotifikazioak } from './notifikazioController.js';
 
+const scheduledJobs = new Map();
+
+const gehituJob = (idErreserba, job) => {
+  scheduledJobs.set(idErreserba, job);
+};
+
+const deuseztatuJob = (idErreserba) => {
+  const job = scheduledJobs.get(idErreserba);
+  if (job) {
+    job.cancel();
+    scheduledJobs.delete(idErreserba);
+  }
+};
+
+const getJob = (idErreserba) => {
+  return scheduledJobs.get(idErreserba);
+};
 
 export const getErreserbak = async (req, res) => {
   try {
@@ -50,7 +69,10 @@ export const createNewerreserba = async (req, res) => {
       Message: 'Fields cannot be empty',
     });
   }
-
+  //5 minutuko abisu denbora kalkulatu
+  const end_time = new Date(erreserba.end_time);
+  const abisu_ordua = new Date(end_time.getTime()- 5*60*1000);
+  console.log("abisu ordua:",abisu_ordua.toISOString());
   const erreserbaObj = [
     "0",
     erreserba.start_time,
@@ -58,16 +80,25 @@ export const createNewerreserba = async (req, res) => {
     erreserba.idKutxatila,
     erreserba.idUser
   ];
-console.log(erreserbaObj);
+
+  
   const sqlQuery = 'INSERT INTO erreserba (egoera, start_time, end_time, idKutxatila, idUser) VALUES (?, ?, ?, ?, ?)';
 
   try {
     const [result] = await dbConnection.execute(sqlQuery, erreserbaObj);
     const idErreserba = result.insertId;
+    console.log()
+    const job = schedule.scheduleJob(abisu_ordua,() => checkNotifikazioak(idErreserba));
+    gehituJob(idErreserba,job);
+    console.log("%d id-a duen erreserbaren lana gehitu da",idErreserba);
     res.status(201).json({ idErreserba });
   } catch (error) {
     res.status(500).json({ error: error.message});
+    console.log("error:",error);
   }
+
+  
+  
 };
 
 export const updateErreserba = async (req, res) => {
@@ -88,6 +119,19 @@ export const updateErreserba = async (req, res) => {
     ];
     const sqlQuery = 'UPDATE erreserba SET egoera = ?, start_time = ?, end_time = ?,fill_time = ?,empty_time = ?, idKutxatila = ? WHERE idErreserba = ?';
     await dbConnection.execute(sqlQuery, erreserbaObj);
+
+    if (erreserba.end_time) {
+      
+      deuseztatuJob(idErreserba);
+      console.log("%d id-a duen erreserbaren lana ezabatu da",idErreserba);
+      const end_time = new Date(erreserba.end_time);
+      const abisu_ordua = new Date(end_time.getTime() - 5 * 60 * 1000);
+      console.log("abisu ordua:",abisu_ordua.toISOString());
+      const job = schedule.scheduleJob(abisu_ordua, () => checkNotifikazioak(idErreserba));
+      gehituJob(idErreserba, job);
+      console.log("%d id-a duen erreserbaren lana gehitu da",idErreserba);
+    }
+
     res.status(200).json({ message: 'erreserba updated' });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -101,6 +145,8 @@ export const deleteErreserba = async (req, res) => {
   }
   const sqlQuery = 'DELETE FROM erreserba WHERE idErreserba = ?';
   try {
+    deuseztatuJob(idErreserba);
+    console.log("%d id-a duen erreserbaren lana ezabatu da",idErreserba);
     await dbConnection.execute(sqlQuery, [idErreserba]);
     res.status(200).json({ message: 'erreserba deleted' });
   } catch (error) {
