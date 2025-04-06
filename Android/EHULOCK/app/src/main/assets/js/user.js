@@ -107,7 +107,7 @@ export async function autentikatu(){
     button.textContent = 'Saioa hasi';
     button.addEventListener('click',async (event)=>{
         event.preventDefault();
-        window.location.href = './index.html';
+        window.location.href = '../index.html';
     });
     const mezua = document.createElement('h1');
     mezua.textContent = 'Aplikazioaren zati honetara sartzeko saioa hasi behar duzu';
