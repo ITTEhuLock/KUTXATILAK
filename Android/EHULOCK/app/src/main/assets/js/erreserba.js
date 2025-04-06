@@ -3,6 +3,14 @@ export async function getErabiltzailearenErreserbak  (idUser) {
     const response = await fetch(`${API_URL}/erreserba/user/${idUser}`);
     if(response.ok){
         const data = await response.json();
+        data.forEach(async (erreserba) => {
+            const start_time = new Date(erreserba.start_time);
+            start_time.setHours(start_time.getHours() + 2);
+            const end_time = new Date(erreserba.end_time);
+            end_time.setHours(end_time.getHours() + 2);
+            erreserba.start_time = start_time.toISOString().slice(0, 19).replace('T', ' ');
+            erreserba.end_time = end_time.toISOString().slice(0, 19).replace('T', ' ');
+        });
         return data;
     }else{
         console.error('Errorea erreserbak lortzean');
@@ -15,6 +23,13 @@ export async function getErreserba(idErreserba){
     const response = await fetch(`${API_URL}/erreserba/${idErreserba}`);
     if(response.ok){
         const data = await response.json();
+        const start_time = new Date(data[0].start_time);
+        start_time.setHours(start_time.getHours() + 2);
+        const end_time = new Date(data[0].end_time);
+        end_time.setHours(end_time.getHours() + 2);
+        data[0].start_time = start_time.toISOString().slice(0, 19).replace('T', ' ');
+        data[0].end_time = end_time.toISOString().slice(0, 19).replace('T', ' ');
+
         return data[0];
     }else{
         console.error('Errorea erreserbak lortzean');
@@ -83,6 +98,12 @@ export async function getErreserbaAktiboa(idUser) {
         const response = await fetch(`${API_URL}/erreserba/aktiboa/${idUser}`);
         if (response.ok) {
             const data = await response.json();
+            const start_time = new Date(data[0].start_time);
+            start_time.setHours(start_time.getHours() + 2);
+            const end_time = new Date(data[0].end_time);
+            end_time.setHours(end_time.getHours() + 2);
+            data[0].start_time = start_time.toISOString().slice(0, 19).replace('T', ' ');
+            data[0].end_time = end_time.toISOString().slice(0, 19).replace('T', ' ');
             return data[0];
         }
         return false;
@@ -102,7 +123,10 @@ async function checkAvailability(start_time, end_time, idKutxatila) {
     });
     if (response.ok) {
         const data = await response.json();
-        return data.availability;
+        console.log(data.available);
+        return data.available;
+
     }
-    return false;
+    console.error('Errorea erabilgarritasuna egiaztatzean');
+    
 }

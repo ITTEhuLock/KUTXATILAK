@@ -44,6 +44,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .taulaDiv2 {
@@ -54,7 +55,7 @@ main {
   overflow-y: auto;
   overflow-x: auto;
   border: none;
-  
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: center;

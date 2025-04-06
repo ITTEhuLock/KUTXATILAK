@@ -28,6 +28,7 @@ export async function loadToggle(){
         });
 
         document.getElementById('editatuButton').addEventListener('click', (event) => { 
+            event.preventDefault();
             document.getElementById('berria2').hidden = false;
             document.getElementById('berria').hidden = true;
         });
@@ -92,8 +93,8 @@ export async function loadErreserbaLaburpena(){
         console.log(erreserba.idKutxatila);
        
         const l = taula.insertRow();
-        l.insertCell().textContent = erreserba.start_time.split('T')[0] + " " + erreserba.start_time.split('T')[1].substring(0, 5);
-        l.insertCell().textContent = erreserba.end_time.split('T')[0] + " " + erreserba.end_time.split('T')[1].substring(0, 5);
+        l.insertCell().textContent = erreserba.start_time.split('T')[0] ;
+        l.insertCell().textContent = erreserba.end_time.split('T')[0];
         const c = l.insertCell();
         const eB = document.createElement('button');
         eB.name = 'hedatuButton';
@@ -182,7 +183,7 @@ export async function loadZehaztapenak(idErreserba){
     
     const taula = document.createElement('table');
     taula.className = 'taula2';
-    const l1 = taula.insertRow();
+    
     
     const lerroaSortu = (izenburua, data) => {
         const l = taula.insertRow();
@@ -196,8 +197,8 @@ export async function loadZehaztapenak(idErreserba){
         const ku = await k.getKutxatila(erreserba.idKutxatila);
         
         lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
-        lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]+" "+erreserba.start_time.split('T')[1].split('.')[0]);
-        lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]+" "+erreserba.end_time.split('T')[1].split('.')[0]);
+        lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]);
+        lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]);
         lerroaSortu("Egoera",parseInt(erreserba.egoera) === 0
         ? "Hasigabea"
         : parseInt(erreserba.egoera) === 1

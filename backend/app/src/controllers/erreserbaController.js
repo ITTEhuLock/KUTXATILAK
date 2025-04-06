@@ -1,6 +1,7 @@
 import dbConnection from '../database/database.js';
 import schedule from 'node-schedule';
 import { checkNotifikazioak } from './notifikazioController.js';
+import e from 'express';
 
 const scheduledJobs = new Map();
 
@@ -70,7 +71,10 @@ export const createNewerreserba = async (req, res) => {
     });
   }
   //5 minutuko abisu denbora kalkulatu
+
+
   const end_time = new Date(erreserba.end_time);
+  end_time.setHours(end_time.getHours() + 2);
   const abisu_ordua = new Date(end_time.getTime()- 5*60*1000);
   console.log("abisu ordua:",abisu_ordua.toISOString());
   const erreserbaObj = [
@@ -102,7 +106,12 @@ export const createNewerreserba = async (req, res) => {
 };
 
 export const updateErreserba = async (req, res) => {
+
   const erreserba = req.body;
+  const start_time = new Date(erreserba.start_time);
+  start_time.setHours(start_time.getHours() + 2);
+  const end_time = new Date(erreserba.end_time);
+  end_time.setHours(end_time.getHours() + 2);
   const idErreserba = parseInt(req.body.idErreserba);
   if (isNaN(idErreserba)) {
     return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
@@ -110,14 +119,12 @@ export const updateErreserba = async (req, res) => {
   try {
     const erreserbaObj = [
       erreserba.egoera,
-      erreserba.start_time,
-      erreserba.end_time,
-      erreserba.fill_time || null,
-      erreserba.empty_time || null,
+      start_time.toISOString().slice(0, 19).replace('T', ' '),
+      end_time.toISOString().slice(0, 19).replace('T', ' '),
       erreserba.idKutxatila,
       idErreserba
     ];
-    const sqlQuery = 'UPDATE erreserba SET egoera = ?, start_time = ?, end_time = ?,fill_time = ?,empty_time = ?, idKutxatila = ? WHERE idErreserba = ?';
+    const sqlQuery = 'UPDATE erreserba SET egoera = ?, start_time = ?, end_time = ?, idKutxatila = ? WHERE idErreserba = ?';
     await dbConnection.execute(sqlQuery, erreserbaObj);
 
     if (erreserba.end_time) {
@@ -125,6 +132,7 @@ export const updateErreserba = async (req, res) => {
       deuseztatuJob(idErreserba);
       console.log("%d id-a duen erreserbaren lana ezabatu da",idErreserba);
       const end_time = new Date(erreserba.end_time);
+      end_time.setHours(end_time.getHours() + 2);
       const abisu_ordua = new Date(end_time.getTime() - 5 * 60 * 1000);
       console.log("abisu ordua:",abisu_ordua.toISOString());
       const job = schedule.scheduleJob(abisu_ordua, () => checkNotifikazioak(idErreserba));
@@ -214,17 +222,30 @@ export const getErreserbaAktiboa = async (req, res) => {
 export const checkAvailability = async (req, res) => {
   const start_time = req.body.start_time;
   const end_time = req.body.end_time;
+  console.log("start_time:",start_time);
+  console.log("end_time:",end_time);
   const idKutxatila = parseInt(req.body.idKutxatila);
-  const sqlQuery = `SELECT * FROM erreserba WHERE start_time >= ? AND end_time AND idKutxatila = ?`;
+  const sqlQuery = `SELECT * FROM erreserba WHERE idKutxatila = ?
+  AND (
+      (start_time < ? AND end_time > ?)
+      OR (start_time < ? AND end_time > ?)
+      OR (start_time >= ? AND end_time <= ?))`;
   try {
-    const [results] = await dbConnection.query(sqlQuery, [start_time, end_time, idKutxatila]);
+    const [results] = await dbConnection.query(sqlQuery, [idKutxatila, start_time, end_time, start_time, end_time, start_time, end_time]);
+    console.log(results);
     if (results.length === 0) {
-      return res.status(200).json({ available: true });
+
+      const sqlQuery2 = `SELECT * FROM kutxatila WHERE hasiera_ordua <= ? AND amaiera_ordua >= ? AND idKutxatila = ? AND egoera = 0`;
+      const [results2] = await dbConnection.query(sqlQuery2, [start_time.split("T")[1], end_time.split("T")[1], idKutxatila]);
+      console.log(results2);
+      if (results2.length > 0) {
+        return res.status(200).json({ available: true });
+      }
+     return res.status(200).json({ available: false });
     }
-    else{
-      return res.status(200).json({ available: false });
-    }
+    return res.status(200).json({ available: false });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ error: 'errorea erreserba eskuratzean' });
   }
 };

@@ -101,7 +101,7 @@ export async function changePassword(idUser, password){
 };
 
 export async function autentikatu(){
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('idUser');
     const div = document.createElement('div');
     const button = document.createElement('button');
     button.textContent = 'Saioa hasi';

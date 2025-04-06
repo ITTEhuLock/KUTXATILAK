@@ -17,7 +17,7 @@ async function bideratu(username,password) {
     const idUser = await u.verifyUser(username, password);
     console.log(idUser);
     form.reset();
-    console.log(idUser);
+    
     if(!idUser){
         const mezua = document.createElement('h2');
         mezua.textContent = 'Sartutako datuak ez dira zuzenak';

@@ -21,6 +21,7 @@ WHERE e.idKutxatila = ?
             if(results[0].egoera_kutxatila == 0){     
                 res.status(200).json({ baimena:'baimenduta' });
                 const now = new Date();
+                now.setHours(now.getHours() + 2);
                 const fill_time = now.toISOString().slice(0, 19).replace('T', ' ');
                 const updateObj = [
                     fill_time,
@@ -32,6 +33,7 @@ WHERE e.idKutxatila = ?
             else{
                 res.status(200).json({ baimena: 'baimenduta' });
                 const now = new Date();
+                now.setHours(now.getHours() + 2);
                 const empty_time = now.toISOString().slice(0, 19).replace('T', ' ');
                 const updateObj = [
                     empty_time,
