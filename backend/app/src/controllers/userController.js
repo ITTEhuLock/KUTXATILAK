@@ -135,6 +135,7 @@ export const updateUser = async (req, res) => {
 export const verifyUser = async (req, res) => {
     const username =req.body.username;
     const password = req.body.password;
+    const token = req.body.token;
     const sqlQuery = `SELECT * FROM user WHERE username = ? AND password = ?`;
     try {
         const [results] = await dbConnection.query(sqlQuery, [username, password]);
@@ -142,10 +143,23 @@ export const verifyUser = async (req, res) => {
             return res.status(404).json({ error: 'erabiltzailea ez da existitzen' });
         }
         else {
+            const tmpIdUser = results[0].idUser;
+            if (token && results[0].token != token){
+                const tokenObj = [
+                    token,
+                    tmpIdUser
+                ];
+
+                const [results] = await dbConnection.query(`UPDATE user SET token = ? WHERE idUser = ?`, tokenObj);
+                if (results.affectedRows === 0) {
+                    return res.status(404).json({ error: 'errorea tokena eguneratzean' });
+                }
+            }
             res.status(200).json({idUser: results[0].idUser });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
+        console.log("Errorea:",error);
     }
 }
 

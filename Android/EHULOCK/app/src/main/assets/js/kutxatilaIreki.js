@@ -1,6 +1,7 @@
 import * as e from "./erreserba.js";
 window.addEventListener('DOMContentLoaded', () => {
     getErreserbaLaburpena();
+    Android.setUserId(idUser);
 });
 
 

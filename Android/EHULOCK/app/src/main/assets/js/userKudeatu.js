@@ -5,16 +5,17 @@ export async function egiaztatu() {
         erregistratu();
         return;
     }
-   if(document.getElementById('mezua'))
+    if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
-   const username = document.getElementById("username").value;
+    const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-   bideratu(username, password);
+    const token = Android.getNotificationToken();
+    bideratu(username, password, token);
 
 }
 
-async function bideratu(username,password) {
-    const idUser = await u.verifyUser(username, password);
+async function bideratu(username,password, token) {
+    const idUser = await u.verifyUser(username, password, token);
     console.log(idUser);
     form.reset();
     

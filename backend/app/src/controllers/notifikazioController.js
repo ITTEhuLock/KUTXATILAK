@@ -5,22 +5,26 @@ import { readFile } from 'fs/promises';
 import dbConnection from '../database/database.js';
 
 
-const initializeFirebase = async () => {
+let messaging;
+(async () => {
   try {
     const serviceAccount = JSON.parse(
       await readFile(new URL('../../../../ehulock-1a70c-firebase-adminsdk-fbsvc-1ce13df5fa.json', import.meta.url))
     );
 
-    admin.initializeApp({
-      credential: cert(serviceAccount)
-    });
-
-    return getMessaging();
+    if (admin.apps.length === 0) {
+      admin.initializeApp({
+        credential: cert(serviceAccount)
+      });
+      messaging = getMessaging();
+    } else {
+      messaging = getMessaging(admin.app());
+    }
   } catch (error) {
     console.error('Firebase initialization error:', error);
     throw error;
   }
-};
+})();
 
 
 const notifikazioaBidali = async (idErreserba) => {
@@ -31,23 +35,23 @@ JOIN user u ON e.idUser = u.iduser
 WHERE e.idErreserba = ?;
 `;  
     console.log("NotifikazioaBidali");
-    var registrationToken = "eqOA__5tTkq0PkphBY6pIb:APA91bE0i9D1dLN84aZHjZJo6olFWAnPed6BlNCyMrlbhq5ZocLJs5HC72ar7EMmjSTdYYm2fg8mrLQ8GJTNiYvrrS1kP5jG2Xfetkhik9fZF5fN54fftLU";
-    // try{
-    //     const [results] = await dbConnection.query(sqlQuery, idErreserba);
-    //     if (results.length === 0) {
-    //         return res.status(404).json({ error: 'erabiltzailea ez da existitzen' });
-    //     }
-    //     else{
-    //         registrationToken = results[0].token;
+    var registrationToken = null;
+    try{
+        const [results] = await dbConnection.query(sqlQuery, idErreserba);
+        if (results.length === 0) {
+            console.log("Erabiltzailea ez dauka tokena erregistratuta");
+        }
+        else{
+            registrationToken = results[0].token;
             
-    //     }
-    // }
-    // catch (error) {
-    //     console.error('errorea tokena eskuratzean:',error );
-    // }
+        }
+    }
+    catch (error) {
+        console.error('errorea tokena eskuratzean:',error );
+    }
     if(registrationToken != null ){
         try {
-            const messaging = await initializeFirebase();
+            
             const message = {
             notification: {
                 title: 'Erreserba amaitzeko zorian dago!!',

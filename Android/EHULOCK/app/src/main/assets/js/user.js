@@ -1,10 +1,10 @@
 import { API_URL } from "./konstanteak.js";
-export async function verifyUser(username, password){
+export async function verifyUser(username, password, token){
     
         const response = await fetch (`${API_URL}/user/verifyUser`,{
             method : 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({username, password, token})
 
     });
         if(response.ok){
