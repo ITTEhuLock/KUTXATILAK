@@ -36,7 +36,7 @@ export async function loadMenuak(){
 
 export async function ibilbideaSortu(){
     const form = document.getElementById("berria");
-    if(localStorage.getItem("idUser") == null){
+    if(localStorage.getItem("idUser") == null ||localStorage.getItem("idUser") == undefined || !localStorage.getItem("idUser")){
         return;
     }
     await i.createNewIbilbidea(localStorage.getItem("idUser"), form.menuposizioa.value, form.menuondokoa.value);
