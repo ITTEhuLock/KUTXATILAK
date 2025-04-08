@@ -9,7 +9,8 @@ export async function egiaztatu() {
        document.getElementById('mezua').remove();
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const token = Android.getNotificationToken();
+   // const token = Android.getNotificationToken();
+   const token = localStorage.getItem("token");
     bideratu(username, password, token);
 
 }
@@ -59,8 +60,6 @@ export async function toggleErregistratu() {
         
     }
     
-  
-       
 
     
 }
