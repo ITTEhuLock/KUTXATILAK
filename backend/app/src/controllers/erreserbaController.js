@@ -3,8 +3,6 @@ import schedule from 'node-schedule';
 import { checkNotifikazioak } from './notifikazioController.js';
 import e from 'express';
 
-const titles = ["10 minutu geratzen dira erreserba amaitzeko!!","5 minutu geratzen dira erreserba amaitzeko!!","Erreserba amaitu da!!"];
-const bodies = ["Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Kutxatila hustu lehenbailehen"];
 const scheduledJobs = new Map();
 
 const gehituJob = (idErreserba, job) => {
@@ -97,9 +95,9 @@ export const createNewerreserba = async (req, res) => {
     const idErreserba = result.insertId;
     
     //Lana berriak programatu
-    const job10 = schedule.scheduleJob(abisu_ordua_10,() => checkNotifikazioak(idErreserba,titles[0],bodies[0]));
-    const job5 = schedule.scheduleJob(abisu_ordua_5,() => checkNotifikazioak(idErreserba,titles[1],bodies[1]));
-    const job = schedule.scheduleJob(abisu_ordua_0,() => checkNotifikazioak(idErreserba,titles[2],bodies[2]));
+    const job10 = schedule.scheduleJob(abisu_ordua_10,() => checkNotifikazioak(idErreserba,10));
+    const job5 = schedule.scheduleJob(abisu_ordua_5,() => checkNotifikazioak(idErreserba,5));
+    const job = schedule.scheduleJob(abisu_ordua_0,() => checkNotifikazioak(idErreserba,0));
     
     //Programazio berriak gorde
     gehituJob(`${idErreserba}_10`,job10);
@@ -182,9 +180,9 @@ export const updateErreserba = async (req, res) => {
       end_time.setHours(end_time.getHours());
       
       //Lana berriak programatu
-      const job10 = schedule.scheduleJob(abisu_ordua_10,() => checkNotifikazioak(idErreserba,titles[0],bodies[0]));
-      const job5 = schedule.scheduleJob(abisu_ordua_5,() => checkNotifikazioak(idErreserba,titles[1],bodies[1]));
-      const job = schedule.scheduleJob(end_time,() => checkNotifikazioak(idErreserba,titles[2],bodies[2]));
+      const job10 = schedule.scheduleJob(abisu_ordua_10,() => checkNotifikazioak(idErreserba,10));
+      const job5 = schedule.scheduleJob(abisu_ordua_5,() => checkNotifikazioak(idErreserba,5));
+      const job = schedule.scheduleJob(end_time,() => checkNotifikazioak(idErreserba,5));
       
       //Programazio berriak gorde
       gehituJob(`${idErreserba}_10`,job10);

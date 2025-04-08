@@ -5,6 +5,7 @@ import * as k from "./kutxatila.js";
 window.addEventListener('DOMContentLoaded', () => {
   loadErreserbaLaburpena();
   loadOpenKutxatilak();
+  loadOpenKutxatilenKokapena(0);
   loadToggle();
     document.getElementById('zehaztapenak').style.display = 'none';
 

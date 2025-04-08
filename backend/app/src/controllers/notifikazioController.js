@@ -4,6 +4,9 @@ import { getMessaging } from 'firebase-admin/messaging';
 import { readFile } from 'fs/promises';
 import dbConnection from '../database/database.js';
 
+const titles = ["10 minutu geratzen dira erreserba amaitzeko!!","5 minutu geratzen dira erreserba amaitzeko!!","Erreserba amaitu da!!"];
+const bodies = ["Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Kutxatila hustu lehenbailehen"];
+
 
 let messaging;
 (async () => {
@@ -27,7 +30,7 @@ let messaging;
 })();
 
 
-const notifikazioaBidali = async (idErreserba, title, body) => {
+const notifikazioaBidali = async (idErreserba, mins) => {
     
     const sqlQuery = `SELECT u.token
 FROM erreserba e
@@ -51,7 +54,19 @@ WHERE e.idErreserba = ?;
     }
     if(registrationToken != null ){
         try {
-            
+            var title, body;
+            switch (mins){
+              case 10:
+                title = titles[0];
+                body = bodies[0]; 
+              case 5:
+                title = titles[1];
+                body = bodies[1];
+              case 0:
+                title = titles[2];
+                body = bodies[2];
+            } 
+
             const message = {
             notification: {
                 title: title,
@@ -61,6 +76,7 @@ WHERE e.idErreserba = ?;
             };
         
             const response = await messaging.send(message);
+
             return response;
             
         } catch (error) {
@@ -72,7 +88,7 @@ WHERE e.idErreserba = ?;
 };
 
 
-export const checkNotifikazioak = async (idErreserba, title, body) =>{
+export const checkNotifikazioak = async (idErreserba, mins) =>{
   console.log("CheckNotifikazioaK");
   
   //Notifikazioa bidaltzeko baldintza
@@ -84,7 +100,7 @@ export const checkNotifikazioak = async (idErreserba, title, body) =>{
     const [result] = await dbConnection.execute(kutxSqlQuery, [idErreserba]);
     //Notifikazioa bidali bakarrik kutxatila beteta badago
     if (result[0] && result[0].egoera == 1) {
-      await notifikazioaBidali(idErreserba, title, body);
+      await notifikazioaBidali(idErreserba, mins);
     }
     
   } catch (error) {
