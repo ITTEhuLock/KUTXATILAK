@@ -70,9 +70,8 @@ mapaContainer.style.top = mapa.offsetTop + 'px';
 mapaContainer.style.width = mapa.offsetWidth + 'px';
 mapaContainer.style.height = mapa.offsetHeight + 'px';
 
-const rows = gridp6.length; // Número de columnas de tu cuadrícula
-const cols =  gridp6[0] ? gridp6[0].length : 0;; // Número de filas de tu cuadrícula
-
+const rows = gridp6.length;
+const cols =  gridp6[0] ? gridp6[0].length : 0;
 
 for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
@@ -82,22 +81,23 @@ for (let y = 0; y < rows; y++) {
     }
 }
 
-// Dibuja el camino sobre el mapa
+
 path.forEach(([x, y]) => {
     const point = document.createElement('div');
     point.classList.add('pathPoint');
     
-    // Calcular las posiciones absolutas de los puntos dentro del mapa
+   
     const cellWidth = mapaContainer.offsetWidth / cols;
     const cellHeight = mapaContainer.offsetHeight / rows;
     
-// Ajusta las posiciones de los puntos considerando el tamaño total de la imagen del mapa
+
     point.style.left = `${x * cellWidth}px`;
     point.style.top = `${y * cellHeight}px`;
     mapaContainer.appendChild(point);
 });
 
    }
+
 
    export async function loadMapa(){
       
