@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1006246883023",
+    "project_id": "ehulock-1a70c",
+    "storage_bucket": "ehulock-1a70c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006246883023:android:34678d85239a5ba1fd91ba",
+        "android_client_info": {
+          "package_name": "com.example.ehulock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ufMFA4Dg0Oc2AVplDZPyrtZAog3KWnM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
