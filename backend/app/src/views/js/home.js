@@ -13,3 +13,7 @@ export async function loadOngiEtorria(){
     
     home.appendChild(ongiEtorria);
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadOngiEtorria();
+});

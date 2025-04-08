@@ -7,8 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <script type = "module" src = "../js/userKudeatu.js"></script>
    </head>
-   <!--script src="cordova.js"></script-->
+
     <body>
         <div class = 'form-container' id = 'formBerria' style = "margin-top:50px;">
 
@@ -26,18 +27,5 @@
             
     
     
-       
-            <script type = "module">
-                import {egiaztatu, toggleErregistratu} from '../js/userKudeatu.js';
-                document.getElementById('form').addEventListener('submit',(event)=>{
-                    event.preventDefault();
-                    egiaztatu();
-                
-                });
-                document.getElementById('erregistratu').addEventListener('click',(event)=>{
-                    event.preventDefault();
-                    toggleErregistratu();
-                });
-            </script>
     </body>
 </html>

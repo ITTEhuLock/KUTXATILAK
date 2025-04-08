@@ -1,5 +1,18 @@
 import * as k from './kutxatila.js';
 
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadKutxatilak();
+});
+const toggle = document.getElementById('newButton');
+toggle.addEventListener('click', () => {
+document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+
+});
+document.getElementById('berriaForm').addEventListener('submit', (event) => {
+kutxatilaSortu(event);
+});
+
 export async function loadKutxatilak(){
     const kutxatilak = await k.getKutxatilak();
     const kutxatilakCont = document.getElementById('kutxatilak');

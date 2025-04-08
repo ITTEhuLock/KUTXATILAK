@@ -27,7 +27,7 @@ let messaging;
 })();
 
 
-const notifikazioaBidali = async (idErreserba) => {
+const notifikazioaBidali = async (idErreserba, title, body) => {
     
     const sqlQuery = `SELECT u.token
 FROM erreserba e
@@ -72,8 +72,10 @@ WHERE e.idErreserba = ?;
 };
 
 
-export const checkNotifikazioak = async (idErreserba) =>{
+export const checkNotifikazioak = async (idErreserba, title, body) =>{
   console.log("CheckNotifikazioaK");
+  
+  //Notifikazioa bidaltzeko baldintza
   const kutxSqlQuery = `SELECT egoera 
   FROM kutxatila k 
   WHERE k.idKutxatila = (SELECT idKutxatila FROM erreserba e WHERE e.idErreserba = ?);
@@ -82,7 +84,7 @@ export const checkNotifikazioak = async (idErreserba) =>{
     const [result] = await dbConnection.execute(kutxSqlQuery, [idErreserba]);
     //Notifikazioa bidali bakarrik kutxatila beteta badago
     if (result[0] && result[0].egoera == 1) {
-      await notifikazioaBidali(idErreserba);
+      await notifikazioaBidali(idErreserba, min);
     }
     
   } catch (error) {

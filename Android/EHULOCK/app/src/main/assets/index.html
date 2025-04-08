@@ -3,10 +3,10 @@
 <html>
     <head>
     <title>Identifikazioa</title>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <script src = "js/userKudeatu.js" type = "module"></script>
    </head>
     <body>
         <img src="./pics/logo.png" class = "irudia" ></img>
@@ -32,17 +32,5 @@
     
     
        
-            <script type = "module">
-                import {egiaztatu, toggleErregistratu} from './js/userKudeatu.js';
-                document.getElementById('form').addEventListener('submit',(event)=>{
-                    event.preventDefault();
-                    egiaztatu();
-                
-                });
-                document.getElementById('erregistratu').addEventListener('click',(event)=>{
-                    event.preventDefault();
-                    toggleErregistratu();
-                });
-            </script>
     </body>
 </html>

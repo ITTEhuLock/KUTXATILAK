@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profilaren kudeaketa</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/app.js" type="module"></script>
+    <script src="../js/autentikazioa.js" type="module"></script>
+    <script src="../js/profila.js" type="module"></script>
 </head>
 <body>
     <div id="header" class="header"></div>
@@ -35,30 +38,5 @@
 <div id = "footer" class="footer"></div>
 
 </body>
-<script type="module">
-    import {loadFooter, loadHeader} from '../js/app.js';
-    import {loadProfila, logout, pasahitzaAldatu, profilaEzabatu} from '../js/profila.js';
-    window.addEventListener('DOMContentLoaded', () => {
-        loadHeader();
-        loadFooter();
-        loadProfila();
 
-    });
-    document.getElementById('profilaLogout').addEventListener('click', () => {
-        logout();
-    });
-    document.getElementById('pasahitzaForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        pasahitzaAldatu();
-    });
-
-    document.getElementById('profilaEzabatu').addEventListener('click', () => {
-        profilaEzabatu();
-    });
-    document.getElementById('profilaEditatu').addEventListener('click', () => {
-       document.getElementById('form').hidden = !document.getElementById('form').hidden;
-       document.getElementById('profila').hidden = !document.getElementById('profila').hidden;
-    });
-    
-</script>
 </html>

@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hasiera</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../js/app.js"></script>
+    <script type="module" src="../js/autentikazioa.js"></script>
+    <script type="module" src="../js/home.js"></script>
 </head>
 <body>
   <div id = "home" class = "home"></div>
@@ -14,13 +17,6 @@
   </div>
   <div id ="footer" class="footer"></div>  
 </body>
-<script type="module">
-import {loadFooter} from '../js/app.js';
-import {loadOngiEtorria} from '../js/home.js';
-window.addEventListener('DOMContentLoaded', () => {
-    loadFooter();
-    loadOngiEtorria();
-});
 
-</script>
+
 </html>

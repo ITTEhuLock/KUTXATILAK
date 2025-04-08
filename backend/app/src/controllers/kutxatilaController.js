@@ -39,9 +39,11 @@ export const getKutxatila = async (req, res) => {
 
 export const getKutxatilaIrekia = async (req,res) => {
     const egoera = parseInt(req.params.egoera);
+ 
     if (isNaN(egoera)) {
         return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
       }
+   
     const sqlQuery = `SELECT * FROM kutxatila WHERE egoera = ?`;
     try{
         const [results] = await dbConnection.query(sqlQuery, egoera);

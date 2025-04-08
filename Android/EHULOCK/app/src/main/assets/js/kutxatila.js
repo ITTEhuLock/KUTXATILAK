@@ -30,6 +30,7 @@ export async function getKutxatila(idKutxatila){
 };;
 
 export async function getKutxatilaByEgoera(egoera){
+    
     try{
         const response = await fetch(`${API_URL}/kutxatila/egoera/${egoera}`);
        
@@ -38,12 +39,13 @@ export async function getKutxatilaByEgoera(egoera){
             const data = await response.json();
             return data;
         }
-        
+       
     } catch (error) {   
         console.error('errorea ', error);
         return false;
     }
-};;             
+};
+    
 
 export async function deleteKutxatila(idKutxatila) {
    try {

@@ -3,6 +3,8 @@ import schedule from 'node-schedule';
 import { checkNotifikazioak } from './notifikazioController.js';
 import e from 'express';
 
+const titles = ["10 minutu geratzen dira erreserba amaitzeko!!","5 minutu geratzen dira erreserba amaitzeko!!","Erreserba amaitu da!!"];
+const bodies = ["Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Kutxatila hustu lehenbailehen"];
 const scheduledJobs = new Map();
 
 const gehituJob = (idErreserba, job) => {
@@ -70,17 +72,19 @@ export const createNewerreserba = async (req, res) => {
       Message: 'Fields cannot be empty',
     });
   }
-  //5 minutuko abisu denbora kalkulatu
-
-
+  
+  const start_time = new Date(erreserba.start_time);
   const end_time = new Date(erreserba.end_time);
+  const abisu_ordua_0 = new Date(erreserba.end_time);
+  const abisu_ordua_5 = new Date(end_time.getTime()- 5*60*1000);
+  const abisu_ordua_10 = new Date(end_time.getTime()- 10*60*1000);
+  start_time.setHours(start_time.getHours() + 2);
   end_time.setHours(end_time.getHours() + 2);
-  const abisu_ordua = new Date(end_time.getTime()- 5*60*1000);
-  console.log("abisu ordua:",abisu_ordua.toISOString());
+  
   const erreserbaObj = [
     "0",
-    erreserba.start_time,
-    erreserba.end_time,
+    start_time.toISOString().slice(0, 19).replace('T', ' '),
+    end_time.toISOString().slice(0, 19).replace('T', ' '),
     erreserba.idKutxatila,
     erreserba.idUser
   ];
@@ -91,9 +95,43 @@ export const createNewerreserba = async (req, res) => {
   try {
     const [result] = await dbConnection.execute(sqlQuery, erreserbaObj);
     const idErreserba = result.insertId;
-    console.log()
-    const job = schedule.scheduleJob(abisu_ordua,() => checkNotifikazioak(idErreserba));
-    gehituJob(idErreserba,job);
+    
+    //Lana berriak programatu
+    const job10 = schedule.scheduleJob(abisu_ordua_10,() => checkNotifikazioak(idErreserba,titles[0],bodies[0]));
+    const job5 = schedule.scheduleJob(abisu_ordua_5,() => checkNotifikazioak(idErreserba,titles[1],bodies[1]));
+    const job = schedule.scheduleJob(abisu_ordua_0,() => checkNotifikazioak(idErreserba,titles[2],bodies[2]));
+    
+    //Programazio berriak gorde
+    gehituJob(`${idErreserba}_10`,job10);
+    gehituJob(`${idErreserba}_5`,job5);
+    gehituJob(`${idErreserba}_0`,job);
+
+    //Datu-basean gorde
+    const abisu0 = [
+      "programatuta",
+      "0",
+      abisu_ordua_0.toISOString().slice(0, 19).replace('T', ' '),
+      idErreserba
+    ];
+
+    const abisu5 = [
+      "programatuta",
+      "5",
+      abisu_ordua_5.toISOString().slice(0, 19).replace('T', ' '),
+      idErreserba
+    ];
+
+    const abisu10 = [
+      "programatuta",
+      "10",
+      abisu_ordua_10.toISOString().slice(0, 19).replace('T', ' '),
+      idErreserba
+    ];
+
+    await dbConnection.execute('INSERT INTO abisuak (egoera, mota, ordua, idErreserba) VALUES (?, ?, ?, ?)', abisu0);
+    await dbConnection.execute('INSERT INTO abisuak (egoera, mota, ordua, idErreserba) VALUES (?, ?, ?, ?)', abisu5);
+    await dbConnection.execute('INSERT INTO abisuak (egoera, mota, ordua, idErreserba) VALUES (?, ?, ?, ?)', abisu10);
+
     console.log("%d id-a duen erreserbaren lana gehitu da",idErreserba);
     res.status(201).json({ idErreserba });
   } catch (error) {
@@ -106,17 +144,22 @@ export const createNewerreserba = async (req, res) => {
 };
 
 export const updateErreserba = async (req, res) => {
-
   const erreserba = req.body;
   const start_time = new Date(erreserba.start_time);
-  start_time.setHours(start_time.getHours() + 2);
   const end_time = new Date(erreserba.end_time);
+  const abisu_ordua_0 = new Date(erreserba.end_time);
+  const abisu_ordua_5 = new Date(end_time.getTime()- 5*60*1000);
+  const abisu_ordua_10 = new Date(end_time.getTime()- 10*60*1000);
+  start_time.setHours(start_time.getHours() + 2);
   end_time.setHours(end_time.getHours() + 2);
   const idErreserba = parseInt(req.body.idErreserba);
+  
   if (isNaN(idErreserba)) {
     return res.status(400).json({ error: 'You must enter a valid id as a parameter' });
   }
   try {
+    
+    
     const erreserbaObj = [
       erreserba.egoera,
       start_time.toISOString().slice(0, 19).replace('T', ' '),
@@ -129,15 +172,54 @@ export const updateErreserba = async (req, res) => {
 
     if (erreserba.end_time) {
       
-      deuseztatuJob(idErreserba);
+      //Zegoen programazioa ezabatu
+      deuseztatuJob(`${idErreserba}_10`);
+      deuseztatuJob(`${idErreserba}_5`);
+      deuseztatuJob(`${idErreserba}_0`);
+
       console.log("%d id-a duen erreserbaren lana ezabatu da",idErreserba);
       const end_time = new Date(erreserba.end_time);
-      end_time.setHours(end_time.getHours() + 2);
-      const abisu_ordua = new Date(end_time.getTime() - 5 * 60 * 1000);
-      console.log("abisu ordua:",abisu_ordua.toISOString());
-      const job = schedule.scheduleJob(abisu_ordua, () => checkNotifikazioak(idErreserba));
-      gehituJob(idErreserba, job);
-      console.log("%d id-a duen erreserbaren lana gehitu da",idErreserba);
+      end_time.setHours(end_time.getHours());
+      
+      //Lana berriak programatu
+      const job10 = schedule.scheduleJob(abisu_ordua_10,() => checkNotifikazioak(idErreserba,titles[0],bodies[0]));
+      const job5 = schedule.scheduleJob(abisu_ordua_5,() => checkNotifikazioak(idErreserba,titles[1],bodies[1]));
+      const job = schedule.scheduleJob(end_time,() => checkNotifikazioak(idErreserba,titles[2],bodies[2]));
+      
+      //Programazio berriak gorde
+      gehituJob(`${idErreserba}_10`,job10);
+      gehituJob(`${idErreserba}_5`,job5);
+      gehituJob(`${idErreserba}_0`,job);
+
+      //Datu-basean eguneratu(Denak aldi berean egin ahal izateko -> DELETE + Berriak egin UPDATE egin beharrean)
+      await dbConnection.execute('DELETE FROM abisuak WHERE idErreserba = ?', [idErreserba]);
+
+      const abisu0 = [
+        "programatuta",
+        "0",
+        abisu_ordua_0.toISOString().slice(0, 19).replace('T', ' '),
+        idErreserba
+      ];
+  
+      const abisu5 = [
+        "programatuta",
+        "5",
+        abisu_ordua_5.toISOString().slice(0, 19).replace('T', ' '),
+        idErreserba
+      ];
+  
+      const abisu10 = [
+        "programatuta",
+        "10",
+        abisu_ordua_10.toISOString().slice(0, 19).replace('T', ' '),
+        idErreserba
+      ];
+  
+      await dbConnection.execute('INSERT INTO abisuak (egoera, mota, ordua, idErreserba) VALUES (?, ?, ?, ?)', abisu0);
+      await dbConnection.execute('INSERT INTO abisuak (egoera, mota, ordua, idErreserba) VALUES (?, ?, ?, ?)', abisu5);
+      await dbConnection.execute('INSERT INTO abisuak (egoera, mota, ordua, idErreserba) VALUES (?, ?, ?, ?)', abisu10);
+
+
     }
 
     res.status(200).json({ message: 'erreserba updated' });
@@ -153,9 +235,16 @@ export const deleteErreserba = async (req, res) => {
   }
   const sqlQuery = 'DELETE FROM erreserba WHERE idErreserba = ?';
   try {
-    deuseztatuJob(idErreserba);
-    console.log("%d id-a duen erreserbaren lana ezabatu da",idErreserba);
     await dbConnection.execute(sqlQuery, [idErreserba]);
+    //Zegoen programazioa ezabatu
+    deuseztatuJob(`${idErreserba}_10`);
+    deuseztatuJob(`${idErreserba}_5`);
+    deuseztatuJob(`${idErreserba}_0`);
+
+    //Datu basean kantzelatu
+    await dbConnection.execute('DELETE FROM abisuak WHERE idErreserba = ?', [idErreserba]);
+    console.log("%d id-a duen erreserbaren lana ezabatu da",idErreserba);
+    
     res.status(200).json({ message: 'erreserba deleted' });
   } catch (error) {
     res.status(500).json({ error: 'Error deleting erreserba' });

@@ -1,7 +1,11 @@
 import * as e from "./erreserba.js";
 window.addEventListener('DOMContentLoaded', () => {
     getErreserbaLaburpena();
+    try{
     Android.setUserId(idUser);
+    }catch(e){
+        console.log("Android ez dago martxan");
+    }
 });
 
 

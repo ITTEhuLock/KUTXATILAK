@@ -1,5 +1,58 @@
 import * as u from './user.js'
 
+document.getElementById('form').addEventListener('submit',(event)=>{
+    event.preventDefault();
+    egiaztatu();
+
+});
+document.getElementById('erregistratu').addEventListener('click',(event)=>{
+    event.preventDefault();
+    toggleErregistratu();
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const idUser = localStorage.getItem("idUser");
+    if(!idUser|| idUser == undefined || idUser == null)
+        return;
+    const user = await u.getUser(idUser);
+    if(!user || user == undefined || user == null){
+        localStorage.removeItem("idUser");
+        window.location.reload();
+        return; 
+    }
+  
+    document.body.innerHTML = "";
+    const div = document.createElement('div');
+    div.className = 'form-container2';
+    const h1 = document.createElement('h1');
+    h1.textContent = 'Kaixo, ' + user.username + '!';
+    const button = document.createElement('button');
+    button.textContent = 'Joan hasiera orrira';
+    button.addEventListener('click',(event)=>{
+        event.preventDefault();
+        window.location.href =  './html/home.html';
+    });
+    const button2 = document.createElement('button');
+
+    button2.textContent = 'Saioa itxi';
+    button2.addEventListener('click',(event)=>{
+        event.preventDefault();
+        localStorage.removeItem("idUser");
+        window.location.reload();
+    });
+    button2.style.margin = '10px';
+
+    div.appendChild(h1);
+    div.appendChild(button);
+    div.appendChild(document.createElement('br'));
+    div.appendChild(button2);
+    document.body.appendChild(div);
+    
+});
+
+
+
+
 export async function egiaztatu() {
     if(document.getElementById('erregistratu').textContent != "Erregistratu"){
         erregistratu();
@@ -8,8 +61,13 @@ export async function egiaztatu() {
     if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
     const username = document.getElementById("username").value;
+    
     const password = document.getElementById("password").value;
-    const token = Android.getNotificationToken();
+    try{
+    var token = Android.getNotificationToken();}
+    catch(e){
+         token = null;
+    }
     bideratu(username, password, token);
 
 }

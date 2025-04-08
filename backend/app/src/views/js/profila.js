@@ -1,10 +1,32 @@
 import * as u from './user.js';
 
+window.addEventListener('DOMContentLoaded', () => {
+    loadProfila();
+
+});
+document.getElementById('profilaLogout').addEventListener('click', () => {
+    logout();
+});
+document.getElementById('pasahitzaForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    pasahitzaAldatu();
+});
+
+document.getElementById('profilaEzabatu').addEventListener('click', () => {
+    profilaEzabatu();
+});
+document.getElementById('profilaEditatu').addEventListener('click', () => {
+   document.getElementById('form').hidden = !document.getElementById('form').hidden;
+   document.getElementById('profila').hidden = !document.getElementById('profila').hidden;
+});
+
+
+
 export async function loadProfila(){
     const profila = document.getElementById('profila');
     const user = await u.getUser(localStorage.getItem('idUser'));
     const ongiEtorria = document.createElement('h1');
-    ongiEtorria.textContent = user.username+"-ren kontua";
+    ongiEtorria.textContent = user.username+"ren kontua";
 
     profila.appendChild(ongiEtorria);
 
