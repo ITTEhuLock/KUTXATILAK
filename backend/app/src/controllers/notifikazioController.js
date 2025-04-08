@@ -56,13 +56,13 @@ WHERE e.idErreserba = ?;
         try {
             var title, body;
             switch (mins){
-              case 10:
+              case '10':
                 title = titles[0];
                 body = bodies[0]; 
-              case 5:
+              case '5':
                 title = titles[1];
                 body = bodies[1];
-              case 0:
+              case '0':
                 title = titles[2];
                 body = bodies[2];
             } 
@@ -76,6 +76,13 @@ WHERE e.idErreserba = ?;
             };
         
             const response = await messaging.send(message);
+            var Obj = [
+              "beteta",
+              idErreserba,
+              mins
+            ];
+            await dbConnection.query('UPDATE abisuak SET egoera = ? WHERE idErreserba = ?, mota = ?',Obj);
+           
 
             return response;
             

@@ -21,6 +21,8 @@ const getJob = (idErreserba) => {
   return scheduledJobs.get(idErreserba);
 };
 
+
+
 export const getErreserbak = async (req, res) => {
   try {
     const [results] = await dbConnection.query("SELECT * FROM erreserba");
