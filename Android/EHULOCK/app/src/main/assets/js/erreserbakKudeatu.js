@@ -133,9 +133,14 @@ export async function erreserbaEzabatu(idErreserba){
 }
 
 export async function erreserbaEditatu(erreserba){
+    const m = document.getElementById('mezua');
+    if(m)
+        m.remove();
+
     const u = await e.updateErreserba(erreserba);
     if(!u){
         const mezua = document.createElement('h1');
+        mezua.id = 'mezua';
         mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm2').appendChild(mezua);
         return;
@@ -146,6 +151,9 @@ export async function erreserbaEditatu(erreserba){
 
 export async function erreserbaSortu(event){
     event.preventDefault();
+    const m = document.getElementById('mezua');
+    if(m)
+        m.remove();
         const form = document.getElementById('berriaForm');
         const erreserba = {
             idUser: localStorage.getItem('idUser'),
@@ -157,6 +165,7 @@ export async function erreserbaSortu(event){
     const a = await e.createErreserba(erreserba);
     if(!a){
         const mezua = document.createElement('h1');
+        mezua.id = 'mezua';
         mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm').appendChild(mezua);
         return;
