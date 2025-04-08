@@ -234,6 +234,37 @@ export async function loadZehaztapenak(idErreserba){
     }
 
 
+    export async function loadOpenKutxatilenKokapena(i){
+        const kutxatilak = await k.getKutxatilaByEgoera(0);
+    
+        console.log(kutxatilak);
+        if(!kutxatilak){
+            const mezua = document.createElement('h2');
+            mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
+            berriaForm.appendChild(mezua);
+            return;
+        }
+        var menua;
+        if(i == 0)
+        menua = document.getElementById('menuaDiv0')
+        else
+        menua = document.getElementById('menuaDiv00');
+        const select = document.createElement('select');
+        if(i==0)
+            select.id = 'menua2';
+        else
+            select.id = 'menua';
+        kutxatilak.forEach(kutxatila => {
+            const option = document.createElement('option');
+            option.value = kutxatila.kokapena
+            option.textContent = kutxatila.kokapena+' eraikina';
+            select.appendChild(option);
+    
+        });
+      
+            menua.appendChild(select);
+       
+    }
 
     
 

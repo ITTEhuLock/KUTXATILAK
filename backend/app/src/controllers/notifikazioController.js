@@ -54,8 +54,8 @@ WHERE e.idErreserba = ?;
             
             const message = {
             notification: {
-                title: 'Erreserba amaitzeko zorian dago!!',
-                body: '5 minutu dituzu kutxatila husteko'
+                title: title,
+                body: body
             },
             token: registrationToken
             };
@@ -84,7 +84,7 @@ export const checkNotifikazioak = async (idErreserba, title, body) =>{
     const [result] = await dbConnection.execute(kutxSqlQuery, [idErreserba]);
     //Notifikazioa bidali bakarrik kutxatila beteta badago
     if (result[0] && result[0].egoera == 1) {
-      await notifikazioaBidali(idErreserba, min);
+      await notifikazioaBidali(idErreserba, title, body);
     }
     
   } catch (error) {

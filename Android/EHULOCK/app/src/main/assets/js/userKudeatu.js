@@ -63,11 +63,14 @@ export async function egiaztatu() {
     const username = document.getElementById("username").value;
     
     const password = document.getElementById("password").value;
+
     try{
     var token = Android.getNotificationToken();}
     catch(e){
          token = null;
     }
+
+
     bideratu(username, password, token);
 
 }
@@ -117,8 +120,6 @@ export async function toggleErregistratu() {
         
     }
     
-  
-       
 
     
 }
