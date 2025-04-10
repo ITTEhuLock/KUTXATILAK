@@ -161,4 +161,69 @@ document.getElementById("garbitu").addEventListener("click", async (event) => {
 document.addEventListener('DOMContentLoaded', () => {
   loadMenuak();
   loadMapa();
+  document.getElementById("bidaiak").style.display = "none";
+  if(localStorage.getItem("idUser"))
+    document.getElementById("history").hidden = false;
+
 });
+document.getElementById("history").addEventListener("click", async (event) => {
+    event.preventDefault();
+    document.getElementById("bidaiak").style.display = "block";
+    loadHistoriala();
+});
+
+
+export async function loadHistoriala(){
+    const userId = localStorage.getItem("idUser");
+    if (!userId) {
+        return;
+    }
+    const ibilbideak = await i.getUserrenIbilbideak(userId);
+    const taula = document.createElement("table");
+    taula.className = "taula";
+    const l1 = taula.insertRow();
+    l1.insertCell().innerText = "Jatorria";
+    l1.insertCell().innerText = "Helmuga";
+    l1.insertCell().innerText = "Ekintza";
+    console.log(ibilbideak);
+    ibilbideak[0].forEach(async(ibilbidea) => { 
+        console.log(ibilbidea);
+        const l = taula.insertRow();
+        l.insertCell().innerText = await g.getGela(ibilbidea.jatorria).then(gela => gela[0].kodea);
+        l.insertCell().innerText = await g.getGela(ibilbidea.helmuga).then(gela => gela[0].kodea);
+        
+        const ekintza = document.createElement("button");
+        ekintza.innerText = "Ikusi";
+        ekintza.addEventListener("click", async (event) => {
+            event.preventDefault();
+            document.getElementById("bidaiak").style.display = "none";
+            ibilbideaBilatu(ibilbidea.jatorria, ibilbidea.helmuga);
+
+        });
+        const ezabatu = document.createElement("button");
+        ezabatu.innerText = "Ezabatu";
+        ezabatu.addEventListener("click", async (event) => {
+            event.preventDefault();
+            if(!await i.deleteIbilbidea(ibilbidea.idIbilbidea))
+                return;
+            confirm("Ibilbidea ezabatu nahi duzu?");
+            window.location.reload();
+        });
+        const c = l.insertCell();
+        c.appendChild(ekintza)
+        c.appendChild(ezabatu);
+
+
+    });
+    const itxi = document.createElement("button");
+    itxi.innerText = "Itxi";
+    itxi.addEventListener("click", async (event) => {
+        event.preventDefault();
+        document.getElementById("bidaiak").style.display = "none";
+    });
+    itxi.className = "itxi";
+    const content = document.querySelector(".modal-content");
+    content.innerHTML = "";
+    content.appendChild(itxi);
+    content.appendChild(taula);
+}

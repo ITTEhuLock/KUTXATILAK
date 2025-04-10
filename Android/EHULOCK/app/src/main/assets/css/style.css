@@ -257,16 +257,26 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+
 }
 
 .modal-content {
-  
+ margin: 10px;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   width: 100%;
   text-align: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+ 
+}
+
+.taula tr:first-of-type{
+  position: sticky;
+  top: 0;
+
+
 }
 
 .irudia{

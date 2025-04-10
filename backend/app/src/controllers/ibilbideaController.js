@@ -5,7 +5,7 @@ export const getUserrenIbilbideak = async (req, res) => {
     const sql = `SELECT * FROM ibilbidea WHERE idUser = ${idUser}`;
     try {
         const result = await dbConnection.query(sql);
-        res.status(200).json(result.rows);
+        res.status(200).json(result);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error.message });
@@ -32,3 +32,15 @@ export const createNewIbilbidea = async (req, res) => {
     }
 };
 
+
+export const deleteIbilbidea = async (req, res) => {
+    const idIbilbidea = req.params.idIbilbidea;
+    const sql = `DELETE FROM ibilbidea WHERE idIbilbidea = ${idIbilbidea}`;
+    try {
+        await dbConnection.query(sql);
+        res.status(200).json(true);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message });
+    }   
+};
