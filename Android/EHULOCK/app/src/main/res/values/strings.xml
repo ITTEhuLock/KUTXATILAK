@@ -15,4 +15,5 @@
     <string name="kutxatilaList">Aukeratu kutxatila</string>
     <string name="aiddescription">giltza modulua\n</string>
     <string name="servicedesc">Giltza moduluaren deskribapena</string>
+    <string name="default_notification_channel_id">1</string>
 </resources>
