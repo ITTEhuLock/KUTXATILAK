@@ -1,30 +1,37 @@
 import * as g from './gela.js';
 import { gridp6 } from './konstanteak.js';
-import * as p from  './pausoa.js';
 
 
 
 export async function ibilbideaBistaratu2() {
 const mapa = document.getElementById('mapa');
 
+
 const mapaContainer = document.getElementById('ibilbidea');
-mapaContainer.style.left = mapa.offsetLeft + 'px';
-mapaContainer.style.top = mapa.offsetTop + 'px';
-mapaContainer.style.width = mapa.offsetWidth + 'px';
-mapaContainer.style.height = mapa.offsetHeight + 'px';
-
 const rows = gridp6.length;
+console.log(gridp6);
 const cols =  gridp6[0] ? gridp6[0].length : 0;
-
+console.log(cols, rows);
 for (let y = 0; y < rows; y++) {
+    
     for (let x = 0; x < cols; x++) {
+        console.log(y, x);
         const celda = document.createElement('div');
         celda.classList.add('celda');
         if(gridp6[y][x] == 1)
             celda.classList.add('oztopo');
-        else 
+        else {
+            const button = document.createElement('button');
+            button.classList.add('ibilbidea-button');
+            button.innerText = ".";
             celda.classList.add('ibilbidea');
-    
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                document.getElementById('kokapena').value = `${x},${y}`;
+                console.log(`Clicked cell at (${x}, ${y})`);
+            });
+            celda.appendChild(button);
+        }
         mapaContainer.appendChild(celda);
     }
 }
@@ -34,6 +41,7 @@ for (let y = 0; y < rows; y++) {
    }
 
 
+   
    export async function loadMapa(){
         const grid = gridp6;
        const botoiak = document.getElementById("botoiak");
@@ -54,30 +62,6 @@ for (let y = 0; y < rows; y++) {
            button.innerText = gela.kodea;
            botoiak.appendChild(button);
 
-           button.addEventListener("click", async (event) => {
-            event.preventDefault();
-            const inpPos = document.getElementById("inputposizioa");
-            const inpOnd = document.getElementById("inputondokoa");
-            const menuPos = document.getElementById("menuposizioa");
-            const menuOnd = document.getElementById("menuondokoa");
-            if (inpPos.hidden){
-                inpPos.hidden = false;
-                inpPos.value = gela.kodea;
-                menuPos.value = gela.idGela;
-                menuPos.hidden = true;
-            }
-            else if (inpOnd.hidden){
-                inpOnd.hidden = false;
-                inpOnd.value = gela.kodea;
-                menuOnd.value = gela.idGela;
-                menuOnd.hidden = true;
-            }
-            
-            
-           
-            
-  
-           });
 
               });
               ibilbideaBistaratu2();
@@ -90,4 +74,29 @@ document.addEventListener('DOMContentLoaded', () => {
   loadMapa();
 
 });
+document.getElementById('berria').addEventListener('submit', (event) => {
+    event.preventDefault(); 
+    gelaSortu();
+    window.location.reload();
+});
 
+export async function gelaSortu(){
+    const width = gridp6[0].length;
+    const height = gridp6.length;
+    const mapa = document.getElementById('mapa');
+    const form = document.getElementById('berria');
+    const data = {
+        kodea: form.kodea.value,
+        x: parseInt(form.kokapena.value.split(",")[0])*100/width,
+        y: parseInt(form.kokapena.value.split(",")[1])*100/height,
+        solairua: form.solairua.value,
+        eraikina: form.eraikina.value,  
+        mota: form.mota.value 
+      
+    }
+    const ge = await g.createNewGela(data);
+    if(!ge){
+        alert("Errorea gela sortzean");
+        return;
+    }
+}

@@ -29,3 +29,13 @@ export const getKoordenatuak = async (req, res) => {
         res.status(500).json({ message: 'Error in getKoordenatuak' });
     }
 };
+export const createNewGela = async (req, res) => {
+    try {
+        const { kodea, x, y, solairua, eraikina, mota } = req.body;
+        const query = 'INSERT INTO gela (kodea, x, y, solairua, eraikina, mota) VALUES (?, ?, ?, ?, ?, ?)';
+        await dbConnection.query(query, [kodea, x, y, solairua, eraikina, mota]);
+        res.status(201).json({ message: 'Gela created successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};

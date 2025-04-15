@@ -5,5 +5,5 @@ const router = express.Router();
 router.get('/', gC.getGelak);
 router.get('/:idGela', gC.getGela);
 router.get('/lortu/koordenatuak', gC.getKoordenatuak);
-
+router.post('/add', gC.createNewGela);
 export default router;

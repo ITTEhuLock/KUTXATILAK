@@ -6,6 +6,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="./pwa/manifest.json" />
     <link rel="stylesheet" href="../css/style.css">
     <script type = "module" src = "../js/userKudeatu.js"></script>
    </head>
@@ -22,10 +23,40 @@
                     <div hidden id="posta">POSTA ELEKTRONIKOA <input type="email" id="email" name="email"  /><br /></div>
                     <button type="submit" >Sartu</button>
                     <button id = "erregistratu">Erregistratu</button>
+                  
                 </form>
+                <button id = "installButton" class = "urdina">Instalatu</button>
         </div>
             
     
     
     </body>
+    <script type = "module">let deferredPrompt;
+        if (!('beforeinstallprompt' in window)) {
+          console.log('El navegador no soporta la instalación de PWAs.');
+        }
+      
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          document.getElementById('installButton').hidden = false;
+          deferredPrompt = e;
+        });
+      
+        const installButton = document.getElementById('installButton');
+        installButton.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const choiceResult = await deferredPrompt.userChoice;
+            if (choiceResult.outcome === 'accepted') {
+              // Instalado
+            } else {
+              // Rechazado
+            }
+            deferredPrompt = null;
+            installButton.style.display = 'none';
+          }
+        });
+      
+       
+      </script>
 </html>

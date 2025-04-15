@@ -8,7 +8,7 @@ const app = express();
 
 //* Configuration
 
-const host = '192.168.137.1';
+const host = '0.0.0.0';
 const port = 3000;
 
 

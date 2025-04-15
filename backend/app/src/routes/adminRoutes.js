@@ -14,5 +14,6 @@ router.use('/pics', express.static(path.join(basePath, 'app', 'src', 'views', 'p
 router.use('/', express.static(path.join(basePath, 'app', 'src', 'views', 'html')));
 router.use('/css', express.static(path.join(basePath, 'app', 'src', 'views', 'css')));
 router.use('/js', express.static(path.join(basePath, 'app', 'src', 'views', 'js')));
+router.use('/pwa', express.static(path.join(basePath, 'app', 'pwa')));
 
 export default router;

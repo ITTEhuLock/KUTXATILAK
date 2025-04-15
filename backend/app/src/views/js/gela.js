@@ -42,3 +42,23 @@ export const getKoordenatuak = async () => {
         return false;
     }
 };
+
+export async function createNewGela (data){
+    try{
+        const response = await fetch(`${API_URL}/gela/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            
+            return true;
+        }
+  
+    }
+    catch(error){
+        console.error('errorea ', error);
+    }
+}
