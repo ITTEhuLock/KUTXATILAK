@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
     getErreserbaLaburpena();
     try{
     Android.setUserId(idUser);
+    Android.askForNFCActivation();
     }catch(e){
         console.log("Android ez dago martxan");
     }

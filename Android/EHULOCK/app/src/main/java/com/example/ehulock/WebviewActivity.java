@@ -4,30 +4,19 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.webkit.CookieManager;
-import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 import androidx.activity.ComponentActivity;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresPermission;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,17 +25,15 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class WebviewActivity  extends ComponentActivity {
 
-    private static final String CHANNEL_ID = "notifikazioak";
-    private WebView webView;
-    private static final int NOTIFICATION_ID = 1;
-    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 1001;
 
+    private WebView webView;
 
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        askNotificationPermission();
         createNotificationChannel();
 
         setContentView(R.layout.webview);
@@ -82,24 +69,29 @@ public class WebviewActivity  extends ComponentActivity {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setDomStorageEnabled(true);
-        String databasePath = getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath();
-        webSettings.setDatabasePath(databasePath);
 
         //UserId gordetzeko beharrezko interfazea
         webView.addJavascriptInterface(new WebAppInterface(this), "Android");
         
         webView.loadUrl("file:///android_asset/index.html");
-    }
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    // If WebView can't go back, let the system handle it
+                    setEnabled(false); // Disable this callback temporarily
+                     // Delegate to system
+                }
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
 
-    @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
-        }
     }
+
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -115,6 +107,15 @@ public class WebviewActivity  extends ComponentActivity {
         }
     }
 
+    private void askNotificationPermission(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+                Log.d("EHULOCK","PERMISSION_GRANTED");
+            }else{
+                ActivityCompat.requestPermissions(WebviewActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS},101);
 
+            }
+        }
+    }
 
 }
