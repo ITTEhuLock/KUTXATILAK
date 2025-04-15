@@ -10,6 +10,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,8 +22,10 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresPermission;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,5 +70,20 @@ public class WebAppInterface {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(1, builder.build());
+    }
+
+
+    @JavascriptInterface
+    public void askForNFCActivation(){
+        NfcManager manager = (NfcManager) context.getSystemService(Context.NFC_SERVICE);
+        NfcAdapter adapter = manager.getDefaultAdapter();
+        if (adapter != null) {
+            if(!(adapter.isEnabled())){
+                Toast.makeText(context,"Aktibatu mugikorraren NFCa", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(context,"Mugikorra ez du NFCrik", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
