@@ -3,7 +3,48 @@ import schedule from 'node-schedule';
 import { checkNotifikazioak } from './notifikazioController.js';
 import e from 'express';
 
+// Controllera hasieratzen denean exekutatzen duen kodea, DBtik notifikazioren bat bidali gabe dagoen checkeatzen du
 const scheduledJobs = new Map();
+
+(async () => {
+  try {
+    const egoera = "programatuta"
+    const [results] = await dbConnection.query("SELECT * FROM abisuak WHERE egoera = ?",[egoera]);
+
+    if(results.length != 0){
+      console.log("Bete gabeko notifikazioak aurkitu dira");
+      results.forEach(
+        function(result){
+          let ordua = new Date(result.ordua);
+          //Bakarrik kargatuko dira data oraindik ailegatu ez bada, bestela galdutzat emango dira
+          if ((Date.now() - ordua)<0){
+            let mota = result.mota;
+            let idErreserba = result.idErreserba;
+            switch (mota){
+              case '10':
+                const job10 = schedule.scheduleJob(ordua,() => checkNotifikazioak(idErreserba,10));
+                gehituJob(idErreserba,job10);
+              case '5':
+                const job5 = schedule.scheduleJob(ordua,() => checkNotifikazioak(idErreserba,5));
+                gehituJob(idErreserba,job5);
+              case '0':
+                const job0 = schedule.scheduleJob(ordua,() => checkNotifikazioak(idErreserba,0));
+                gehituJob(idErreserba,job0);  
+            } 
+          }
+        });
+    }else{
+      console.log("Ez daude bete gabeko notifikaziorik datu basean");
+    }
+  } catch (error) {
+    console.error('Errorea notifikazioak kargatzen DBtik:', error);
+    throw error;
+  }
+})();
+
+
+
+
 
 const gehituJob = (idErreserba, job) => {
   scheduledJobs.set(idErreserba, job);
