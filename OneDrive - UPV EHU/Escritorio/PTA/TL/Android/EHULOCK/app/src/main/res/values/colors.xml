@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="background_color">#E8EBEC</color>
-    <color name="text_color">#333333</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="table_header_bg">#676B6C</color>
-    <color name="table_header_text">#F9F9F9</color>
-</resources>
