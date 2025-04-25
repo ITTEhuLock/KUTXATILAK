@@ -42,7 +42,28 @@ CREATE TABLE `erreserba` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
-
+-- -----------------------------------------------------
+-- Table `ehulock`.`abisuak`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ehulock`.`abisuak` ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `ehulock`.`abisuak` (
+  `idAbisua` INT NOT NULL AUTO_INCREMENT,
+  `egoera` ENUM('programatuta', 'beteta', 'kantzelatuta', 'hasieratuta') NOT NULL DEFAULT 'hasieratuta',
+  `mota` ENUM('10', '5', '0') NOT NULL,
+  `ordua` DATETIME NOT NULL,
+  `idErreserba` INT NOT NULL,
+  PRIMARY KEY (`idAbisua`),
+  INDEX `fk_abisuak_erreserba1_idx` (`idErreserba` ASC) VISIBLE,
+  CONSTRAINT `fk_abisuak_erreserba1`
+    FOREIGN KEY (`idErreserba`)
+    REFERENCES `ehulock`.`erreserba` (`idErreserba`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 21
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 
