@@ -15,6 +15,10 @@ export async function getErreserbaLaburpena(){
     if(!erreserba){
         const abisua = document.createElement('h1');
         abisua.textContent = 'Ez daukazu erreserba aktiborik';
+        abisua.dataset.i18n = 'edea';
+        const idioma = localStorage.getItem('idioma') || 'es';
+        aplicarTraduccion(idioma);
+
         document.getElementById('erreserba').appendChild(abisua);
         return;
     }
