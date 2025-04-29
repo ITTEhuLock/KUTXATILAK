@@ -1,7 +1,6 @@
 import dbConnection from '../database/database.js';
 import schedule from 'node-schedule';
 import { checkNotifikazioak } from './notifikazioController.js';
-import e from 'express';
 
 // Controllera hasieratzen denean exekutatzen duen kodea, DBtik notifikazioren bat bidali gabe dagoen checkeatzen du
 const scheduledJobs = new Map();
