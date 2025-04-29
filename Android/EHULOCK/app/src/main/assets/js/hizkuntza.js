@@ -1,5 +1,5 @@
 
-//import { actualizarOpcionesSelect } from './mapakKudeatu.js';
+
  const traducciones = {
     es: {
       titulo: "Bienvenido !",
@@ -89,9 +89,7 @@
     
     localStorage.setItem('idioma', nuevoIdioma);
     aplicarTraduccion(nuevoIdioma);
-  
-    const btn = document.getElementById('idiomaBtn');
-    btn.textContent = nuevoIdioma === 'es' ? 'Euskera' : 'Castellano';
+
   }
   
   function aplicarTraduccion(idioma) {
@@ -117,11 +115,7 @@
     const idiomaGuardado = localStorage.getItem('idioma') || 'es';
     aplicarTraduccion(idiomaGuardado);
 
-    const btn = document.getElementById('idiomaBtn');
-  if (btn) {
-    btn.textContent = idiomaGuardado === 'es' ? 'Euskera' : 'Castellano';
-  }
-
+   
   
 
   });
