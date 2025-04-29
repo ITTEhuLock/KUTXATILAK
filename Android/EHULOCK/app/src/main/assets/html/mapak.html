@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapen kudeaketa</title>
+    <title data-i18n="mk">Mapen kudeaketa</title>
     <link rel="stylesheet" href="../css/style.css">
     <script type = "module" src = "../js/mapakKudeatu.js"></script>
     <script type = "module" src = "../js/app.js"></script>
-    
+    <script src="../js/hizkuntza.js" defer></script>
 </head>
 <body>
-    <div id="header" class="header"></div>
+    <div id="header" class="header"> </div>
    
     <div id = "berriaForm"class="form-container2" style="transform:scale(0.5,0.5); ">
-        <h1>Nora joan nahi duzu?</h1>
+        <h1 data-i18n="n" >Nora joan nahi duzu?</h1>
         <form id="berria">
             <input type="text" id="inputposizioa" hidden disabled></input>
             <input type="text" id="inputondokoa" hidden disabled></input>
             <select id = "menuposizioa"></select>
             <select id = "menuondokoa"></select>
-            <button  type = "submit">Bilatu</button>
-            <button type="button" id = "garbitu"> Garbitu</button>
-            <button id= "history" type = "button" hidden>Egindako bidaien historiala</button>
+            <button  type = "submit" data-i18n="b">Bilatu</button>
+            <button type="button" id = "garbitu" data-i18n="g"> Garbitu</button>
         </form>
        
     </div>
@@ -29,14 +28,8 @@
         <div id = "ibilbidea" class="mapaI"></div>
        <img  id = "mapa" src="../pics/p6.png" class="mapa"></img>
        <div id = "botoiak"></div>
-
         
     </div>
-    <div id = "bidaiak" class = "modal">
-        <div class = "modal-content">
-
-        </div>
-       </div>
     <div class="footer" id = "footer"></div>
 </body>
 
