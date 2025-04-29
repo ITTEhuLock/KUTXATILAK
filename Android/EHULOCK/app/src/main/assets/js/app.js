@@ -92,18 +92,23 @@ export async function loadHeader(){
     buttonHizkuntza.appendChild(imgHizkuntza);
     
 
-    let idiomaActual = 'eus';
+    const idiomaGuardado = localStorage.getItem('idioma') || 'es';
+    if (idiomaGuardado === 'eu') {
+        imgHizkuntza.src = '../pics/ikurriña.png';
+    } else {
+        imgHizkuntza.src = '../pics/castellano.png';
+    }
 
     buttonHizkuntza.addEventListener('click', () => {
-        cambiarIdioma(); 
+        let idiomaActual = localStorage.getItem('idioma') || 'es';
+        let nuevoIdioma = idiomaActual === 'eu' ? 'es' : 'eu';
     
-        if (idiomaActual === 'eus') {
-            imgHizkuntza.src = '../pics/castellano.png';
-            idiomaActual = 'es';
-        } else {
-            imgHizkuntza.src = '../pics/ikurriña.png';
-            idiomaActual = 'eus';
-        }
+        localStorage.setItem('idioma', nuevoIdioma);
+        aplicarTraduccion(nuevoIdioma); 
+    
+        imgHizkuntza.src = nuevoIdioma === 'eu' 
+            ? '../pics/ikurriña.png' 
+            : '../pics/castellano.png';
     });
 
     buttonBirkargatu.addEventListener('click', () => {
