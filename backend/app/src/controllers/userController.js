@@ -199,3 +199,20 @@ export const checkUser = async (req, res) => {
         res.status(500).json({ error: 'errorea erabiltzailea egiaztatzean' });
     }
 }
+
+export const changeEgoera = async (req, res) => {
+    const idUser = parseInt(req.body.idUser);
+    const sqlQuery = 'UPDATE user SET egoera = NOT egoera WHERE idUser = ?;';
+    try {
+        const [results] = await dbConnection.query(sqlQuery,idUser);
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: 'erabiltzailea ez da existitzen' });
+        }
+        else {
+            res.status(200).json({ Message: 'Egoera aldatu da' });
+        }
+    } catch (error) {
+        res.status(500).json({ error:error.message });
+        console.log(error.message);
+    }
+};

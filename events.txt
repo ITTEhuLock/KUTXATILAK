@@ -22,3 +22,20 @@ DO
   SET egoera = 2
   WHERE (TIME(NOW()) NOT BETWEEN TIME(hasiera_ordua) AND TIME(amaiera_ordua));
   
+DELIMITER $$
+
+CREATE TRIGGER update_egoera_on_abisua_insert
+AFTER INSERT ON abisuak
+FOR EACH ROW
+BEGIN
+    -- Verificamos que la columna 'mota' sea '0'
+    IF NEW.mota = '0' THEN
+        -- Realizamos la actualización directamente en una única consulta
+        UPDATE user
+        SET egoera = 1, 
+            fecha_egonera_expiracion = DATE_ADD(NOW(), INTERVAL 1 WEEK)
+        WHERE idUser = (SELECT idUser FROM erreserba WHERE idErreserba = NEW.idErreserba);
+    END IF;
+END $$
+
+DELIMITER ;

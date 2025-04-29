@@ -131,3 +131,30 @@ export async function autentikatu(){
     console.log('erabiltzailea ondo autentikatu da');
     return;
 };
+
+export const getUsers = async () => {
+    const response = await fetch(`${API_URL}/user/`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+        const data = await response.json();
+        return data;
+    } else {
+        console.error('Errorea erabiltzaileen zerrenda lortzean');
+        return null;
+    }
+};
+
+export async function egoeraAldatu(idUser){
+    const response = await fetch (`${API_URL}/user/changeEgoera`,{
+        method : 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({idUser})
+    });
+        if(response.ok){
+            return true;
+        }
+        else
+            return false;
+}

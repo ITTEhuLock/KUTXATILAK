@@ -1,11 +1,12 @@
 import * as u from './user.js'
 
-
+if(document.getElementById('form'))
 document.getElementById('form').addEventListener('submit',(event)=>{
     event.preventDefault();
     egiaztatu();
 
 });
+if(document.getElementById('erregistratu'))
 document.getElementById('erregistratu').addEventListener('click',(event)=>{
     event.preventDefault();
     toggleErregistratu();
@@ -134,3 +135,4 @@ export async function erregistratu() {
     form.reset();
 
 }
+

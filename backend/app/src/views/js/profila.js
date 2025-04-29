@@ -26,7 +26,7 @@ export async function loadProfila(){
     const profila = document.getElementById('profila');
     const user = await u.getUser(localStorage.getItem('idUser'));
     const ongiEtorria = document.createElement('h1');
-    ongiEtorria.textContent = user.username+"ren kontua";
+    ongiEtorria.textContent = user.username+"(r)en kontua";
 
     profila.appendChild(ongiEtorria);
 

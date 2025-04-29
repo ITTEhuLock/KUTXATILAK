@@ -83,7 +83,6 @@ document.getElementById('berria').addEventListener('submit', (event) => {
 export async function gelaSortu(){
     const width = gridp6[0].length;
     const height = gridp6.length;
-    const mapa = document.getElementById('mapa');
     const form = document.getElementById('berria');
     const data = {
         kodea: form.kodea.value,
