@@ -5,8 +5,9 @@ import * as k from "./kutxatila.js";
 window.addEventListener('DOMContentLoaded', () => {
   loadErreserbaLaburpena();
   loadOpenKutxatilak();
-  loadOpenKutxatilenKokapena(0);
   loadToggle();
+  loadOpenKutxatilenKokapena(0);
+
     document.getElementById('zehaztapenak').style.display = 'none';
 
 });
@@ -38,47 +39,17 @@ export async function loadToggle(){
 
 
 
-export async function loadOpenKutxatilak(i){
-    const kutxatilak = await k.getKutxatilaByEgoera(0);
-
-    console.log(kutxatilak);
-    if(!kutxatilak){
-        const mezua = document.createElement('h2');
-        mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
-        berriaForm.appendChild(mezua);
-        return;
-    }
-
-    var menua;
-    if(i == 0)
-    menua = document.getElementById('menuaDiv2')
-    else
-    menua = document.getElementById('menuaDiv');
-    const select = document.createElement('select');
-    if(i==0)
-        select.id = 'menua2';
-    else
-        select.id = 'menua';
-    kutxatilak.forEach(kutxatila => {
-        const option = document.createElement('option');
-        option.value = kutxatila.idKutxatila;
-        option.textContent = kutxatila.kodea+', '+kutxatila.kokapena+' eraikinean';
-        select.appendChild(option);
-
-    });
-  
-        menua.appendChild(select);
-   
-}
-
-
 export async function loadErreserbaLaburpena(){
     const erreserbakCont = document.getElementById('erreserbak');
     const erreserbak = await e.getErabiltzailearenErreserbak(localStorage.getItem("idUser"));
     if(!erreserbak){
+
         const abisua = document.createElement('h1');
+        abisua.dataset.i18n = 'ede';
         abisua.textContent = 'Ez daukazu erreserbarik';
         erreserbakCont.appendChild(abisua);
+        const idioma = localStorage.getItem('idioma') || 'es';
+        aplicarTraduccion(idioma);
         return;
     }
 
@@ -133,14 +104,9 @@ export async function erreserbaEzabatu(idErreserba){
 }
 
 export async function erreserbaEditatu(erreserba){
-    const m = document.getElementById('mezua');
-    if(m)
-        m.remove();
-
     const u = await e.updateErreserba(erreserba);
     if(!u){
         const mezua = document.createElement('h1');
-        mezua.id = 'mezua';
         mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm2').appendChild(mezua);
         return;
@@ -151,9 +117,6 @@ export async function erreserbaEditatu(erreserba){
 
 export async function erreserbaSortu(event){
     event.preventDefault();
-    const m = document.getElementById('mezua');
-    if(m)
-        m.remove();
         const form = document.getElementById('berriaForm');
         const erreserba = {
             idUser: localStorage.getItem('idUser'),
@@ -165,7 +128,6 @@ export async function erreserbaSortu(event){
     const a = await e.createErreserba(erreserba);
     if(!a){
         const mezua = document.createElement('h1');
-        mezua.id = 'mezua';
         mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm').appendChild(mezua);
         return;
@@ -246,7 +208,7 @@ export async function loadZehaztapenak(idErreserba){
 
     export async function loadOpenKutxatilenKokapena(i){
         const kutxatilak = await k.getKutxatilaByEgoera(0);
-    
+  
         console.log(kutxatilak);
         if(!kutxatilak){
             const mezua = document.createElement('h2');
@@ -261,20 +223,76 @@ export async function loadZehaztapenak(idErreserba){
         menua = document.getElementById('menuaDiv00');
         const select = document.createElement('select');
         if(i==0)
-            select.id = 'menua2';
+            select.id = 'menua0';
         else
-            select.id = 'menua';
-        kutxatilak.forEach(kutxatila => {
-            const option = document.createElement('option');
-            option.value = kutxatila.kokapena
-            option.textContent = kutxatila.kokapena+' eraikina';
-            select.appendChild(option);
-    
-        });
+            select.id = 'menua00';
+            const kokapenakSet = new Set();
+
+            kutxatilak.forEach(kutxatila => {
+
+                if (!kokapenakSet.has(kutxatila.kokapena)) {
+                    kokapenakSet.add(kutxatila.kokapena);
+                    const option = document.createElement('option');
+                    option.value = kutxatila.kokapena;
+                    option.textContent = kutxatila.kokapena + ' eraikina';
+                    select.appendChild(option);
+                }
+            });
       
             menua.appendChild(select);
        
+            select.addEventListener('change', (event) => {
+                const aukeratua = event.target.value;
+                loadOpenKutxatilak(i, aukeratua);
+            });
+            
+            if (select.options.length > 0) {
+                loadOpenKutxatilak(i, select.options[0].value);
+            }
     }
+
+    
+export async function loadOpenKutxatilak(i, kokapena) {
+    
+    const kutxatilak = await k.getKutxatilaByEgoera(0);
+
+    console.log(kutxatilak);
+    if (!kutxatilak) {
+        const mezua = document.createElement('h2');
+        mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
+        mezua.dataset.i18n = 'edki';
+        berriaForm.appendChild(mezua);
+        return;
+    }
+console.log(kokapena);
+    const filtratuak = kokapena
+        ? kutxatilak.filter(k => k.kokapena === kokapena)
+        : kutxatilak;
+console.log(filtratuak);
+    var menua;
+    if (i == 0)
+        menua = document.getElementById('menuaDiv');
+    else
+        menua = document.getElementById('menuaDiv2');
+
+    menua.innerHTML = '';  
+
+    const select = document.createElement('select');
+    select.id = i === 0 ? 'menua2' : 'menua';
+
+    filtratuak.forEach(kutxatila => {
+        const option = document.createElement('option');
+        option.value = kutxatila.idKutxatila;
+        option.textContent = kutxatila.kodea;
+        select.appendChild(option);
+    });
+
+    menua.appendChild(select);
+}
+
+
+
+
 
     
 
