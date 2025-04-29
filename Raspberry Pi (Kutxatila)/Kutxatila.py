@@ -1,4 +1,4 @@
-import logging, requests, json, time
+import logging, requests, json, time, sys
 import RPi.GPIO as GPIO
 from PN532 import PN532
 
@@ -85,7 +85,8 @@ def main():
                     
                 else:
                     print("ERROREA: espero ez zen erantzuna bidali da")
-                
+                    GPIO.cleanup()
+                    sys.exit(1)
 
                 #Kutxatila ireki prozesua
                     GPIO.output(LED_PIN, GPIO.HIGH)
