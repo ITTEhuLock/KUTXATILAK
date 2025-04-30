@@ -6,14 +6,21 @@ export async function loadMenuak(){
     const menuposizioa = document.getElementById("menuposizioa");
     const menuondokoa = document.getElementById("menuondokoa");
     const gelak = await g.getGelak();
+    
+    const idioma = localStorage.getItem('idioma') || 'es';
+
     const def = document.createElement("option");
     def.value = 0;
-    def.text = "Jatorria";
+    def.dataset.i18n = 'origen';
+    def.text = traducciones[idioma]['origen']; 
     menuposizioa.appendChild(def);
+
     const def2 = document.createElement("option");
     def2.value = 0;
-    def2.text = "Helmuga";
+    def2.dataset.i18n = 'destino';
+    def2.text = traducciones[idioma]['destino'];
     menuondokoa.appendChild(def2);
+    
     gelak.forEach(gela => {
         const option = document.createElement("option");
         option.value = gela.idGela;
