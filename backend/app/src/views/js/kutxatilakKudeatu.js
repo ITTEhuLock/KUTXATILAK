@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
 const toggle = document.getElementById('newButton');
 toggle.addEventListener('click', () => {
 document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-
+document.getElementById('kutxatilak').style.display = document.getElementById('berria').hidden ? 'block' : 'none';
+toggle.innerText = document.getElementById('berria').hidden ? 'Kutxatila berria sortu' : 'Itxi';
 });
 document.getElementById('berriaForm').addEventListener('submit', (event) => {
 kutxatilaSortu(event);

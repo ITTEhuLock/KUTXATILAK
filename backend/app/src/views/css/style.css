@@ -339,3 +339,75 @@ width: 40px;
   margin-top: 15px;
   transition: color 0.3s ease;
 }
+.irudia{
+  max-width: 250px;
+  max-height: 100px;
+  position: relative;
+
+} 
+
+.form-container3{
+  position: relative;
+  overflow-y: auto;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 500px;
+  max-height: 60%;
+  text-align: center;
+}
+
+form input , form select{
+  width: 100%;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.form-container4{
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 450px;
+  max-height: 60%;
+  text-align: center;
+  font-size: 17px;
+
+}
+.form-container4 input{
+  font-size: 17px;
+  padding: 7px;
+}
+
+.form-container5{
+  display: block;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 450px;
+  max-height: 35%;
+  text-align: center;
+  font-size: 17px;
+  margin-top: 50px;
+  overflow: auto;
+  font-size: 11px;
+
+}
+
+.form-container5 input, .form-container5 select{
+  font-size: 10px;
+  padding: 7px;
+  
+}
+
+.form-container5 h1{
+  font-size: 17px;
+}
