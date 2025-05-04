@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `ehulock` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `ehulock`;
 -- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: ehulock
@@ -198,35 +200,6 @@ INSERT INTO `kutxatila` VALUES (2,'P1M7A001',0,'M','00:00:00','23:59:00'),(3,'P0
 UNLOCK TABLES;
 
 --
--- Table structure for table `pausoa`
---
-
-DROP TABLE IF EXISTS `pausoa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pausoa` (
-  `idPausoa` int NOT NULL AUTO_INCREMENT,
-  `ondokoa` int NOT NULL,
-  `posizioa` int NOT NULL,
-  PRIMARY KEY (`idPausoa`),
-  KEY `fk_pausoa_gela1_idx` (`ondokoa`),
-  KEY `fk_pausoa_gela2_idx` (`posizioa`),
-  CONSTRAINT `fk_pausoa_gela1` FOREIGN KEY (`ondokoa`) REFERENCES `gela` (`idGela`),
-  CONSTRAINT `fk_pausoa_gela2` FOREIGN KEY (`posizioa`) REFERENCES `gela` (`idGela`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pausoa`
---
-
-LOCK TABLES `pausoa` WRITE;
-/*!40000 ALTER TABLE `pausoa` DISABLE KEYS */;
-INSERT INTO `pausoa` VALUES (1,2,3),(2,3,5),(3,5,6),(4,6,7),(5,7,8),(6,8,9),(7,9,10);
-/*!40000 ALTER TABLE `pausoa` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -361,4 +334,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-04 14:48:54
+-- Dump completed on 2025-05-04 15:10:26

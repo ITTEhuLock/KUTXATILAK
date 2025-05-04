@@ -2,19 +2,7 @@ import {API_URL, gridp6} from './konstanteak.js';
 import { getGelak, getGela } from './gela.js';
 import PF from "https://esm.sh/pathfinding";
 
-export const getBideraketa = async () => {
-    try{
-    const response = await fetch(`${API_URL}/pausoa/bideraketak`);
-    if (response.ok) {
-        const data = await response.json();
-        return data[0];
-        }
-        return false;
-    }
-    catch{
-        console.log(error);
-    }
-}
+
 
 export async function bideratzeAlgoritmoa(hasiera, amaiera) {
     const gela_h = await getGela(hasiera);
