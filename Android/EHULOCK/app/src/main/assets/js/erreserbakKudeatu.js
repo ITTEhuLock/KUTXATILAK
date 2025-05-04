@@ -120,7 +120,7 @@ export async function erreserbaSortu(event){
         const form = document.getElementById('berriaForm');
         const erreserba = {
             idUser: localStorage.getItem('idUser'),
-            idKutxatila: form.menua.value,
+            idKutxatila: form.menua2.value,
             start_time: form.start_time.value,
             end_time: form.end_time.value
     
@@ -184,7 +184,7 @@ export async function loadZehaztapenak(idErreserba){
             idErreserba: erreserba.idErreserba,
             start_time: edit.start_time2.value,
             end_time: edit.end_time2.value,
-            idKutxatila: edit.menua2.value,
+            idKutxatila: edit.menua.value,
             egoera: erreserba.egoera
         };
 

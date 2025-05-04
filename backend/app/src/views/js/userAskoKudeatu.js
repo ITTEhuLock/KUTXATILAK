@@ -18,7 +18,7 @@ export async function loadUsers(){
 
         const b2 = document.createElement('button');
         console.log(user);
-        parseInt(user.egoera) === 0 ? b2.textContent = 'Zigorturik':  b2.textContent = 'Zigor gabe' ;
+        parseInt(user.egoera) === 1 ? b2.textContent = 'Zigorturik':  b2.textContent = 'Zigor gabe' ;
 
         b2.addEventListener('click', async (event) => {
             event.preventDefault();

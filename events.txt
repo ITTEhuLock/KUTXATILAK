@@ -1,4 +1,9 @@
-/*EXEKUTATU MYSQL TERMINALEAN*/
+DROP TRIGGER IF EXISTS `update_egoera_on_abisua_update`;
+DROP EVENT IF EXISTS `erreserba_amaitu`;
+DROP EVENT IF EXISTS `erreserba_hasi`;
+DROP EVENT IF EXISTS `kutxatila_blokeatu`;
+DROP EVENT IF EXISTS `reset_zigorra`;
+
 
 CREATE EVENT erreserba_hasi
 ON SCHEDULE EVERY 1 MINUTE
@@ -21,20 +26,33 @@ DO
   UPDATE kutxatila
   SET egoera = 2
   WHERE (TIME(NOW()) NOT BETWEEN TIME(hasiera_ordua) AND TIME(amaiera_ordua));
-  
+
+
+CREATE EVENT IF NOT EXISTS reset_zigorra
+ON SCHEDULE EVERY 1 MINUTE
+DO
+  UPDATE user
+  SET egoera = 0
+  WHERE zigorra IS NOT NULL
+    AND zigorra <= NOW()
+    AND egoera = 1;
+
+
 DELIMITER $$
 
-CREATE TRIGGER update_egoera_on_abisua_insert
-AFTER INSERT ON abisuak
+CREATE TRIGGER update_egoera_on_abisua_update
+AFTER UPDATE ON abisuak
 FOR EACH ROW
 BEGIN
-    -- Verificamos que la columna 'mota' sea '0'
-    IF NEW.mota = '0' THEN
-        -- Realizamos la actualización directamente en una única consulta
+    IF NEW.mota = '0' AND NEW.egoera = 'beteta' THEN
         UPDATE user
-        SET egoera = 1, 
-            fecha_egonera_expiracion = DATE_ADD(NOW(), INTERVAL 1 WEEK)
-        WHERE idUser = (SELECT idUser FROM erreserba WHERE idErreserba = NEW.idErreserba);
+        SET egoera = 1,
+            zigorra = DATE_ADD(NOW(), INTERVAL 1 WEEK)
+        WHERE idUser = (
+            SELECT idUser
+            FROM erreserba
+            WHERE idErreserba = NEW.idErreserba
+        );
     END IF;
 END $$
 

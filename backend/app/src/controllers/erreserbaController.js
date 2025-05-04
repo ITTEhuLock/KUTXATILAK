@@ -1,6 +1,7 @@
 import dbConnection from '../database/database.js';
 import schedule from 'node-schedule';
 import { checkNotifikazioak } from './notifikazioController.js';
+import { parse } from 'path';
 
 // Controllera hasieratzen denean exekutatzen duen kodea, DBtik notifikazioren bat bidali gabe dagoen checkeatzen du
 const scheduledJobs = new Map();
@@ -351,6 +352,7 @@ export const getErreserbaAktiboa = async (req, res) => {
 export const checkAvailability = async (req, res) => {
   const start_time = req.body.start_time;
   const end_time = req.body.end_time;
+  console.log("idKutxatila:", parseInt(req.body.idKutxatila));
   console.log("start_time:",start_time);
   console.log("end_time:",end_time);
   const idKutxatila = parseInt(req.body.idKutxatila);
