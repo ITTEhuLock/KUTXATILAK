@@ -1,5 +1,6 @@
 import * as e from "./erreserba.js";
 import * as u from "./user.js";
+import * as k from "./kutxatila.js";
 window.addEventListener('DOMContentLoaded', () => {
     getErreserbaLaburpena();
    
@@ -26,11 +27,13 @@ export async function getErreserbaLaburpena(){
         return;
     }
     const erreserbakDiv = document.getElementById('erreserba');
-    const p1 = document.createElement('h3');
+    const p1 = document.createElement('h4');
     const p2 = document.createElement('h3');
+    console.log(erreserba.start_time.split(' ')[0]);
 
-    p1.textContent = `Erreserba: ${erreserba.start_time.split("T")[1].split(".")[0]} - ${erreserba.end_time.split("T")[1].split(".")[0]}`;
-    p2.textContent =`Kutxatila: ${erreserba.idKutxatila}`;
+    p1.textContent = `Erreserba: ${erreserba.start_time.split(' ')[1]} - ${erreserba.end_time.split(' ')[1]}`; 
+    const kutxatila = await k.getKutxatila(erreserba.idKutxatila);
+    p2.textContent =`Kutxatila: ${kutxatila.kodea}`;
     erreserbakDiv.appendChild(p1);
     erreserbakDiv.appendChild(p2);
     document.getElementById('ireki').hidden = false;
