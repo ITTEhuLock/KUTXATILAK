@@ -156,8 +156,8 @@ export async function erreserbaSortu(event){
 
 
 export async function loadZehaztapenak(idErreserba){
-   
-    loadOpenKutxatilak(0);
+    loadOpenKutxatilenKokapena(1);
+    
     const zehaztapenak = document.getElementById('zehaztapenak');
     const zehaztapenakCont = document.querySelector('.modal-content');
     const t = document.querySelector('.taula2');
