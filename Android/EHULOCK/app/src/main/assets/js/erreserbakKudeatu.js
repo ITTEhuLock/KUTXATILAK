@@ -27,6 +27,9 @@ export async function loadToggle(){
             document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
             currentIndex = (currentIndex + 1) % texts.length;
             toggle.textContent = texts[currentIndex];
+            document.getElementById('aktiboakDiv').hidden = !document.getElementById('aktiboakDiv').hidden;
+            document.getElementById('eZ').hidden = !document.getElementById('eZ').hidden;
+
         
         });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
@@ -62,6 +65,7 @@ export async function loadErreserbaLaburpena(i){
         bZ.addEventListener('click', () => {
             document.getElementById('zaharrakDiv').style.display = 'block';
             document.getElementById('aktiboakDiv').hidden = true;
+            document.getElementById('newButton').hidden = true;
             loadErreserbaLaburpena(1);
             bZ.remove();
            const itxi = document.createElement('button');
