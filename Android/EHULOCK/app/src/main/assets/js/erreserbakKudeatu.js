@@ -61,7 +61,7 @@ export async function loadErreserbaLaburpena(i){
         const bZ = document.getElementById('eZ');
         bZ.addEventListener('click', () => {
             document.getElementById('zaharrakDiv').style.display = 'block';
-            
+            document.getElementById('aktiboakDiv').hidden = true;
             loadErreserbaLaburpena(1);
             bZ.remove();
            const itxi = document.createElement('button');
