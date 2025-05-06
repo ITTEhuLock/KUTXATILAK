@@ -80,6 +80,7 @@ export const getErreserbak = async (req, res) => {
   }
 };
 
+
 export const getErreserba = async (req, res) => {
   const id = parseInt(req.params.iderreserba);
   
@@ -379,4 +380,37 @@ export const checkAvailability = async (req, res) => {
     console.log(error.message);
     res.status(500).json({ error: 'errorea erreserba eskuratzean' });
   }
+};
+
+
+export const getErreserbaEzAmaituak = async (req, res) => {
+    const idUser = parseInt(req.params.idUser);
+    const sqlQuery = `SELECT * FROM erreserba WHERE idUser = ? AND egoera != 2`;
+    try {
+        const [results] = await dbConnection.query(sqlQuery, [idUser]);
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'erreserba not found' });
+        }
+        else{
+            res.status(200).json(results);
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'errorea erreserba eskuratzean' });
+    }
+};
+
+export const getErreserbaAmaituak = async (req, res) => {
+    const idUser = parseInt(req.params.idUser);
+    const sqlQuery = `SELECT * FROM erreserba WHERE idUser = ? AND egoera = 2`;
+    try {
+        const [results] = await dbConnection.query(sqlQuery, [idUser]);
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'erreserba not found' });
+        }
+        else{
+            res.status(200).json(results);
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'errorea erreserba eskuratzean' });
+    }
 };

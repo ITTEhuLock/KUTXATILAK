@@ -5,7 +5,7 @@ import * as u from "./user.js";
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  loadErreserbaLaburpena();
+  loadErreserbaLaburpena(0);
   loadOpenKutxatilak();
   loadToggle();
   loadOpenKutxatilenKokapena(0);
@@ -53,17 +53,47 @@ async function baimenduta(){
     }
 
 
-export async function loadErreserbaLaburpena(){
-    const erreserbakCont = document.getElementById('erreserbak');
-    const erreserbak = await e.getErabiltzailearenErreserbak(localStorage.getItem("idUser"));
+export async function loadErreserbaLaburpena(i){
+    var erreserbakCont, erreserbak;
+    if(i == 0){
+        erreserbakCont = document.getElementById('erreserbak');
+        erreserbak = await e.getErreserbaEzAmaituak(localStorage.getItem("idUser"));
+        const bZ = document.getElementById('eZ');
+        bZ.addEventListener('click', () => {
+            document.getElementById('zaharrakDiv').style.display = 'block';
+            
+            loadErreserbaLaburpena(1);
+            bZ.remove();
+           const itxi = document.createElement('button');
+           itxi.textContent = 'Itxi';
+           itxi.addEventListener('click', () => {
+              window.location.reload();
+           });
+           document.getElementById('zaharrakDiv').appendChild(itxi);
+           
+        
+
+        });
+       
+    
+    }
+    else{
+        erreserbakCont = document.getElementById('zaharrak');
+        erreserbak = await e.getErreserbaEzAmaituak(localStorage.getItem("idUser"));
+        document.getElementById('h2').style.display = 'block';
+       
+    }
+   
     if(!erreserbak){
 
-        const abisua = document.createElement('h1');
+        const abisua = document.createElement('h2');
         abisua.dataset.i18n = 'ede';
         abisua.textContent = 'Ez daukazu erreserbarik';
         erreserbakCont.appendChild(abisua);
         const idioma = localStorage.getItem('idioma') || 'es';
+       
         aplicarTraduccion(idioma);
+
         return;
     }
 
@@ -108,8 +138,8 @@ export async function loadErreserbaLaburpena(){
     });
     
     erreserbakCont.appendChild(taula);
-}
 
+}
 export async function erreserbaEzabatu(idErreserba){
     console.log(idErreserba);
     await e.deleteErreserba(idErreserba);

@@ -130,3 +130,33 @@ async function checkAvailability(start_time, end_time, idKutxatila) {
     console.error('Errorea erabilgarritasuna egiaztatzean');
     
 }
+
+export async function getErreserbaAmaituak(idUser) {
+    const response = await fetch(`${API_URL}/erreserba/amaituak/${idUser}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }
+    console.error('Errorea erabilgarritasuna egiaztatzean');
+}   
+
+export async function getErreserbaEzAmaituak(idUser) {
+    const response = await fetch(`${API_URL}/erreserba/ezAmaituak/${idUser}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }
+    console.error('Errorea erabilgarritasuna egiaztatzean');
+}
