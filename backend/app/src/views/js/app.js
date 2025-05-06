@@ -4,23 +4,20 @@ export async function loadFooter() {
     const buttonIreki = document.createElement('button');
     const buttonMapa = document.createElement('button');
     const buttonProfila = document.createElement('button');
-    const buttonUsers = document.createElement('button');
+    
     const irudiaHome = document.createElement('img');
     const irudiaIreki = document.createElement('img');
     const irudiaProfila = document.createElement('img');
     const irudiaMapa = document.createElement('img');
-    const irudiaUsers = document.createElement('img');
     irudiaHome.className = 'irudia';
     irudiaIreki.className = 'irudia';
     irudiaProfila.className = 'irudia';
     irudiaMapa.className = 'irudia';
-    irudiaUsers.className = 'irudia';
 
     irudiaHome.src = '../pics/home.svg';
     irudiaIreki.src = '../pics/unlock.svg';
     irudiaProfila.src = '../pics/profila.svg';
     irudiaMapa.src = '../pics/pin.png';
-    irudiaUsers.src = '../pics/users.svg';
     buttonMapa.addEventListener('click', () => {
         window.location.href = './mapakAdmin.html';
     });
@@ -35,12 +32,8 @@ export async function loadFooter() {
         window.location.href = './profila.html';
     });
     
-    buttonUsers.addEventListener('click', () => {
-        window.location.href = './userAdmin.html';
-    });
-
     buttonHome.appendChild(irudiaHome);
-    buttonUsers.appendChild(irudiaUsers);
+   
     buttonIreki.appendChild(irudiaIreki);
     buttonMapa.appendChild(irudiaMapa);
     buttonProfila.appendChild(irudiaProfila);
@@ -52,7 +45,6 @@ export async function loadFooter() {
    footer.appendChild(buttonIreki);
    
    footer.appendChild(buttonMapa);
-    footer.appendChild(buttonUsers);
    footer.appendChild(buttonProfila);
    
    return;
@@ -67,6 +59,10 @@ export async function loadHeader(){
     const buttonBirkargatu = document.createElement('button');
     const irudiaLogo = document.createElement('img');
     const irudiaBirkargatu = document.createElement('img');
+    
+    const buttonHizkuntza = document.createElement('button');
+    const imgHizkuntza = document.createElement('img');
+
     irudiaLogo.src = '../pics/logo.png';
     irudiaLogo.className = 'irudia';
     buttonLogo.appendChild(irudiaLogo);
@@ -81,10 +77,33 @@ export async function loadHeader(){
     });
     header.appendChild(buttonLogo);
     header.appendChild(buttonBirkargatu);
+
+    imgHizkuntza.src = '../pics/ikurriña.png';
+    imgHizkuntza.alt = 'Hizkuntza';
+    imgHizkuntza.className = 'irudia';
+    buttonHizkuntza.appendChild(imgHizkuntza);
+    
+
+    const idiomaGuardado = localStorage.getItem('idioma') || 'es';
+    if (idiomaGuardado === 'eu') {
+        imgHizkuntza.src = '../pics/ikurriña.png';
+    } else {
+        imgHizkuntza.src = '../pics/castellano.png';
+    }
+
+    buttonHizkuntza.addEventListener('click', () => {
+        let idiomaActual = localStorage.getItem('idioma') || 'es';
+        let nuevoIdioma = idiomaActual === 'eu' ? 'es' : 'eu';
+    
+        localStorage.setItem('idioma', nuevoIdioma);
+        aplicarTraduccion(nuevoIdioma); 
+    
+        imgHizkuntza.src = nuevoIdioma === 'eu' 
+            ? '../pics/ikurriña.png' 
+            : '../pics/castellano.png';
+    });
+    header.appendChild(buttonHizkuntza);
+    return;
+
     
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadHeader();
-    loadFooter();
-});

@@ -1,20 +1,7 @@
 import * as k from './kutxatila.js';
 
-
-window.addEventListener('DOMContentLoaded', () => {
-    loadKutxatilak();
-});
-const toggle = document.getElementById('newButton');
-toggle.addEventListener('click', () => {
-document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-document.getElementById('kutxatilak').style.display = document.getElementById('berria').hidden ? 'block' : 'none';
-toggle.innerText = document.getElementById('berria').hidden ? 'Kutxatila berria sortu' : 'Itxi';
-});
-document.getElementById('berriaForm').addEventListener('submit', (event) => {
-kutxatilaSortu(event);
-});
-
 export async function loadKutxatilak(){
+    const hizkuntza = localStorage.getItem('idioma') || 'es'; 
     const kutxatilak = await k.getKutxatilak();
     const kutxatilakCont = document.getElementById('kutxatilak');
     console.log(kutxatilak);
@@ -25,26 +12,53 @@ export async function loadKutxatilak(){
         return;
     }
 
+   
     const table = document.createElement('table');
     table.className = 'taula';
     const l1 = table.insertRow();
-    l1.insertCell().textContent = 'Id';
-    l1.insertCell().textContent = 'Kodea';
-    l1.insertCell().textContent = 'Egoera';
-    l1.insertCell().textContent = 'Kokapena';
-    l1.insertCell().textContent = 'Ekintza';
 
+  
+    l1.insertCell().innerHTML = 'Id';
+    const kodea = l1.insertCell();
+    const egoera = l1.insertCell();
+    const kokapena = l1.insertCell();
+    const ekintza = l1.insertCell();
+
+    const spankodea = document.createElement('span');
+    spankodea.setAttribute('data-i18n', 'c');
+    spankodea.textContent = 'Código';
+    kodea.appendChild(spankodea);
+
+    const spanegoera = document.createElement('span');
+    spanegoera.setAttribute('data-i18n', 'e');
+    spanegoera.textContent = 'Estado';
+    egoera.appendChild(spanegoera);
+
+    const spankokapena = document.createElement('span');
+    spankokapena.setAttribute('data-i18n', 'l');
+    spankokapena.textContent = 'Ubicación';
+    kokapena.appendChild(spankokapena);
+
+    const spanEkintza = document.createElement('span');
+    spanEkintza.setAttribute('data-i18n', 'ekintza');
+    spanEkintza.textContent = 'Acción';
+    ekintza.appendChild(spanEkintza);
+
+    aplicarTraduccion(hizkuntza);
+    
     kutxatilak.forEach(kutxatila => {
         const l = table.insertRow();
         const b = document.createElement('button');
-        b.textContent = 'Ezabatu';
+        b.dataset.i18n = 'ezabatu';
+        b.textContent = traducciones[hizkuntza]['ezabatu'] || 'Ezabatu';
         b.name = 'ezabatuButton';
         b.addEventListener('click', (event) => {
             event.preventDefault();
             kutxatilaEzabatu(kutxatila.idKutxatila);
         });
         const b2 = document.createElement('button');
-        b2.textContent = parseInt(kutxatila.egoera) === 0? 'Irekita' : 'Itxita';
+        b2.dataset.i18n = parseInt(kutxatila.egoera) === 0 ? 'irekita' : 'itxita';
+        b2.textContent = traducciones[hizkuntza][b2.dataset.i18n] || (parseInt(kutxatila.egoera) === 0 ? 'Irekita' : 'Itxita');
         b2.name = 'egoeraButton';
         b2.addEventListener('click', (event) => {
             event.preventDefault();

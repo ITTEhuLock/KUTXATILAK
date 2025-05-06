@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kutxatilen kudeaketa</title>
+    <title data-i18n="kk">Kutxatilen kudeaketa</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/app.js" type="module"></script>
-    <script src="../js/autentikazioa.js" type="module"></script>
-    <script src="../js/kutxatilakKudeatu.js" type="module"></script>
+    <script src="../js/hizkuntza.js" defer></script>
 </head>
 <body>
     <div class="header" id="header"></div>
-<h1 style = "margin-top:50px;">Kutxatilen kudeaketa</h1>
-<button id = "newButton" > Kutxatila berria sortu</button>
-<div class = "form-container4"  id = "berria" hidden>
+<h1 data-i18n="kk">Kutxatilen kudeaketa</h1>
+<button id = "newButton" data-i18n="kbs" > Kutxatila berria sortu</button>
+<div class = "form-container"  id = "berria" hidden>
     <form id = "berriaForm">
-        <br> Kutxatilaren kodea<input type = "text" id = "kodea" placeholder = "P1M7A001,..." required></input>
-        Kutxatilaren kokapena
+        <br> <p data-i18n="kkod" >Kutxatilaren kodea</p><input type = "text" id = "kodea" placeholder = "P1M7A001,..." required></input>
+        <p data-i18n="kko" >Kutxatilaren kokapena </p>   
         <select id="kokapena">
             <option value="M">M</option>
             <option value="A">A</option>
@@ -25,13 +23,29 @@
             <option value="G">G</option>
             <option value="C">C</option>
         </select>
-        Kutxatilaren erabilera tartearen hasiera<input type = "time" id = "start_time"   required></input>
-        Kutxatilaren erabilera tartearen amaiera<input type = "time" id = "end_time" required></input>
-        <br> <button type = "submit" id = "kutxatilaSortu">Sortu</button>
+        <p data-i18n="keth" > Kutxatilaren erabilera tartearen hasiera<input type = "time" id = "start_time"   required></input>
+        <p data-i18n="keth2" > Kutxatilaren erabilera tartearen amaiera<input type = "time" id = "end_time" required></input>
+        <br> <button type = "submit" id = "kutxatilaSortu" data-i18n="s">Sortu</button>
     </form>
 </div>
     <div id = "kutxatilak" class = "taulaDiv2"></div>
-
+    <script type = "module">
+        import {loadKutxatilak, kutxatilaSortu} from '../js/kutxatilakKudeatu.js';
+        import{loadFooter, loadHeader} from '../js/app.js';
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFooter();
+            loadHeader();
+            loadKutxatilak();
+        });
+        const toggle = document.getElementById('newButton');
+        toggle.addEventListener('click', () => {
+        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+    
+    });
+        document.getElementById('berriaForm').addEventListener('submit', (event) => {
+        kutxatilaSortu(event);
+    });
+    </script>
     <div class="footer" id="footer"></div>
 </body>
 </html>
