@@ -79,7 +79,7 @@ export async function loadErreserbaLaburpena(i){
     }
     else{
         erreserbakCont = document.getElementById('zaharrak');
-        erreserbak = await e.getErreserbaEzAmaituak(localStorage.getItem("idUser"));
+        erreserbak = await e.getErreserbaAmaituak(localStorage.getItem("idUser"));
         document.getElementById('h2').style.display = 'block';
        
     }
@@ -119,7 +119,7 @@ export async function loadErreserbaLaburpena(i){
         eB.addEventListener('click', (event) => {
             console.log(erreserba.idErreserba)
             event.preventDefault();
-            loadZehaztapenak(erreserba.idErreserba);
+            loadZehaztapenak(erreserba.idErreserba, i);
             
         });
         if(parseInt(erreserba.egoera) === 1){
@@ -185,7 +185,7 @@ export async function erreserbaSortu(event){
 
 
 
-export async function loadZehaztapenak(idErreserba){
+export async function loadZehaztapenak(idErreserba, i){
     loadOpenKutxatilenKokapena(1);
     
     const zehaztapenak = document.getElementById('zehaztapenak');
@@ -235,6 +235,9 @@ export async function loadZehaztapenak(idErreserba){
         
         erreserbaEditatu(data);
             });
+            if(i == 1)
+                document.getElementById('editatuButton').remove();
+            
     const ezabatu = document.getElementById('ezabatuButton');
     ezabatu.addEventListener('click', (event) => {
         event.preventDefault();
