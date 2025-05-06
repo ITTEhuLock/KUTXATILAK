@@ -1,13 +1,15 @@
 import * as e from "./erreserba.js";
 import * as k from "./kutxatila.js";
+import * as u from "./user.js";
 
 
 window.addEventListener('DOMContentLoaded', () => {
+
   loadErreserbaLaburpena();
   loadOpenKutxatilak();
   loadToggle();
   loadOpenKutxatilenKokapena(0);
-
+    baimenduta();
     document.getElementById('zehaztapenak').style.display = 'none';
 
 });
@@ -19,7 +21,9 @@ export async function loadToggle(){
         const toggle = document.getElementById('newButton');
         const texts = ["Erreserba berria sortu", "Itxi"];
        
-        toggle.addEventListener('click', () => {
+        toggle.addEventListener('click', async () => {
+
+        
             document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
             currentIndex = (currentIndex + 1) % texts.length;
             toggle.textContent = texts[currentIndex];
@@ -37,6 +41,16 @@ export async function loadToggle(){
 }
 
 
+async function baimenduta(){
+    if(await u.baimenduta(localStorage.getItem('idUser'))) return;
+
+    const mezua = document.createElement('h1');
+    mezua.textContent = 'Zigortuta zaude, ezin duzu erreserbarik egin';
+    document.body.appendChild(mezua);
+    document.getElementById('newButton').style.cursor = 'not-allowed';
+    document.getElementById('newButton').disabled = true;
+    document.getElementsByName('hedatuButton').forEach(b =>{ b.style.cursor = 'not-allowed'; b.disabled = true});
+    }
 
 
 export async function loadErreserbaLaburpena(){

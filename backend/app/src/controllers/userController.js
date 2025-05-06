@@ -216,3 +216,25 @@ export const changeEgoera = async (req, res) => {
         console.log(error.message);
     }
 };
+
+export const baimenduta = async (req, res) => {
+    try {
+        const idUser = parseInt(req.params.idUser);
+        const sqlQuery = `SELECT CASE
+        WHEN egoera = 0 THEN TRUE
+        ELSE FALSE
+    END AS baimenduta
+FROM user
+WHERE idUser = ?;`;
+        const [results] = await dbConnection.query(sqlQuery, [idUser]);
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'erabiltzailea ez da existitzen' });
+        }
+        else {
+            res.status(200).json({ egoera: Boolean(results[0].baimenduta) });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+        console.log(error.message);
+    }   
+}

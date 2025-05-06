@@ -129,3 +129,19 @@ export async function autentikatu(){
     console.log('erabiltzailea ondo autentikatu da');
     return;
 };
+
+export async function baimenduta(idUser){
+
+
+const response = await fetch (`${API_URL}/user/baimena/${idUser}`,{
+    method : 'GET',
+    headers: {'Content-Type': 'application/json'},
+});
+if(response.ok){
+    const data = await response.json();
+    return data.egoera;
+}
+else
+return false;
+
+};

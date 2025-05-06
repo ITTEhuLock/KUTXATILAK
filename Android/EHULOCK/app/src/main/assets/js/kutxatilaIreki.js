@@ -1,6 +1,8 @@
 import * as e from "./erreserba.js";
+import * as u from "./user.js";
 window.addEventListener('DOMContentLoaded', () => {
     getErreserbaLaburpena();
+   
     try{
     Android.setUserId(idUser);
     Android.askForNFCActivation();
@@ -11,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 export async function getErreserbaLaburpena(){
+    if (!await baimenduta()) return
     const erreserba = await e.getErreserbaAktiboa(localStorage.getItem('idUser'));
     if(!erreserba){
         const abisua = document.createElement('h1');
@@ -33,3 +36,17 @@ export async function getErreserbaLaburpena(){
     document.getElementById('ireki').hidden = false;
 
 };
+
+async function baimenduta(){
+    if(await u.baimenduta(localStorage.getItem('idUser'))) return true;
+
+    const mezua = document.createElement('h1');
+    mezua.textContent = 'Zigortuta zaude, ezin duzu kutxatilen zerbitzua erabili';
+
+    document.body.appendChild(mezua);
+    document.getElementById('eB').remove();
+    
+    return false;
+   
+    
+}
