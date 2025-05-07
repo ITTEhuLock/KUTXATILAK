@@ -38,9 +38,6 @@ export async function loadFooter() {
     buttonMapa.appendChild(irudiaMapa);
     buttonProfila.appendChild(irudiaProfila);
 
-
-   
-
    footer.appendChild(buttonHome);
    footer.appendChild(buttonIreki);
    
@@ -107,3 +104,7 @@ export async function loadHeader(){
 
     
 }
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+    loadFooter();
+});

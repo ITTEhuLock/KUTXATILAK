@@ -44,7 +44,7 @@ export async function loadKutxatilak(){
     spanEkintza.textContent = 'Acción';
     ekintza.appendChild(spanEkintza);
 
-    aplicarTraduccion(hizkuntza);
+    
     
     kutxatilak.forEach(kutxatila => {
         const l = table.insertRow();
@@ -72,7 +72,7 @@ export async function loadKutxatilak(){
         l.insertCell().appendChild(b);
     });
     kutxatilakCont.appendChild(table);
-
+    aplicarTraduccion(hizkuntza);
 }
 
 async function kutxatilaEzabatu(idKutxatila){

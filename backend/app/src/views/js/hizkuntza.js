@@ -50,6 +50,18 @@
       ezabatu:"Eliminar",
       irekita:"Abierta",
       itxita:"Cerrada",
+      gbg:"Añade una nueva Aula",
+      eraikina:"Edificio",
+      gm:"Tipo de Aula",
+      ikasgela:"Aula",
+      bulegoa:"Despacho",
+      komuna:"Baño",
+      igogailua:"Ascensor",
+      kafetegia:"Cafeteria",
+      eskailerak:"Escaleras",
+      bestebatzuk:"otros",
+      kokapena:"Selecciona la ubicación en el mapa",
+      solairua:"Piso",
 
 
 
@@ -103,6 +115,23 @@
       ezabatu:"Ezabatu",
       irekita:"Irekita",
       itxita:"Itxita",
+
+      gbg:"Gela berria gehitu",
+      eraikina:"Eraikina",
+      gm:"Gela mota",
+      ikasgela:"ikasgela",
+      bulegoa:"bulegoa",
+      komuna:"komuna",
+      igogailua:"igogailua",
+      kafetegia:"kafetegia",
+      eskailerak:"eskailerak",
+      bestebatzuk:"beste batzuk",
+      kokapena:"Kokapena - Aukeratu mapan",
+      solairua:"Solairua",
+
+
+
+
     }
   };
  

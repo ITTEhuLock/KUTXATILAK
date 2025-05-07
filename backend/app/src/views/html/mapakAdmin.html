@@ -7,37 +7,41 @@
     <script src="../js/app.js" type="module"></script>
     <script src="../js/autentikazioa.js" type="module"></script>
     <script src="../js/mapakKudeatu.js" type="module"></script>
+    <script src="../js/hizkuntza.js" defer></script>
 </head>
+
 <body>
     <div class="header"id = "header"></div>
     <div class="footer" id="footer"></div>
 </div>
 <div id = "berriaForm"class="form-container5" >
-    <h1>Gela berria gehitu</h1>
+    <h1 h1 data-i18n="gbg">Gela berria gehitu</h1>
     <form id="berria">
         
         <select id = "eraikina">
-            <option value="0">Eraikina</option>
+            <option value="0" h1 data-i18n="eraikina">Eraikina</option>
             <option value = "I" >I</option>
 
         </select>
         <select id = "solairua">
-            <option value="0">Solairua</option>
+            <option value="0 "data-i18n="solairua">Solairua</option>
             <option value="6">6</option>
         </select>
         <select  id="mota">
-            <option value="0">Gela mota</option>
-            <option value="ikasgela">ikasgela</option>
-            <option value="bulegoa">bulegoa</option>
-            <option value="komuna">komuna</option>
-            <option value="igogailua">igogailua</option>
-            <option value="kafetegia">kafetegia</option>
-            <option value="eskailerak">eskailerak</option>
-            <option value="beste batzuk">beste batzuk</option>
+            <option value="0" h1 data-i18n="gm">Gela mota</option>
+            <option value="ikasgela" data-i18n="ikasgela">ikasgela</option>
+            <option value="bulegoa" data-i18n="bulegoa">bulegoa</option>
+            <option value="komuna" data-i18n="komuna">komuna</option>
+            <option value="igogailua" data-i18n="igogailua">igogailua</option>
+            <option value="kafetegia" data-i18n="kafetegia">kafetegia</option>
+            <option value="eskailerak" data-i18n="eskailerak">eskailerak</option>
+            <option value="beste batzuk" data-i18n="bestebatzuk">beste batzuk</option>
+            
         </select>
-        <input type="text" id="kodea" placeholder="kodea"></input>
-      <input type="text" id="kokapena" placeholder="Kokapena - Aukeratu mapan"></input>
-        <button type="submit" > Sortu</button>
+        <input type="text" id="kodea" placeholder="kodea" data-i18n-placeholder="c"></input>
+      <input type="text" id="kokapena" placeholder="Kokapena - Aukeratu mapan" data-i18n-placeholder="kokapena"></input>
+        <button type="submit" data-i18n="s" > Sortu</button>
+
     </form>
    
 </div>
