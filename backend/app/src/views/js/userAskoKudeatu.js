@@ -1,15 +1,38 @@
 import * as u from './user.js';
 
 export async function loadUsers(){
+    const hizkuntza = localStorage.getItem('idioma') || 'es'; 
     const userDiv = document.getElementById('userDiv');
     const users = await u.getUsers();
     const table = document.createElement('table');
     table.className = 'taula';
     const l1 = table.insertRow();
-    l1.insertCell().textContent = 'Erabiltzaile izena';
-    l1.insertCell().textContent = 'Datuak';
-    l1.insertCell().textContent = 'Egoera';
-    l1.insertCell().textContent = 'Ekintza';
+
+    const ErabiltzaileIzena = l1.insertCell();
+    const Datuak = l1.insertCell();
+    const egoera = l1.insertCell();
+    const Ekintza = l1.insertCell();
+
+
+    const spanErabiltzaileIzena = document.createElement('span');
+    spanErabiltzaileIzena.setAttribute('data-i18n', 'erabizn');
+    spanErabiltzaileIzena.textContent = 'Erabiltzaile Izena';
+    ErabiltzaileIzena.appendChild(spanErabiltzaileIzena);
+
+    const spanegoera = document.createElement('span');
+    spanegoera.setAttribute('data-i18n', 'e');
+    spanegoera.textContent = 'Estado';
+    egoera.appendChild(spanegoera);
+
+    const spanDatuak = document.createElement('span');
+    spanDatuak.setAttribute('data-i18n', 'datuak');
+    spanDatuak.textContent = 'Datuak';
+    Datuak.appendChild(spanDatuak);
+
+    const spanEkintza = document.createElement('span');
+    spanEkintza.setAttribute('data-i18n', 'ekintza');
+    spanEkintza.textContent = 'Acción';
+    Ekintza.appendChild(spanEkintza);
 
     users.forEach(user => {
         const l = table.insertRow();
@@ -18,8 +41,8 @@ export async function loadUsers(){
 
         const b2 = document.createElement('button');
         console.log(user);
-        parseInt(user.egoera) === 1 ? b2.textContent = 'Zigorturik':  b2.textContent = 'Zigor gabe' ;
-
+        b2.dataset.i18n = parseInt(user.egoera) === 1 ? 'zigorturik' : 'zigorgabe';
+        b2.textContent = traducciones[hizkuntza][b2.dataset.i18n] || (parseInt(user.egoera) === 1 ? 'Zigorturik' : 'Zigor gabe');
         b2.addEventListener('click', async (event) => {
             event.preventDefault();
             await u.egoeraAldatu(user.idUser);
@@ -29,7 +52,8 @@ export async function loadUsers(){
         l.insertCell().appendChild(b2);
        
         const b1 = document.createElement('button');
-        b1.textContent = 'Ezabatu';
+        b1.dataset.i18n = 'ezabatu';
+        b1.textContent = traducciones[hizkuntza]['ezabatu'] || 'Ezabatu';
         b1.addEventListener('click', async (event) => {
             event.preventDefault();
             await u.deleteUser(user.idUser);
@@ -42,7 +66,7 @@ export async function loadUsers(){
     });
 
     userDiv.appendChild(table);
-
+    aplicarTraduccion(hizkuntza);
 }
 
 if(document.getElementById('userDiv'))

@@ -62,6 +62,12 @@
       bestebatzuk:"otros",
       kokapena:"Selecciona la ubicación en el mapa",
       solairua:"Piso",
+      erabk:"Administrador de usuarios",
+      erabizn:"Nombre de usuario",
+      datuak:"Datos",
+      zigorturik:"Penalizado",
+      zigorgabe:"Sin penalización",
+      kontua:"",
 
 
 
@@ -115,7 +121,6 @@
       ezabatu:"Ezabatu",
       irekita:"Irekita",
       itxita:"Itxita",
-
       gbg:"Gela berria gehitu",
       eraikina:"Eraikina",
       gm:"Gela mota",
@@ -128,6 +133,14 @@
       bestebatzuk:"beste batzuk",
       kokapena:"Kokapena - Aukeratu mapan",
       solairua:"Solairua",
+      erabk:"Erabiltzaileen kudeaketa",
+      erabizn:"Erabiltzaile Izena",
+      datuak:"Datuak",
+      zigorturik:"Zigorturik",
+      zigorgabe:"Zigor gabe",
+      kontua:"-ren kontua",  
+
+      
 
 
 

@@ -27,11 +27,30 @@ export async function loadProfila(){
     const user = await u.getUser(localStorage.getItem('idUser'));
     const ongiEtorria = document.createElement('h1');
     ongiEtorria.textContent = user.username+"(r)en kontua";
-
     profila.appendChild(ongiEtorria);
 
-
 }
+
+/* const profila = document.getElementById('profila');
+    
+    const profilDiv = document.createElement('div');
+    profilDiv.style.display = 'flex';
+    profilDiv.style.alignItems = 'center'; 
+    profilDiv.style.gap = '10px';   
+
+    const idioma = localStorage.getItem('idioma') || 'es';
+    const kontua = document.createElement('h1');
+    kontua.dataset.i18n = 'kontua';
+    kontua.textContent = traducciones[idioma]['kontua']||'-ren kontua';
+
+    const user1 = document.createElement('h1');
+    const user = await u.getUser(localStorage.getItem('idUser'));
+    user1.textContent = user.username;
+
+    profilDiv.appendChild(kontua);
+    profilDiv.appendChild(user1);
+
+    profila.appendChild(profilDiv); */
 
 export async function profilaEzabatu(){
     const idUser = localStorage.getItem('idUser');

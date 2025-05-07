@@ -19,6 +19,7 @@ export async function loadKutxatilak(){
 
   
     l1.insertCell().innerHTML = 'Id';
+    
     const kodea = l1.insertCell();
     const egoera = l1.insertCell();
     const kokapena = l1.insertCell();
