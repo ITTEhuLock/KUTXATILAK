@@ -4,20 +4,23 @@ export async function loadFooter() {
     const buttonIreki = document.createElement('button');
     const buttonMapa = document.createElement('button');
     const buttonProfila = document.createElement('button');
-    
+    const buttonUsers = document.createElement('button');
     const irudiaHome = document.createElement('img');
     const irudiaIreki = document.createElement('img');
     const irudiaProfila = document.createElement('img');
+    const irudiaUsers = document.createElement('img');
     const irudiaMapa = document.createElement('img');
     irudiaHome.className = 'irudia';
     irudiaIreki.className = 'irudia';
     irudiaProfila.className = 'irudia';
     irudiaMapa.className = 'irudia';
+    irudiaUsers.className = 'irudia';
 
     irudiaHome.src = '../pics/home.svg';
     irudiaIreki.src = '../pics/unlock.svg';
     irudiaProfila.src = '../pics/profila.svg';
     irudiaMapa.src = '../pics/pin.png';
+    irudiaUsers.src = '../pics/users.svg';
     buttonMapa.addEventListener('click', () => {
         window.location.href = './mapakAdmin.html';
     });
@@ -31,16 +34,18 @@ export async function loadFooter() {
     buttonProfila.addEventListener('click', () => {
         window.location.href = './profila.html';
     });
-    
+    buttonUsers.addEventListener('click', () => {
+        window.location.href = './userAdmin.html';
+    });
     buttonHome.appendChild(irudiaHome);
-   
+    buttonUsers.appendChild(irudiaUsers);
     buttonIreki.appendChild(irudiaIreki);
     buttonMapa.appendChild(irudiaMapa);
     buttonProfila.appendChild(irudiaProfila);
 
    footer.appendChild(buttonHome);
    footer.appendChild(buttonIreki);
-   
+   footer.appendChild(buttonUsers);
    footer.appendChild(buttonMapa);
    footer.appendChild(buttonProfila);
    
