@@ -36,7 +36,20 @@
       edki: "No hay taquillas abiertas en este momento",
       a:"Abrir",
       err:"Reservas",
-      eb:"Nueva reserva"
+      eb:"Nueva reserva",
+      ezdago:"No hay reservas",
+      pasahitzaZaharra:"La nueva contraseña es igual a la anterior",
+      identifikazioa:"Identificacion",
+      ERABILTZAILEA:"USUARIO",
+      PASAHITZA:"CONTRASEÑA",
+      Sartu:"Iniciar sesión",
+      Erregistratu:"Registrarse",
+      POSTA:"CORREO ELETRÓNICO",
+      instalatu:"Instalar",
+      EHULOCK:" Quiero utilizar la aplicación EHULOCK Maps.",
+      Zure:" Tu LDAP de usuario",
+      Sartutako:"Los datos ingresados no son válidos",
+
 
 
 
@@ -76,8 +89,19 @@
       edki: "Ez dago kutxatila irekirik momentu honetan",
       a:"Ireki",
       err:"Erreserbak",
-      eb:"Erreserba berria"
-
+      eb:"Erreserba berria",
+      ezdago:"Ez dago kutxatilarik",
+      pasahitzaZaharra:"Pasahitza berria zaharraren berdina da",
+      identifikazioa:"Identifikazioa",
+      ERABILTZAILEA:"ERABILTZAILEA",
+      PASAHITZA:"PASAHITZA",
+      Sartu:"Sartu",
+      Erregistratu:"Erregistratu",
+      POSTA:"POSTA ELEKTRONIKOA",
+      instalatu:"Instalatu",
+      EHULOCK:"EHULOCK Maps erabili nahi dut.",
+      Zure:"Zure LDAP erabiltzailea",
+      Sartutako:"Sartutako datuak ez dira zuzenak",
 
 
 

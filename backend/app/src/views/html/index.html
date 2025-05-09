@@ -2,16 +2,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Identifikazioa</title>
+    <title data-i18="Identifikazioa">Identifikazioa</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="./pwa/manifest.json" />
     <link rel="stylesheet" href="../css/style.css">
     <script type = "module" src = "../js/userKudeatu.js"></script>
+    <script src="../js/index.js" type="module"></script>
+    <script src="../js/hizkuntza.js" defer></script>
+
    </head>
 
     <body>
+      <div id="header" class="header"></div>
+
       <img src="./pics/logo.png" class = "irudia" ></img>
     
         <div class = 'form-container3' id = 'formBerria' style = "margin-top:50px;">
@@ -19,14 +24,15 @@
         
                 <form id = "form" >
     
-                    ERABILTZAILEA <input  type="text" id="username" name="usermane"  placeholder="Zure LDAP erabiltzailea" required/> <br /> 
-                    PASAHITZA <input type="password"  id="password" name="password" required /><br />
-                    <div hidden id="posta">POSTA ELEKTRONIKOA <input type="email" id="email" name="email"  /><br /></div>
-                    <button type="submit" >Sartu</button>
-                    <button id = "erregistratu">Erregistratu</button>
+                  <p data-i18="ERABILTZAILEA">ERABILTZAILEA</p>    <input  type="text" id="username" name="usermane"  placeholder="Zure LDAP erabiltzailea" data-i18n-placeholder="Zure LDAP erabiltzailea" required/> <br /> 
+                   <p data-i18="PASAHITZA">PASAHITZA</p>  <input type="password"  id="password" name="password" required /><br />
+                    <div hidden id="posta" data-i18="POSTA ">POSTA ELEKTRONIKOA <input type="email" id="email" name="email"  /><br /></div>
+                    <button type="submit" data-i18="Sartu">Sartu</button>
+                    <button id = "erregistratu" data-i18="Erregistratu">Erregistratu</button>
+            
                   
                 </form>
-                <button id = "installButton" class = "urdina">Instalatu</button>
+                <button id = "installButton" class = "urdina" data-i18="instalatu">Instalatu</button>
         </div>
             
     

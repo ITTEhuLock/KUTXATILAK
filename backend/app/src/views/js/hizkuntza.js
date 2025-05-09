@@ -66,8 +66,18 @@
       erabizn:"Nombre de usuario",
       datuak:"Datos",
       zigorturik:"Penalizado",
-      zigorgabe:"Sin penalización",
-      kontua:"",
+      zigorgabe:"Sin penalización", 
+      kontua:"-ren conta",
+      ezdago:"No hay reservas",
+      pasahitzaZaharra:"La nueva contraseña es igual a la anterior",
+      identifikazioa:"Identifcación",
+      ERABILTZAILEA:"USUARIO",
+      PASAHITZA:"CONTRASEÑA",
+      Sartu:"Iniciar sesion",
+      Erregistratu:"Erregistratu",
+      POSTA:"CORREO ELECTRONICO",
+      instalatu:"Instala",
+      
 
 
 
@@ -138,7 +148,16 @@
       datuak:"Datuak",
       zigorturik:"Zigorturik",
       zigorgabe:"Zigor gabe",
-      kontua:"-ren kontua",  
+      kontua:"-ren kontua",
+      ezdago:"Ez dago kutxatilarik",
+      pasahitzaZaharra:"Pasahitza berria zaharraren berdina da",
+      identifikazioa:"Identifikazioa",
+      ERABILTZAILEA:"ERABILTZAILEA",
+      PASAHITZA:"PASAHITZA",
+      Sartu:"Sartu",
+      Erregistratu:"Erregistratu",
+      POSTA:"POSTA ELEKTRONIKOA", 
+      instalatu:"Instalatu",
 
       
 

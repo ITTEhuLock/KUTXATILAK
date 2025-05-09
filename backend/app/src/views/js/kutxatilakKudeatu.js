@@ -5,9 +5,12 @@ export async function loadKutxatilak(){
     const kutxatilak = await k.getKutxatilak();
     const kutxatilakCont = document.getElementById('kutxatilak');
     console.log(kutxatilak);
+
     if(!kutxatilak || kutxatilak === null){
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Ez dago kutxatilarik';
+        mezua.dataset.i18n = 'ezdago';
+        mezua.textContent = traducciones[hizkuntza]['ezdago'] || 'Ez dago kutxatilarik';
+       // mezua.textContent = 'Ez dago kutxatilarik';
         kutxatilakCont.appendChild(mezua);
         return;
     }

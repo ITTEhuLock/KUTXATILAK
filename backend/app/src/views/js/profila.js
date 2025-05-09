@@ -23,10 +23,11 @@ document.getElementById('profilaEditatu').addEventListener('click', () => {
 
 
 export async function loadProfila(){
+
     const profila = document.getElementById('profila');
     const user = await u.getUser(localStorage.getItem('idUser'));
     const ongiEtorria = document.createElement('h1');
-    ongiEtorria.textContent = user.username+"(r)en kontua";
+    ongiEtorria.textContent = user.username;
     profila.appendChild(ongiEtorria);
 
 }
@@ -65,6 +66,7 @@ export async function logout(){
 }
 
 export async function pasahitzaAldatu(){
+    const hizkuntza = localStorage.getItem('idioma') || 'es';
     if(document.getElementById('mezua'))
         document.getElementById('mezua').remove();
     const idUser = localStorage.getItem('idUser');
@@ -74,8 +76,10 @@ export async function pasahitzaAldatu(){
     const user = await u.getUser(idUser);
     const pasahitzaZaharra = user.password;
     if(form.pasahitza.value == pasahitzaZaharra){
-        
-        mezua.textContent = 'Pasahitza berria zaharraren berdina da';
+    
+        mezua.dataset.i18n = 'pasahitzaZaharra';
+        mezua.textContent = traducciones[hizkuntza]['pasahitzaZaharra'] || 'Pasahitza berria zaharraren berdina da';
+        //mezua.textContent = 'Pasahitza berria zaharraren berdina da';
         document.getElementById('pasahitzaForm').appendChild(mezua);
         return;
     }
@@ -84,5 +88,6 @@ export async function pasahitzaAldatu(){
     if(c){
     mezua.textContent = 'Pasahitza aldatu da';
     document.getElementById('pasahitzaForm').appendChild(mezua);
+    
 }
 }

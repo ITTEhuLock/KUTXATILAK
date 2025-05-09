@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profilaren kudeaketa</title>
+    <title data-i18n="pk" >Profilaren kudeaketa</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/app.js" type="module"></script>
     <script src="../js/autentikazioa.js" type="module"></script>
@@ -18,22 +18,22 @@
     </div>
     <div id = "form" hidden>
         <form id ="pasahitzaForm" >
-            <h1>Pasahitza aldatu</h1>
-            <input type = "password" id = "pasahitza" name = "pasahitza" required placeholder="pasahitza berria"></input>
-            <button type = "submit" id = "pasahitzaAldatu">Aldatu</button>
+            <h1  data-i18n="contra">Pasahitza aldatu</h1>
+            <input type = "password" id = "pasahitza" data-i18n="contra" name = "pasahitza"    data-i18n-placeholder="pb"  required placeholder="pasahitza berria" > </input>
+            <button type = "submit" id = "pasahitzaAldatu" data-i18n="cambiar">Aldatu</button>
         </form>
     </div>
     </div>
     <table>
         <tr>
             <td>
-                <button id = "profilaEditatu">Pasahitza aldatu</button>
+                <button id = "profilaEditatu" data-i18n="pa">Pasahitza aldatu</button>
             </td>
             <td>
-                <button id = "profilaEzabatu">Kontua ezabatu</button>
+                <button id = "profilaEzabatu" data-i18n="ke">Kontua ezabatu</button>
             </td>
             <td>
-                <button id = "profilaLogout">Saioa itxi</button>
+                <button id = "profilaLogout" data-i18n="ki">Saioa itxi</button>
         </tr>
     </table>
 

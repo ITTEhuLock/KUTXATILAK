@@ -2,28 +2,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Identifikazioa</title>
-    <meta charset="UTF-8">
+        <title data-i18nn="Identifikazioa">Identifikazioa</title>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <script src = "js/userKudeatu.js" type = "module"></script>
+    <script src="js/hizkuntza.js" defer></script>
+    <script src="js/index.js" type="module"></script>
+
+
    </head>
     <body>
+        <div id="header" class="header"></div>
+
         <img src="./pics/logo.png" class = "irudia" ></img>
         <div class = 'form-container2' id = 'formBerria' style = "margin-top:50px;">
            
             
                 <form id = "form" >
     
-                    ERABILTZAILEA <input  type="text" id="username" name="username"  placeholder="Zure LDAP erabiltzailea"  required/>  
-                    PASAHITZA <input type="password"  id="password" name="password" required />
-                    <div hidden id="posta">POSTA ELEKTRONIKOA <input type="email" id="email" name="email"  /></div>
-                    <button type="submit" >Sartu</button>
-                    <button id = "erregistratu">Erregistratu</button>
+                    <p data-i18n="ERABILTZAILEA">ERABILTZAILEA</p> 
+                    <input  type="text" id="username" name="usermane"  placeholder="Zure LDAP erabiltzailea" data-i18n-placeholder="Zure" required/> <br />
+                    <p data-i18n="PASAHITZA">PASAHITZA</p>  <input type="password"  id="password" name="password" required /><br />
+
+                     <div hidden id="posta" data-i18n="POSTA ">
+                        <p data-i18n="POSTA">POSTA ELEKTRONIKOA</p>
+                     <input type="email" id="email" name="email"  /><br /></div>
+
+                     <button type="submit" data-i18n="Sartu">Sartu</button>
+                     <button id = "erregistratu"  type="button" data-i18n="Erregistratu">Erregistratu</button>
                 </form>
                 <div class="urdina">
                     <form action = "./html/mapak.html">
-                        <button  type = "submit">EHULOCK Maps erabili nahi dut.</button>
+                        <button  type = "submit" data-i18n="EHULOCK">EHULOCK Maps erabili nahi dut.</button>
                     </form>
                 </div>
 

@@ -24,6 +24,7 @@ export async function logout(){
 }
 
 export async function pasahitzaAldatu(){
+    const hizkuntza = localStorage.getItem('idioma') || 'es';
     if(document.getElementById('mezua'))
         document.getElementById('mezua').remove();
     const idUser = localStorage.getItem('idUser');
@@ -33,8 +34,8 @@ export async function pasahitzaAldatu(){
     const user = await u.getUser(idUser);
     const pasahitzaZaharra = user.password;
     if(form.pasahitza.value == pasahitzaZaharra){
-        
-        mezua.textContent = 'Pasahitza berria zaharraren berdina da';
+        mezua.dataset.i18n = 'pasahitzaZaharra';
+        mezua.textContent = traducciones[hizkuntza]['pasahitzaZaharra'] || 'Pasahitza berria zaharraren berdina da';
         document.getElementById('pasahitzaForm').appendChild(mezua);
         return;
     }

@@ -110,15 +110,34 @@ export async function toggleErregistratu() {
     
     const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
-    if(erregistratu.textContent == "Erregistratu"){
-        posta.hidden = false;
-        erregistratu.textContent = "Erregistratuta zaude? Hasi saioa"
+    const idioma = localStorage.getItem('idioma') || 'es';
+
+    if(idioma == "eu"){
+        if(erregistratu.textContent == "Erregistratu"){
+       
+            posta.hidden = false;
+            erregistratu.textContent = "Erregistratuta zaude? Hasi saioa"
+        }
+        else{
+            posta.hidden = true;
+            erregistratu.textContent = "Erregistratu";
+            
+        }
     }
     else{
-        posta.hidden = true;
-        erregistratu.textContent = "Erregistratu";
-        
+
+        if(erregistratu.textContent == "Registrarse"){
+       
+            posta.hidden = false;
+            erregistratu.textContent = "Estas seguro de haberte registrado? Inicia sesión"
+        }
+        else{
+            posta.hidden = true;
+            erregistratu.textContent = "Registrarse";
+            
+        }
     }
+   
     
 
     
