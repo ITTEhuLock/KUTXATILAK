@@ -49,6 +49,13 @@
       EHULOCK:" Quiero utilizar la aplicación EHULOCK Maps.",
       Zure:" Tu LDAP de usuario",
       Sartutako:"Los datos ingresados no son válidos",
+      aplikazioa:"Esta aplicación solo es para usuarios.",
+      Izen:"El usuario con ese nombre o correo electrónico ingresado ya existe",
+      saioa:"Cerrar sesión",
+      Joan:"Ir a la pantalla de inicio",
+      ezi:"Ver reservas anteriores",
+      mehg:"Reservas que han comenzado o estan sin empezar",
+      aner:"Reservas anteriores",
 
 
 
@@ -102,7 +109,13 @@
       EHULOCK:"EHULOCK Maps erabili nahi dut.",
       Zure:"Zure LDAP erabiltzailea",
       Sartutako:"Sartutako datuak ez dira zuzenak",
-
+      aplikazioa:"Aplikazio hau erabiltzaileentzat soilik da.",
+      Izen:"Izen edo posta horrekin dagoen erabiltzailea jada existizen da",
+      Joan:"Joan hasiera orrira",
+      saioa:"Saioa itxi",
+      ezi:"Erreserba zaharrak ikusi",
+      mehg:"Martxan edo hasi gabe dauden erreserbak",
+      aner:"Antzinako erreserbak",
 
 
     }

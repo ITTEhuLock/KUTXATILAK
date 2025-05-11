@@ -18,9 +18,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
 let currentIndex = 0;
 export async function loadToggle(){
+
+    //AQUI HAY FALLO
         const toggle = document.getElementById('newButton');
-        const texts = ["Erreserba berria sortu", "Itxi"];
-       
+    
+        const idioma = localStorage.getItem('idioma') || 'es';
+
+    const texts = [
+        traducciones[idioma]['ebs'] || "Erreserba berria sortu",
+        traducciones[idioma]['i'] || "Itxi"
+    ];
         toggle.addEventListener('click', async () => {
 
         
@@ -48,7 +55,9 @@ async function baimenduta(){
     if(await u.baimenduta(localStorage.getItem('idUser'))) return;
 
     const mezua = document.createElement('h1');
-    mezua.textContent = 'Zigortuta zaude, ezin duzu erreserbarik egin';
+    idioma = localStorage.getItem('idioma') || 'es';
+    mezua.dataset.i18n = 'Zigortuta';
+    mezua.textContent = traducciones[idioma]['Zigortuta']||'Zigortuta zaude, ezin duzu erreserbarik egin';
     document.body.appendChild(mezua);
     document.getElementById('newButton').style.cursor = 'not-allowed';
     document.getElementById('newButton').disabled = true;
@@ -68,8 +77,11 @@ export async function loadErreserbaLaburpena(i){
             document.getElementById('newButton').hidden = true;
             loadErreserbaLaburpena(1);
             bZ.remove();
-           const itxi = document.createElement('button');
-           itxi.textContent = 'Itxi';
+            const idioma = localStorage.getItem('idioma') || 'es';
+            const itxi = document.createElement('button');
+            itxi.dataset.i18n = 'i';
+            itxi.textContent = traducciones[idioma]['i']||'Itxi';
+
            itxi.addEventListener('click', () => {
               window.location.reload();
            });
@@ -89,15 +101,14 @@ export async function loadErreserbaLaburpena(i){
     }
    
     if(!erreserbak){
-
+        
         const abisua = document.createElement('h2');
-        abisua.dataset.i18n = 'ede';
-        abisua.textContent = 'Ez daukazu erreserbarik';
-        erreserbakCont.appendChild(abisua);
         const idioma = localStorage.getItem('idioma') || 'es';
-       
+        abisua.dataset.i18n = 'ede';
+       abisua.textContent = traducciones[idioma]['ede']||'Ez daukazu erreserbarik';
+        
         aplicarTraduccion(idioma);
-
+        erreserbakCont.appendChild(abisua);
         return;
     }
 
@@ -127,7 +138,9 @@ export async function loadErreserbaLaburpena(i){
             
         });
         if(parseInt(erreserba.egoera) === 1){
+            const idioma = localStorage.getItem('idioma') || 'es';
             const iB = document.createElement('button');
+
             iB.textContent = 'Ireki';
             iB.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -155,7 +168,9 @@ export async function erreserbaEditatu(erreserba){
     const u = await e.updateErreserba(erreserba);
     if(!u){
         const mezua = document.createElement('h1');
-        mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
+        idioma = localStorage.getItem('idioma') || 'es';
+        mezua.dataset.i18n = 'aukeratud';
+        mezua.textContent = traducciones[idioma]['ekin']||'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm2').appendChild(mezua);
         return;
     }
@@ -176,7 +191,9 @@ export async function erreserbaSortu(event){
     const a = await e.createErreserba(erreserba);
     if(!a){
         const mezua = document.createElement('h1');
-        mezua.textContent = 'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
+        idioma = localStorage.getItem('idioma') || 'es';
+        mezua.dataset.i18n = 'aukeratud';
+        mezua.textContent = traducciones[idioma]['ekin']||'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm').appendChild(mezua);
         return;
     }
@@ -263,7 +280,9 @@ export async function loadZehaztapenak(idErreserba, i){
         console.log(kutxatilak);
         if(!kutxatilak){
             const mezua = document.createElement('h2');
-            mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
+            idioma = localStorage.getItem('idioma') || 'es';
+            mezua.dataset.i18n = 'ezdago';
+            mezua.textContent = traducciones[idioma]['ezdago']||'Ez dago kutxatila irekirik momentu honetan';
             berriaForm.appendChild(mezua);
             return;
         }
@@ -310,8 +329,10 @@ export async function loadOpenKutxatilak(i, kokapena) {
     console.log(kutxatilak);
     if (!kutxatilak) {
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Ez dago kutxatila irekirik momentu honetan';
-        mezua.dataset.i18n = 'edki';
+
+        idioma = localStorage.getItem('idioma') || 'es';
+        mezua.dataset.i18n = 'ezdago';
+        mezua.textContent = traducciones[idioma]['ezdago']||'Ez dago kutxatila irekirik momentu honetan';
         berriaForm.appendChild(mezua);
         return;
     }

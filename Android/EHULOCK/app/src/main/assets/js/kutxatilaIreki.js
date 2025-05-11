@@ -17,10 +17,13 @@ export async function getErreserbaLaburpena(){
     if (!await baimenduta()) return
     const erreserba = await e.getErreserbaAktiboa(localStorage.getItem('idUser'));
     if(!erreserba){
-        const abisua = document.createElement('h1');
-        abisua.textContent = 'Ez daukazu erreserba aktiborik';
-        abisua.dataset.i18n = 'edea';
+
         const idioma = localStorage.getItem('idioma') || 'es';
+        const abisua = document.createElement('h1');
+        abisua.dataset.i18n = 'ede';
+        abisua.textContent = traducciones[idioma]['ede']||'Ez daukazu erreserbarik';
+        
+       
         aplicarTraduccion(idioma);
 
         document.getElementById('erreserba').appendChild(abisua);

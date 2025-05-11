@@ -21,20 +21,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; 
     }
   
+
     document.body.innerHTML = "";
     const div = document.createElement('div');
+    const idioma = localStorage.getItem('idioma') || 'es';
     div.className = 'form-container2';
     const h1 = document.createElement('h1');
-    h1.textContent = 'Kaixo, ' + user.username + '!';
+    h1.dataset.i18n = 'Kaixo';
+    h1.textContent = traducciones[idioma]['titulo']||'Kaixo, ';
+
+    const user1 = document.createElement('h1');
+    user1.textContent = user.username;
+
     const button = document.createElement('button');
-    button.textContent = 'Joan hasiera orrira';
+    button.dataset.i18n = 'Joan';
+    button.textContent = traducciones[idioma]['Joan']||'Joan hasiera orrira';
     button.addEventListener('click',(event)=>{
         event.preventDefault();
         window.location.href =  './html/home.html';
     });
     const button2 = document.createElement('button');
 
-    button2.textContent = 'Saioa itxi';
+    button2.dataset.i18n = 'saioa';
+    button2.textContent = traducciones[idioma]['saioa']||'Saioa itxi';
+    
     button2.addEventListener('click',(event)=>{
         event.preventDefault();
         localStorage.removeItem("idUser");
@@ -43,10 +53,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     button2.style.margin = '10px';
 
     div.appendChild(h1);
+    div.appendChild(user1);
     div.appendChild(button);
     div.appendChild(document.createElement('br'));
     div.appendChild(button2);
     document.body.appendChild(div);
+    
     
 });
 
@@ -54,10 +66,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 export async function egiaztatu() {
-    if(document.getElementById('erregistratu').textContent != "Erregistratu"){
-        erregistratu();
-        return;
-    }
+    if (document.getElementById('erregistratu').dataset.mode === 'login') {
+    erregistratu();
+    return;
+}
+    
     if(document.getElementById('mezua'))
        document.getElementById('mezua').remove();
     const username = document.getElementById("username").value;
@@ -81,8 +94,12 @@ async function bideratu(username,password, token) {
     form.reset();
     
     if(!idUser){
+    
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Sartutako datuak ez dira zuzenak';
+        const idioma = localStorage.getItem('idioma') || 'es';
+        mezua.dataset.i18n = 'Sartutako';
+        mezua.textContent = traducciones[idioma]['Sartutako']||'Sartutako datuak ez dira zuzenak';
+       
         mezua.id = 'mezua';
         document.getElementById('formBerria').appendChild(mezua);
         return;
@@ -94,7 +111,8 @@ async function bideratu(username,password, token) {
         }
         else {
            const mezua = document.createElement('h2');
-            mezua.textContent = 'Aplikazio hau erabiltzaileentzat soilik da.';
+           mezua.dataset.i18n = 'aplikazioa';
+           mezua.textContent = traducciones[idioma]['aplikazioa']||'Aplikazio hau erabiltzaileentzat soilik da.';
             mezua.id = 'mezua';
             document.getElementById('formBerria').appendChild(mezua);
             return;
@@ -106,52 +124,51 @@ async function bideratu(username,password, token) {
 }
 
 export async function toggleErregistratu() {
-   
-    
+
     const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
     const idioma = localStorage.getItem('idioma') || 'es';
+    const modoActual = erregistratu.dataset.mode; 
 
-    if(idioma == "eu"){
-        if(erregistratu.textContent == "Erregistratu"){
-       
-            posta.hidden = false;
-            erregistratu.textContent = "Erregistratuta zaude? Hasi saioa"
+    if (modoActual === 'register') {
+     
+        posta.hidden = false;
+        erregistratu.dataset.mode = 'login';
+
+        
+        if (idioma === 'eu') {
+            erregistratu.textContent = "Erregistratuta zaude? Hasi saioa";
+        } else {
+            erregistratu.textContent = "¿Estás seguro de haberte registrado? Inicia sesión";
         }
-        else{
-            posta.hidden = true;
+
+    } else {
+       
+        posta.hidden = true;
+        erregistratu.dataset.mode = 'register';
+
+        if (idioma === 'eu') {
             erregistratu.textContent = "Erregistratu";
-            
-        }
-    }
-    else{
-
-        if(erregistratu.textContent == "Registrarse"){
-       
-            posta.hidden = false;
-            erregistratu.textContent = "Estas seguro de haberte registrado? Inicia sesión"
-        }
-        else{
-            posta.hidden = true;
+        } else {
             erregistratu.textContent = "Registrarse";
-            
         }
     }
-   
-    
-
-    
 }
 
+
 export async function erregistratu() {
+
     const form = document.getElementById('form');
 	const username = document.getElementById("username").value;
 	const password = document.getElementById("password").value;
     const email = document.getElementById('email').value;
     const egoera = await u.checkUser(username, email);
     if(!egoera){
+
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Izen edo posta horrekin dagoen erabiltzailea jada existizen da';
+        const idioma = localStorage.getItem('idioma') || 'es';
+        mezua.dataset.i18n = 'Izen';
+        mezua.textContent = traducciones[idioma]['Izen']||'Izen edo posta horrekin dagoen erabiltzailea jada existizen da';
         document.getElementById('formBerria').appendChild(mezua);
         return;
     }
