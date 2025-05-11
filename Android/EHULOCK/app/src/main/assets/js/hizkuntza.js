@@ -56,6 +56,7 @@
       ezi:"Ver reservas anteriores",
       mehg:"Reservas que han comenzado o estan sin empezar",
       aner:"Reservas anteriores",
+      erre:"¿Estás seguro de haberte registrado? Inicia sesión",
 
 
 
@@ -116,6 +117,7 @@
       ezi:"Erreserba zaharrak ikusi",
       mehg:"Martxan edo hasi gabe dauden erreserbak",
       aner:"Antzinako erreserbak",
+      erre:"Erregistratuta zaude? Hasi saioa",
 
 
     }

@@ -18,25 +18,25 @@ window.addEventListener('DOMContentLoaded', () => {
 
 let currentIndex = 0;
 export async function loadToggle(){
-
-    //AQUI HAY FALLO
-        const toggle = document.getElementById('newButton');
     
-        const idioma = localStorage.getItem('idioma') || 'es';
-
-    const texts = [
-        traducciones[idioma]['ebs'] || "Erreserba berria sortu",
-        traducciones[idioma]['i'] || "Itxi"
-    ];
+        const toggle = document.getElementById('newButton');
+        
+        const texts = ["Erreserba berria sortu", "Itxi"];
+        const i18nKeys = ["ebs", "i"]; 
         toggle.addEventListener('click', async () => {
 
         
             document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
             currentIndex = (currentIndex + 1) % texts.length;
+
             toggle.textContent = texts[currentIndex];
+            toggle.setAttribute('data-i18n', i18nKeys[currentIndex]);
+            toggle.textContent = traducciones[localStorage.getItem('idioma') || 'es'][toggle.getAttribute('data-i18n')];
+
             document.getElementById('aktiboakDiv').hidden = !document.getElementById('aktiboakDiv').hidden;
             document.getElementById('eZ').hidden = !document.getElementById('eZ').hidden;
-
+            
+            
         
         });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {
@@ -49,6 +49,7 @@ export async function loadToggle(){
             document.getElementById('berria').hidden = true;
         });
 }
+
 
 
 async function baimenduta(){
