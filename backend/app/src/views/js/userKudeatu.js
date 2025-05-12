@@ -93,14 +93,18 @@ export async function egiaztatu() {
 }
 
 async function bideratu(username,password) {
-    /*
+ 
     const idUser = await u.verifyUser(username, password);
     console.log(idUser);
     form.reset();
     console.log(idUser);
     if(!idUser){
+
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Sartutako datuak ez dira zuzenak';
+        const idioma = localStorage.getItem('idioma') || 'es';
+        mezua.dataset.i18n = 'Sartutako';
+        mezua.textContent = traducciones[idioma]['Sartutako']||'Sartutako datuak ez dira zuzenak';
+              
         mezua.id = 'mezua';
         document.getElementById('formBerria').appendChild(mezua);
         return;
@@ -114,43 +118,13 @@ async function bideratu(username,password) {
     }
     else {
        const mezua = document.createElement('h2');
-        mezua.textContent = 'Aplikazio hau administrarientzat soilik da.';
+        mezua.dataset.i18n = 'aplikazioa';
+        mezua.textContent = traducciones[idioma]['aplikazioa']||'Aplikazio hau erabiltzaileentzat soilik da.';
         mezua.id = 'mezua';
         document.getElementById('formBerria').appendChild(mezua);
         return;
     }
-        */
-
-         const idUser = await u.verifyUser(username, password, token);
-           console.log(idUser);
-           form.reset();
-           
-           if(!idUser){
-           
-               const mezua = document.createElement('h2');
-               const idioma = localStorage.getItem('idioma') || 'es';
-               mezua.dataset.i18n = 'Sartutako';
-               mezua.textContent = traducciones[idioma]['Sartutako']||'Sartutako datuak ez dira zuzenak';
-              
-               mezua.id = 'mezua';
-               document.getElementById('formBerria').appendChild(mezua);
-               return;
-           }
-               const role = await u.getRole(idUser);
-               
-               if(role === 'user'){
-                   window.location.href =  './html/home.html';
-               }
-               else {
-                  const mezua = document.createElement('h2');
-                  mezua.dataset.i18n = 'aplikazioa';
-                  mezua.textContent = traducciones[idioma]['aplikazioa']||'Aplikazio hau erabiltzaileentzat soilik da.';
-                   mezua.id = 'mezua';
-                   document.getElementById('formBerria').appendChild(mezua);
-                   return;
-               }
-           localStorage.setItem("idUser", idUser);
-           
+    
     
 }
 
