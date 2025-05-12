@@ -43,7 +43,7 @@
       ERABILTZAILEA:"USUARIO",
       PASAHITZA:"CONTRASEÑA",
       Sartu:"Iniciar sesión",
-      Erregistratu:"Registrarse",
+      erregistratu:"Registrarse",
       POSTA:"CORREO ELETRÓNICO",
       instalatu:"Instalar",
       EHULOCK:" Quiero utilizar la aplicación EHULOCK Maps.",
