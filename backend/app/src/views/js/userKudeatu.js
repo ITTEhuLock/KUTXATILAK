@@ -1,5 +1,5 @@
 import * as u from './user.js'
-
+import { traducciones } from './hizkuntza.js';
 if(document.getElementById('form'))
 document.getElementById('form').addEventListener('submit',(event)=>{
     event.preventDefault();
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 export async function egiaztatu() {
-    if(document.getElementById('erregistratu').textContent != "Erregistratu"){
+    if(document.getElementById('erregistratu').textContent != traducciones[localStorage.getItem('idioma')].Erregistratu){
         erregistratu();
         return;
     }
@@ -102,13 +102,13 @@ export async function toggleErregistratu() {
     
     const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
-    if(erregistratu.textContent == "Erregistratu"){
+    if(erregistratu.textContent == "Erregistratu"|| erregistratu.textContent == "Registrarse"){
         posta.hidden = false;
-        erregistratu.textContent = "Erregistratuta zaude? Hasi saioa"
+        erregistratu.textContent = traducciones[localStorage.getItem('idioma')].erre;
     }
     else{
         posta.hidden = true;
-        erregistratu.textContent = "Erregistratu";
+        erregistratu.textContent = traducciones[localStorage.getItem('idioma')].Erregistratu;
         
     }
     
@@ -126,7 +126,7 @@ export async function erregistratu() {
     const egoera = await u.checkUser(username, email);
     if(!egoera){
         const mezua = document.createElement('h2');
-        mezua.textContent = 'Izen edo posta horrekin dagoen erabiltzailea jada existizen da';
+        mezua.textContent = traducciones[localStorage.getItem('idioma')].Izen;
         document.getElementById('formBerria').appendChild(mezua);
         return;
     }

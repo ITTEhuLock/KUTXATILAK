@@ -1,3 +1,4 @@
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadFooter() {
 
     const footer = document.getElementById('footer');
@@ -130,4 +131,5 @@ export async function loadHeader(){
 document.addEventListener('DOMContentLoaded', () => {
     loadFooter();
     loadHeader();
+ 
 });

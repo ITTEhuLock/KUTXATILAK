@@ -16,5 +16,5 @@ router.use('/css', express.static(path.join(basePath, 'app', 'src', 'views', 'cs
 router.use('/js', express.static(path.join(basePath, 'app', 'src', 'views', 'js')));
 router.use('/pwa', express.static(path.join(basePath, 'app', 'pwa')));
 router.use('/sw.js', express.static(path.join(basePath, 'app', 'pwa', 'sw.js')));
-
+router.use('/downloads', express.static(path.join(basePath, 'app', 'src', 'downloads')));
 export default router;

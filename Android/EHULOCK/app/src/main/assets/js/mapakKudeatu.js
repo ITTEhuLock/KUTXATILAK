@@ -2,6 +2,7 @@ import * as g from './gela.js';
 import * as p from  './pausoa.js';
 import * as i from './ibilbidea.js';	
 import { gridp6 } from './konstanteak.js';
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadMenuak(){
     const menuposizioa = document.getElementById("menuposizioa");
     const menuondokoa = document.getElementById("menuondokoa");

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title data-i18="Identifikazioa">Identifikazioa</title>
+    <title data-i18n="Identifikazioa">Identifikazioa</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script type = "module" src = "../js/userKudeatu.js"></script>
     <script src="../js/index.js" type="module"></script>
-    <script src="../js/hizkuntza.js" defer></script>
+    <script src="../js/hizkuntza.js" type="module"></script>
 
    </head>
 
@@ -24,15 +24,16 @@
         
                 <form id = "form" >
     
-                  <p data-i18="ERABILTZAILEA">ERABILTZAILEA</p>    <input  type="text" id="username" name="usermane"  placeholder="Zure LDAP erabiltzailea" data-i18n-placeholder="Zure LDAP erabiltzailea" required/> <br /> 
-                   <p data-i18="PASAHITZA">PASAHITZA</p>  <input type="password"  id="password" name="password" required /><br />
-                    <div hidden id="posta" data-i18="POSTA ">POSTA ELEKTRONIKOA <input type="email" id="email" name="email"  /><br /></div>
-                    <button type="submit" data-i18="Sartu">Sartu</button>
-                    <button id = "erregistratu" data-i18="Erregistratu">Erregistratu</button>
+                  <p data-i18n="ERABILTZAILEA">ERABILTZAILEA</p>    <input  type="text" id="username" name="usermane"  placeholder="Zure LDAP erabiltzailea" data-i18n-placeholder="ldapErab" required/> <br /> 
+                   <p data-i18n="PASAHITZA">PASAHITZA</p>  <input type="password"  id="password" name="password" required /><br />
+                    <div hidden id="posta"><p data-i18n="POSTA">POSTA ELEKTRONIKOA</p> <input type="email" id="email" name="email"  /><br /></div>
+                    <button type="submit" data-i18n="Sartu">Sartu</button>
+                    <button id = "erregistratu" data-i18n="Erregistratu"></button>
             
                   
                 </form>
-                <button id = "installButton" class = "urdina" data-i18="instalatu">Instalatu</button>
+                <button id = "installButton" class = "urdina" data-i18n="instalatu">Instalatu adminaren app</button>
+                <button id = "installErab" class = "urdina" data-i18n="instalatuErab">Instalatu erabiltzailearen app</button>
         </div>
             
     
@@ -40,12 +41,13 @@
     </body>
     <script type = "module">let deferredPrompt;
         if (!('beforeinstallprompt' in window)) {
+          document.getElementById('installButton').style.display = 'none';
           console.log('El navegador no soporta la instalación de PWAs.');
         }
       
         window.addEventListener('beforeinstallprompt', (e) => {
           e.preventDefault();
-          document.getElementById('installButton').hidden = false;
+          document.getElementById('installButton').style.display = block;
           deferredPrompt = e;
         });
       
@@ -63,6 +65,10 @@
             installButton.style.display = 'none';
           }
         });
+        
+        document.getElementById("installErab").addEventListener("click", () => {
+    window.location.href = "/downloads/ehulock.apk"; // Cambia esta ruta según dónde esté tu APK
+  });
       
        
       </script>

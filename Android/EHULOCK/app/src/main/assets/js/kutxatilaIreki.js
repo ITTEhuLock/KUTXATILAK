@@ -1,3 +1,4 @@
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 import * as e from "./erreserba.js";
 import * as u from "./user.js";
 import * as k from "./kutxatila.js";

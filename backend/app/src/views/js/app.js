@@ -1,3 +1,4 @@
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadFooter() {
     const footer = document.getElementById('footer');
     const buttonHome = document.createElement('button');
@@ -93,7 +94,8 @@ export async function loadHeader(){
         imgHizkuntza.src = '../pics/castellano.png';
     }
 
-    buttonHizkuntza.addEventListener('click', () => {
+    buttonHizkuntza.addEventListener('click', (event) => {
+        event.preventDefault();
         let idiomaActual = localStorage.getItem('idioma') || 'es';
         let nuevoIdioma = idiomaActual === 'eu' ? 'es' : 'eu';
     
@@ -112,4 +114,6 @@ export async function loadHeader(){
 document.addEventListener('DOMContentLoaded', () => {
     loadHeader();
     loadFooter();
+
 });
+

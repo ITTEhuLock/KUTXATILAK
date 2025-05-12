@@ -1,5 +1,5 @@
 import * as u from './user.js';
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadUsers(){
     const hizkuntza = localStorage.getItem('idioma') || 'es'; 
     const userDiv = document.getElementById('userDiv');

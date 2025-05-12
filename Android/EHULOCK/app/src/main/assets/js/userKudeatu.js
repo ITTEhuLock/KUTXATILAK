@@ -1,5 +1,5 @@
 import * as u from './user.js'
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 document.getElementById('form').addEventListener('submit',(event)=>{
     event.preventDefault();
     egiaztatu();

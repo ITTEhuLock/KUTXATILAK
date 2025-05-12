@@ -1,7 +1,7 @@
 import * as e from "./erreserba.js";
 import * as k from "./kutxatila.js";
 import * as u from "./user.js";
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 
 window.addEventListener('DOMContentLoaded', () => {
 

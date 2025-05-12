@@ -1,3 +1,4 @@
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadHeader(){
 
     const header = document.getElementById('header'); 

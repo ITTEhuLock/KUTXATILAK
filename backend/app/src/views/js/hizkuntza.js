@@ -1,6 +1,5 @@
 
-
- const traducciones = {
+export const traducciones = {
     es: {
       titulo: "Bienvenido !",
       descripcion: "Esta es una página de ejemplo con soporte multilingüe.",
@@ -74,9 +73,12 @@
       ERABILTZAILEA:"USUARIO",
       PASAHITZA:"CONTRASEÑA",
       Sartu:"Iniciar sesion",
-      Erregistratu:"Erregistratu",
-      POSTA:"CORREO ELECTRONICO",
-      instalatu:"Instala",
+      Erregistratu:"Registrarse",
+      POSTA:"CORREO ELECTRÓNICO",
+      instalatu:"Instalar app de administrador",
+      instalatuErab: "Instalar app de usuario",
+      ldapErab:"Tu LDAP",
+       erre:"¿Tienes ya una cuenta? Inicia sesión",
       
 
 
@@ -157,7 +159,10 @@
       Sartu:"Sartu",
       Erregistratu:"Erregistratu",
       POSTA:"POSTA ELEKTRONIKOA", 
-      instalatu:"Instalatu",
+      instalatu:"Instalar app de administrador",
+      instalatuErab: "Instalar app de usuario",
+      ldapErab:"Zure LDAP erabiltzailea",
+      erre: "Erregistratuta zaude? Hasi saioa",
 
       
 
@@ -168,7 +173,7 @@
   };
  
 
-  function cambiarIdioma() {
+  export function cambiarIdioma() {
     let idiomaActual = localStorage.getItem('idioma') || 'es';
     let nuevoIdioma = idiomaActual === 'es' ? 'eu' : 'es';
     
@@ -176,7 +181,7 @@
     aplicarTraduccion(nuevoIdioma);
   }
   
-  function aplicarTraduccion(idioma) {
+  export function aplicarTraduccion(idioma) {
     const textos = traducciones[idioma];
     if (!textos) return;
   

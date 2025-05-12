@@ -1,5 +1,5 @@
 import * as k from './kutxatila.js';
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadKutxatilak(){
     const hizkuntza = localStorage.getItem('idioma') || 'es'; 
     const kutxatilak = await k.getKutxatilak();

@@ -1,5 +1,5 @@
 import * as u from './user.js';
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadOngiEtorria(){
         const home = document.getElementById('home');
       
