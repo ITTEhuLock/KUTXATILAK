@@ -127,7 +127,7 @@ async function bideratu(username,password, token) {
 export async function toggleErregistratu() {
 
     
- const posta = document.getElementById('posta');
+    const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
     const idioma = localStorage.getItem('idioma') || 'es';
 
@@ -144,28 +144,7 @@ export async function toggleErregistratu() {
     }
 }
 
-/*      
-    const posta = document.getElementById('posta');
-    const erregistratu = document.getElementById('erregistratu');
-    const texts = ["Erregistratuta zaude? Hasi saioa", "Erregistratu"];
-    const i18nKeys = ["erre", "erregistratu"];
-    let currentIndex = 0;
-    if(erregistratu.textContent == "Erregistratu"||"Registrarse"){
-        
-        posta.hidden = false;
-        erregistratu.textContent = texts[currentIndex];
-        erregistratu.setAttribute('data-i18n', i18nKeys[currentIndex]);
-        erregistratu.textContent = traducciones[localStorage.getItem('idioma') || 'es'][erregistratu.getAttribute('data-i18n')];
-    }
-    else{
-        posta.hidden = true;
-        erregistratu.textContent = texts[currentIndex];
-        erregistratu.setAttribute('data-i18n', i18nKeys[currentIndex]);
-        erregistratu.textContent = traducciones[localStorage.getItem('idioma') || 'es'][erregistratu.getAttribute('data-i18n')];
-        
-    }
 
-    */ 
 
 
 
