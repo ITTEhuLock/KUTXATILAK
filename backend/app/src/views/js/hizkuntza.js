@@ -164,7 +164,7 @@ export const traducciones = {
       Sartu:"Sartu",
       Erregistratu:"Erregistratu",
       POSTA:"POSTA ELEKTRONIKOA", 
-      instalatu:"Instalar administratzailearen app-a",
+      instalatu:"Administrariaren app-a instalatu",
       instalatuErab: "Erabiltzailearen app-a instalatu",
       ldapErab:"Zure LDAP erabiltzailea",
       erre: "Erregistratuta zaude? Hasi saioa",

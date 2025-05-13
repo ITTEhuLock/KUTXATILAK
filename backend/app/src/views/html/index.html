@@ -32,8 +32,8 @@
             
                   
                 </form>
-                <button id = "installButton" class = "urdina" data-i18n="instalatu">Instalatu adminaren app</button>
-                <button id = "installErab" class = "urdina" data-i18n="instalatuErab">Instalatu erabiltzailearen app</button>
+                <button id = "installButton" hidden class = "urdina" data-i18n="instalatu"></button>
+                <button id = "installErab" class = "urdina" data-i18n="instalatuErab"></button>
         </div>
             
     
@@ -41,13 +41,13 @@
     </body>
     <script type = "module">let deferredPrompt;
         if (!('beforeinstallprompt' in window)) {
-          document.getElementById('installButton').style.display = 'none';
+          document.getElementById('installButton').hidden = true;
           console.log('El navegador no soporta la instalación de PWAs.');
         }
       
         window.addEventListener('beforeinstallprompt', (e) => {
           e.preventDefault();
-          document.getElementById('installButton').style.display = block;
+          document.getElementById('installButton').hidden = false;
           deferredPrompt = e;
         });
       
@@ -62,7 +62,7 @@
               // Rechazado
             }
             deferredPrompt = null;
-            installButton.style.display = 'none';
+            installButton.hidden = true;
           }
         });
         
