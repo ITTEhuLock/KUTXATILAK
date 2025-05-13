@@ -13,6 +13,21 @@
 <body>
     <div class="header" id = "header"></div>
     <h1 data-i18n="erabk">Erabiltzaileen kudeaketa</h1>
+    <button id="berria"data-i18n="erabBerria"></button>
+    <div class="form-container2" id="berriaDiv" style="display:none;">
+        <form id="berriaForm">
+           
+            <input type="text" id="erabiltzailea" name="erabiltzailea" data-i18n-placeholder="ERABILTZAILEA" required>
+            <input type="password" data-i18n-placeholder="PASAHITZA" id="pasahitza" name="pasahitza" required>
+            <input type="mail" data-i18n-placeholder="POSTA" id="posta" name="posta" required>
+            <select id="rola" name="rola" required>
+                <option value="" disabled selected data-i18n="aukera"></option>
+                <option value="user" data-i18n="erabiltzailea"></option>
+                <option value="admin" data-i18n="administraria"></option>
+            </select>
+            <button type="submit" data-i18n="s"></button>
+        </form>
+    </div>
     <div class="footer" id="footer"></div>
     <div id="userDiv"class="taulaDiv"></div>
 </body>

@@ -72,6 +72,30 @@ export async function loadUsers(){
 if(document.getElementById('userDiv'))
     document.addEventListener('DOMContentLoaded', () => {
         loadUsers();
-    }
-    );
+        document.getElementById('berria').addEventListener('click', async (event) => {
+            event.preventDefault();
+            document.getElementById('berriaDiv').style.display = 'block';
+           
+        });
+        document.getElementById('berriaForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+             await erabiltzaileaSortu();
+            window.location.reload();
+
+    });
+   } );
  
+export async function erabiltzaileaSortu() {
+    const form = document.getElementById('berriaForm');
+    const user = {
+        username: form.erabiltzailea.value,
+        email: form.posta.value,
+        password: form.pasahitza.value,
+        egoera: 0,
+        role: form.rola.value
+    }
+   await u.createNewUser(user);
+    return;
+    
+}
+    

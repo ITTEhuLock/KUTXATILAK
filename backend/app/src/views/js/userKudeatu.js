@@ -140,22 +140,7 @@ export async function toggleErregistratu() {
 }
 
 export async function erregistratu() {
-    /*
-    const form = document.getElementById('form');
-	const username = document.getElementById("username").value;
-	const password = document.getElementById("password").value;
-    const email = document.getElementById('email').value;
-    const egoera = await u.checkUser(username, email);
-    if(!egoera){
-        const mezua = document.createElement('h2');
-        mezua.textContent = traducciones[localStorage.getItem('idioma')].Izen;
-        document.getElementById('formBerria').appendChild(mezua);
-        return;
-    }
-    await u.createNewUser(username, password, email);
-    bideratu(username,password);
-    form.reset();
-    */
+
 
       const form = document.getElementById('form');
         const username = document.getElementById("username").value;
@@ -171,7 +156,13 @@ export async function erregistratu() {
             document.getElementById('formBerria').appendChild(mezua);
             return;
         }
-        await u.createNewUser(username, password, email);
+        const user = {
+            username: username,
+            password: password,
+            email: email,
+            
+        }
+        await u.createNewUser(user);
         bideratu(username,password);
         form.reset();
     

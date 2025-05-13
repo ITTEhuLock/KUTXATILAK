@@ -43,11 +43,12 @@ export async function getRole(idUser){
             return false;
 };
 
-export async function createNewUser(username, password, email){
+export async function createNewUser(user){
+    user.role === undefined ? user.role = 'user' : user.role;
     const response = await fetch (`${API_URL}/user/add`,{
         method : 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({username, password, email, role:'user'})   
+        body: JSON.stringify(user)   
     });
         if(response.ok){
             const data = await response.json();

@@ -70,7 +70,7 @@ export const traducciones = {
       ezdago:"No hay reservas",
       pasahitzaZaharra:"La nueva contraseña es igual a la anterior",
       identifikazioa:"Identifcación",
-      ERABILTZAILEA:"USUARIO",
+      ERABILTZAILEA:"NOMBRE DE USUARIO",
       PASAHITZA:"CONTRASEÑA",
       Sartu:"Iniciar sesión",
       Erregistratu:"Registrarse",
@@ -84,8 +84,10 @@ export const traducciones = {
       Sartutako:"Los datos ingresados no son válidos",
       aplikazioa:"Esta aplicación solo es para admnistradores.",
       Izen:"El usuario con ese nombre o correo electrónico ingresado ya existe",
-      
-
+      erabBerria:"Crear nuevo usuario",
+      aukera: "Selecciona el rol",
+      erabiltzailea: "Usuario",
+      administraria: "Administrador",
 
 
     },
@@ -159,7 +161,7 @@ export const traducciones = {
       ezdago:"Ez dago kutxatilarik",
       pasahitzaZaharra:"Pasahitza berria zaharraren berdina da",
       identifikazioa:"Identifikazioa",
-      ERABILTZAILEA:"ERABILTZAILEA",
+      ERABILTZAILEA:"ERABILTZAILE IZENA",
       PASAHITZA:"PASAHITZA",
       Sartu:"Sartu",
       Erregistratu:"Erregistratu",
@@ -173,7 +175,10 @@ export const traducciones = {
       Sartutako:"Sartutako datuak ez dira zuzenak",
       aplikazioa:"Aplikazio hau administrarientzat soilik da.",
       Izen:"Izen edo posta horrekin dagoen erabiltzailea jada existizen da",
-
+      erabBerria:"Erabiltzaile berri bat sortu",
+      aukera: "Rola aukeratu",
+      erabiltzailea: "Erabiltzailea",
+      administraria: "Administraria",
 
       
 

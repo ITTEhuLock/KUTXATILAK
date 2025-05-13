@@ -168,6 +168,7 @@ export async function erregistratu() {
         document.getElementById('formBerria').appendChild(mezua);
         return;
     }
+    
     await u.createNewUser(username, password, email);
     bideratu(username,password);
     form.reset();
