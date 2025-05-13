@@ -78,7 +78,12 @@ export const traducciones = {
       instalatu:"Instalar app de administrador",
       instalatuErab: "Instalar app de usuario",
       ldapErab:"Tu LDAP",
-       erre:"¿Tienes ya una cuenta? Inicia sesión",
+      erre:"¿Tienes ya una cuenta? Inicia sesión",
+      Joan:"Ir a la pantalla de inicio",
+      saioa:"Cerrar sesión",
+      Sartutako:"Los datos ingresados no son válidos",
+      aplikazioa:"Esta aplicación solo es para usuarios.",
+      Izen:"El usuario con ese nombre o correo electrónico ingresado ya existe",
       
 
 
@@ -157,12 +162,18 @@ export const traducciones = {
       ERABILTZAILEA:"ERABILTZAILEA",
       PASAHITZA:"PASAHITZA",
       Sartu:"Sartu",
-      Erregistratu:"Erregistratu",
+      erregistratu:"Erregistratu",
       POSTA:"POSTA ELEKTRONIKOA", 
-      instalatu:"Instalar app de administrador",
-      instalatuErab: "Instalar app de usuario",
+      instalatu:"Instalar administratzailearen app-a",
+      instalatuErab: "Erabiltzailearen app-a instalatu",
       ldapErab:"Zure LDAP erabiltzailea",
       erre: "Erregistratuta zaude? Hasi saioa",
+      Joan:"Joan hasiera orrira",
+      saioa:"Saioa itxi",
+      Sartutako:"Sartutako datuak ez dira zuzenak",
+      aplikazioa:"Aplikazio hau erabiltzaileentzat soilik da.",
+      Izen:"Izen edo posta horrekin dagoen erabiltzailea jada existizen da",
+
 
       
 
