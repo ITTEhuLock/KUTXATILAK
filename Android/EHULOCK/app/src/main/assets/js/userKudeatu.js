@@ -5,7 +5,7 @@ document.getElementById('form').addEventListener('submit',(event)=>{
     egiaztatu();
 
 });
-document.getElementById('erregistratu').addEventListener('click',(event)=>{
+document.getElementById('Erregistratu').addEventListener('click',(event)=>{
     event.preventDefault();
     toggleErregistratu();
 });
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 export async function egiaztatu() {
     
-    if (document.getElementById('erregistratu').dataset.mode === 'login') {
+    if (document.getElementById('Erregistratu').dataset.mode === 'Erregistratu') {
     erregistratu();
     return;
 }
@@ -130,19 +130,21 @@ export async function toggleErregistratu() {
 
     
     const posta = document.getElementById('posta');
-    const erregistratu = document.getElementById('erregistratu');
+    const erregistratu = document.getElementById('Erregistratu');
     const idioma = localStorage.getItem('idioma') || 'es';
 
-    const currentKey = erregistratu.getAttribute('data-i18n');
+   
 
-    if (currentKey === traducciones[idioma]['Erregistratu']) {
+    if (document.getElementById('Erregistratu').textContent === traducciones[idioma]['Erregistratu']) {
         posta.hidden = false;
         erregistratu.setAttribute('data-i18n', 'erre');
         erregistratu.textContent = traducciones[idioma]['erre'] || 'Erregistratuta zaude? Hasi saioa';
+        document.getElementById('Erregistratu').dataset.mode = 'Erregistratu';
     } else {
         posta.hidden = true;
-        erregistratu.setAttribute('data-i18n', 'erregistratu');
-        erregistratu.textContent = traducciones[idioma]['erregistratu'] || 'Erregistratu';
+        erregistratu.setAttribute('data-i18n', 'Erregistratu');
+        erregistratu.textContent = traducciones[idioma]['Erregistratu'] || 'Erregistratu';
+        document.getElementById('Erregistratu').dataset.mode = 'login';
     }
 }
 

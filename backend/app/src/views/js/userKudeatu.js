@@ -6,8 +6,8 @@ document.getElementById('form').addEventListener('submit',(event)=>{
     egiaztatu();
 
 });
-if(document.getElementById('erregistratu'))
-document.getElementById('erregistratu').addEventListener('click',(event)=>{
+if(document.getElementById('Erregistratu'))
+document.getElementById('Erregistratu').addEventListener('click',(event)=>{
     event.preventDefault();
     toggleErregistratu();
 });
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 export async function egiaztatu() {
-    if(document.getElementById('erregistratu').textContent != traducciones[localStorage.getItem('idioma')].Erregistratu){
+    if(document.getElementById('Erregistratu').textContent != traducciones[localStorage.getItem('idioma')].Erregistratu){
         erregistratu();
         return;
     }
@@ -119,7 +119,7 @@ export async function toggleErregistratu() {
    
     
     const posta = document.getElementById('posta');
-    const erregistratu = document.getElementById('erregistratu');
+    const erregistratu = document.getElementById('Erregistratu');
     const idioma = localStorage.getItem('idioma') || 'es';
 
     
