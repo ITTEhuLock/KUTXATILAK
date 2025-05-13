@@ -119,8 +119,7 @@ async function bideratu(username,password) {
         document.getElementById('formBerria').appendChild(mezua);
         return;
     }
-        */
-
+        
          const idUser = await u.verifyUser(username, password, token);
            console.log(idUser);
            form.reset();
@@ -156,7 +155,7 @@ async function bideratu(username,password) {
 
 export async function toggleErregistratu() {
    
-    /*
+    
     const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
     if(erregistratu.textContent == "Erregistratu"|| erregistratu.textContent == "Registrarse"){
@@ -167,7 +166,7 @@ export async function toggleErregistratu() {
         posta.hidden = true;
         erregistratu.textContent = traducciones[localStorage.getItem('idioma')].Erregistratu;
         
-    }*/
+    }
     const posta = document.getElementById('posta');
     const erregistratu = document.getElementById('erregistratu');
     const idioma = localStorage.getItem('idioma') || 'es';

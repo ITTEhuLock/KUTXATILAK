@@ -72,7 +72,7 @@ export const traducciones = {
       identifikazioa:"Identifcación",
       ERABILTZAILEA:"USUARIO",
       PASAHITZA:"CONTRASEÑA",
-      Sartu:"Iniciar sesion",
+      Sartu:"Iniciar sesión",
       Erregistratu:"Registrarse",
       POSTA:"CORREO ELECTRÓNICO",
       instalatu:"Instalar app de administrador",
