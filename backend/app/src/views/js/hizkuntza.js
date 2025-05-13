@@ -1,7 +1,7 @@
 
 export const traducciones = {
     es: {
-      titulo: "Bienvenido !",
+      titulo: "Bienvenido,",
       descripcion: "Esta es una página de ejemplo con soporte multilingüe.",
       boton_inicio: "Inicio",
       pk: "Administrar perfil",
@@ -38,10 +38,10 @@ export const traducciones = {
       edea:"No hay reservas activas",
       kk:"Administración de taquillas",
       kbs:"Crear taquilla nueva",
-      kkod:"Código de taquilla",
-      kko:"Localizacion de la taquilla",
-      keth:"Inicio del período de uso de la taquilla",
-      keth2:"Fin del período de uso de la taquilla",
+      kkod:"Código",
+      kko:"Localización",
+      keth:"Inicio del período de uso",
+      keth2:"Fin del período de uso ",
       c:"Codigo",
       eg:"Estado",
       l:"Localización", 
@@ -82,7 +82,7 @@ export const traducciones = {
       Joan:"Ir a la pantalla de inicio",
       saioa:"Cerrar sesión",
       Sartutako:"Los datos ingresados no son válidos",
-      aplikazioa:"Esta aplicación solo es para usuarios.",
+      aplikazioa:"Esta aplicación solo es para admnistradores.",
       Izen:"El usuario con ese nombre o correo electrónico ingresado ya existe",
       
 
@@ -90,7 +90,7 @@ export const traducciones = {
 
     },
     eu: { 
-      titulo: "Ongi Etorri !",
+      titulo: "Ongi Etorri,",
       descripcion: "Hau hizkuntza-aniztasunarekin lagundutako adibide orrialdea da.",
       boton_inicio: "Hasiera",
       pk: "Profila kudeatu",
@@ -162,7 +162,7 @@ export const traducciones = {
       ERABILTZAILEA:"ERABILTZAILEA",
       PASAHITZA:"PASAHITZA",
       Sartu:"Sartu",
-      erregistratu:"Erregistratu",
+      Erregistratu:"Erregistratu",
       POSTA:"POSTA ELEKTRONIKOA", 
       instalatu:"Instalar administratzailearen app-a",
       instalatuErab: "Erabiltzailearen app-a instalatu",
@@ -171,7 +171,7 @@ export const traducciones = {
       Joan:"Joan hasiera orrira",
       saioa:"Saioa itxi",
       Sartutako:"Sartutako datuak ez dira zuzenak",
-      aplikazioa:"Aplikazio hau erabiltzaileentzat soilik da.",
+      aplikazioa:"Aplikazio hau administrarientzat soilik da.",
       Izen:"Izen edo posta horrekin dagoen erabiltzailea jada existizen da",
 
 

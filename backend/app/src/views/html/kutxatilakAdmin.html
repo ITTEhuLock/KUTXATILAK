@@ -10,8 +10,8 @@
 <body>
     <div class="header" id="header"></div>
 <h1 data-i18n="kk">Kutxatilen kudeaketa</h1>
-<button id = "newButton" data-i18n="kbs" > Kutxatila berria sortu</button>
-<div class = "form-container"  id = "berria" hidden>
+<button id = "newButton" data-i18n="kbs" style="margin-top: 5px;"> Kutxatila berria sortu</button>
+<div class = "form-container6"  id = "berria" hidden>
     <form id = "berriaForm">
         <br> <p data-i18n="kkod" >Kutxatilaren kodea</p><input type = "text" id = "kodea" placeholder = "P1M7A001,..." required></input>
         <p data-i18n="kko" >Kutxatilaren kokapena </p>   
@@ -23,12 +23,12 @@
             <option value="G">G</option>
             <option value="C">C</option>
         </select>
-        <p data-i18n="keth" > Kutxatilaren erabilera tartearen hasiera<input type = "time" id = "start_time"   required></input>
-        <p data-i18n="keth2" > Kutxatilaren erabilera tartearen amaiera<input type = "time" id = "end_time" required></input>
-        <br> <button type = "submit" id = "kutxatilaSortu" data-i18n="s">Sortu</button>
+        <p data-i18n="keth" > Kutxatilaren erabilera tartearen hasiera</p><input type = "time" id = "start_time"   required></input>
+        <p data-i18n="keth2" > Kutxatilaren erabilera tartearen amaiera</p><input type = "time" id = "end_time" required></input>
+       <button type = "submit" id = "kutxatilaSortu" data-i18n="s" >Sortu</button>
     </form>
 </div>
-    <div id = "kutxatilak" class = "taulaDiv2"></div>
+    <div id = "kutxatilak" class = "taulaDiv2" style="transform: scale(1);"></div>
     <script type = "module">
         import {loadKutxatilak, kutxatilaSortu} from '../js/kutxatilakKudeatu.js';
         import{loadFooter, loadHeader} from '../js/app.js';
@@ -38,6 +38,7 @@
         const toggle = document.getElementById('newButton');
         toggle.addEventListener('click', () => {
         document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+        document.getElementById('kutxatilak').style.transform === 'scale(1)' ? document.getElementById('kutxatilak').style.transform = 'scale(0.75)' : document.getElementById('kutxatilak').style.transform = 'scale(1)';
     
     });
         document.getElementById('berriaForm').addEventListener('submit', (event) => {

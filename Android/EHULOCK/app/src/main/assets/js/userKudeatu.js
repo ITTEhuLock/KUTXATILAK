@@ -133,7 +133,7 @@ export async function toggleErregistratu() {
 
     const currentKey = erregistratu.getAttribute('data-i18n');
 
-    if (currentKey === 'erregistratu') {
+    if (currentKey === traducciones[idioma]['Erregistratu']) {
         posta.hidden = false;
         erregistratu.setAttribute('data-i18n', 'erre');
         erregistratu.textContent = traducciones[idioma]['erre'] || 'Erregistratuta zaude? Hasi saioa';

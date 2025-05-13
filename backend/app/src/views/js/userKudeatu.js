@@ -24,42 +24,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; 
     }
   
-    /*document.body.innerHTML = "";
-    const div = document.createElement('div');
-    div.className = 'form-container';
-    const h1 = document.createElement('h1');
-    h1.textContent = 'Kaixo, ' + user.username + '!';
-    const button = document.createElement('button');
-    button.textContent = 'Joan hasiera orrira';
-    button.addEventListener('click',(event)=>{
-        event.preventDefault();
-        window.location.href =  './home.html';
-    });
-    const button2 = document.createElement('button');
-
-    button2.textContent = 'Saioa itxi';
-    
-*/   document.body.innerHTML = "";
+    document.body.innerHTML = "";
     const div = document.createElement('div');
     const idioma = localStorage.getItem('idioma') || 'es';
     div.className = 'form-container2';
     const h1 = document.createElement('h1');
     h1.dataset.i18n = 'Kaixo';
-    h1.textContent = traducciones[idioma]['titulo']||'Kaixo, ';
-
-    const user1 = document.createElement('h1');
-    user1.textContent = user.username;
+    h1.textContent = traducciones[idioma]['titulo'] + ' ' + user.username + '!';
 
     const button = document.createElement('button');
     button.dataset.i18n = 'Joan';
     button.textContent = traducciones[idioma]['Joan']||'Joan hasiera orrira';
     button.addEventListener('click',(event)=>{
         event.preventDefault();
-        window.location.href =  './html/home.html';
+        window.location.href =  '/home.html';
     });
     const button2 = document.createElement('button');
 
-    button2.dataset.i18n = 'saioa';
+   
     button2.textContent = traducciones[idioma]['saioa']||'Saioa itxi';
     
     button2.addEventListener('click',(event)=>{
@@ -93,7 +75,7 @@ export async function egiaztatu() {
 }
 
 async function bideratu(username,password) {
- 
+    const idioma = localStorage.getItem('idioma') || 'es';
     const idUser = await u.verifyUser(username, password);
     console.log(idUser);
     form.reset();
@@ -135,15 +117,15 @@ export async function toggleErregistratu() {
     const erregistratu = document.getElementById('erregistratu');
     const idioma = localStorage.getItem('idioma') || 'es';
 
-    const currentKey = erregistratu.getAttribute('data-i18n');
+    
 
-    if (currentKey === traducciones[idioma]['erregistratu']) {
+    if (erregistratu.textContent === traducciones[idioma]['Erregistratu']) {
         posta.hidden = false;
        
         erregistratu.textContent = traducciones[idioma]['erre'] 
     } else {
         posta.hidden = true;
-        erregistratu.textContent = traducciones[idioma]['erregistratu'] || 'Erregistratu';
+        erregistratu.textContent = traducciones[idioma]['Erregistratu'] || 'Erregistratu';
     }
     
   
