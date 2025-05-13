@@ -52,7 +52,7 @@
       saioa:"Cerrar sesión",
       Joan:"Ir a la pantalla de inicio",
       ezi:"Ver reservas anteriores",
-      mehg:"Reservas que han comenzado o estan sin empezar",
+      mehg:"Reservas están en marcha o sin empezar",
       aner:"Reservas anteriores",
       erre:"¿Ya tienes una cuenta? Inicia sesión",
       ldapErab:"Tu LDAP",
