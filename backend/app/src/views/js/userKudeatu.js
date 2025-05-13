@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; 
     }
   
+        if(u.getRole(idUser) !== 'admin'){
+            localStorage.removeItem("idUser");
+            window.location.reload();
+            return;
+        }
     document.body.innerHTML = "";
     const div = document.createElement('div');
     const idioma = localStorage.getItem('idioma') || 'es';
@@ -101,7 +106,7 @@ async function bideratu(username,password) {
     else {
        const mezua = document.createElement('h2');
         mezua.dataset.i18n = 'aplikazioa';
-        mezua.textContent = traducciones[idioma]['aplikazioa']||'Aplikazio hau erabiltzaileentzat soilik da.';
+        mezua.textContent = traducciones[idioma]['aplikazioa'];
         mezua.id = 'mezua';
         document.getElementById('formBerria').appendChild(mezua);
         return;

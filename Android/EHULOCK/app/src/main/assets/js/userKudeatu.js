@@ -21,17 +21,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; 
     }
   
-
+    if(u.getRole(idUser) === 'admin'){
+        localStorage.removeItem("idUser");
+        window.location.reload();
+        return;
+    }
     document.body.innerHTML = "";
     const div = document.createElement('div');
     const idioma = localStorage.getItem('idioma') || 'es';
     div.className = 'form-container2';
     const h1 = document.createElement('h1');
-    h1.dataset.i18n = 'Kaixo';
-    h1.textContent = traducciones[idioma]['titulo']||'Kaixo, ';
+    h1.textContent = traducciones[idioma]['titulo'] + ' ' + user.username + '!';
 
-    const user1 = document.createElement('h1');
-    user1.textContent = user.username;
+   
 
     const button = document.createElement('button');
     button.dataset.i18n = 'Joan';
@@ -53,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     button2.style.margin = '10px';
 
     div.appendChild(h1);
-    div.appendChild(user1);
+   
     div.appendChild(button);
     div.appendChild(document.createElement('br'));
     div.appendChild(button2);
@@ -113,7 +115,7 @@ async function bideratu(username,password, token) {
         else {
            const mezua = document.createElement('h2');
            mezua.dataset.i18n = 'aplikazioa';
-           mezua.textContent = traducciones[idioma]['aplikazioa']||'Aplikazio hau erabiltzaileentzat soilik da.';
+           mezua.textContent = traducciones[idioma]['aplikazioa'];
             mezua.id = 'mezua';
             document.getElementById('formBerria').appendChild(mezua);
             return;

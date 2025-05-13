@@ -105,6 +105,7 @@ export async function loadHeader(){
         imgHizkuntza.src = nuevoIdioma === 'eu' 
             ? '../pics/ikurriña.png' 
             : '../pics/castellano.png';
+        window.location.reload();
     });
     header.appendChild(buttonHizkuntza);
     return;

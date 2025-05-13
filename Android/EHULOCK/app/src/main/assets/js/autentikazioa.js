@@ -1,2 +1,2 @@
 import {autentikatu} from "./user.js";
-//document.addEventListener("DOMContentLoaded", autentikatu);
+document.addEventListener("DOMContentLoaded", autentikatu);

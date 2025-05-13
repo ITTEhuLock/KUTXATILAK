@@ -115,7 +115,7 @@ export async function autentikatu(){
     mezua.textContent = 'Aplikazioaren zati honetara sartzeko saioa hasi behar duzu';
     div.appendChild(mezua);
     div.appendChild(button);
-
+    console.log("username"+username);
     if(!username|| username == null || username == 'undefined'){
         document.body.innerHTML = '';
         document.body.appendChild(div);
@@ -123,7 +123,9 @@ export async function autentikatu(){
     }
 
     const role = await getRole(username);
-    if(role == !'user'){
+    console.log("rola:" +role);
+    if(role !=='admin'){
+        console.log("rola2:" +role);
         document.body.innerHTML = '';
         document.body.appendChild(div);
         return;

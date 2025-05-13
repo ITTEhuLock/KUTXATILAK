@@ -57,8 +57,8 @@ async function baimenduta(){
 
     const mezua = document.createElement('h1');
     idioma = localStorage.getItem('idioma') || 'es';
-    mezua.dataset.i18n = 'Zigortuta';
-    mezua.textContent = traducciones[idioma]['Zigortuta']||'Zigortuta zaude, ezin duzu erreserbarik egin';
+    mezua.dataset.i18n = 'zigortuta';
+    mezua.textContent = traducciones[idioma]['zigortuta']||'Zigortuta zaude, ezin duzu erreserbarik egin';
     document.body.appendChild(mezua);
     document.getElementById('newButton').style.cursor = 'not-allowed';
     document.getElementById('newButton').disabled = true;

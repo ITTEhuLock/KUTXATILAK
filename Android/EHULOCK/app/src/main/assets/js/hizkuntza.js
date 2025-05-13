@@ -1,8 +1,6 @@
-
-
  export const traducciones = {
     es: {
-      titulo: "Bienvenido !",
+      titulo: "Bienvenido,",
       descripcion: "Esta es una página de ejemplo con soporte multilingüe.",
       boton_inicio: "Inicio",
       pk: "Administrar perfil",
@@ -13,7 +11,7 @@
       ki:"Cerrar sesión",
       pb:"Nueva contraseña",
       mk:"Administrador de mapas",
-      n:"¿A donde quieres ir?",
+      n:"¿A dónde vas?",
       b:"Buscar",
       g:"Limpiar",
       origen: "Origen",
@@ -58,12 +56,18 @@
       aner:"Reservas anteriores",
       erre:"¿Estás seguro de haberte registrado? Inicia sesión",
       ldapErab:"Tu LDAP",
+      erreserba: "Reserva",
+      kutxatila: "Taquilla",
+      zigortuta:"Estás sancionado, no puedes usar el servicio de taquillas",
+
 
 
 
     },
     eu: { 
-      titulo: "Ongi Etorri !",
+      erreserba: "Erreserba",
+      kutxatila: "Kutxatila",
+      titulo: "Ongi Etorri,",
       descripcion: "Hau hizkuntza-aniztasunarekin lagundutako adibide orrialdea da.",
       boton_inicio: "Hasiera",
       pk: "Profila kudeatu",
@@ -119,7 +123,7 @@
       erre:"Erregistratuta zaude? Hasi saioa",
       Erregistratu:"Erregistratu",
       ldapErab:"Zure LDAP erabiltzailea",
-
+      zigortuta:"Zigortuta zaude, ezin duzu kutxatilen zerbitzua erabili",
 
     }
   };
@@ -151,6 +155,7 @@ export  function cambiarIdioma() {
           el.placeholder = textos[clave];
         }
       });
+    
   }
   
   window.addEventListener('DOMContentLoaded', () => {

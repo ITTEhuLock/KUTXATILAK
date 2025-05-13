@@ -10,17 +10,14 @@ export async function loadOngiEtorria(){
       
           const idioma = localStorage.getItem('idioma') || 'es';
           const ongiEtorria = document.createElement('h1');
-          ongiEtorria.dataset.i18n = 'titulo';
-          ongiEtorria.textContent = traducciones[idioma]['titulo']||'Ongi Etorri !';
-          
-      
-          const user1 = document.createElement('h1');
           const user = await u.getUser(localStorage.getItem('idUser'));
-          user1.textContent = user.username;
-      
+          ongiEtorria.textContent = `${traducciones[idioma]['titulo']}  ${user.username}!`;
           
+      
+        
+       
           ongiEtorriDiv.appendChild(ongiEtorria);
-          ongiEtorriDiv.appendChild(user1);
+       
       
           const irudia = document.createElement('img');
           irudia.src = '../pics/logo.png';
