@@ -212,7 +212,7 @@ export async function loadZehaztapenak(idErreserba, i){
     loadOpenKutxatilenKokapena(1);
     
     const zehaztapenak = document.getElementById('zehaztapenak');
-    const zehaztapenakCont = document.querySelector('.modal-content');
+    const zehaztapenakCont = document.getElementById('aux');
     const t = document.querySelector('.taula2');
     if(t)
     t.remove();
@@ -281,6 +281,7 @@ export async function loadZehaztapenak(idErreserba, i){
 
         document.getElementById('menuaDiv2').innerHTML = "";
         document.getElementById('zehaztapenak').style.display = 'none';
+        window.location.reload();
     });
     zehaztapenakCont.appendChild(taula);
     }

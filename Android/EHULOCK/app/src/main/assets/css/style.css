@@ -262,7 +262,7 @@ button:hover {
 }
 
 .modal-content {
-font-size: 9px;
+font-size: 13px;
  margin: 10px;
   background-color: white;
   padding: 20px;
@@ -274,7 +274,7 @@ font-size: 9px;
 }
 .moda-content select, .modal-content date, .modal-content button{
   width: 100%;
-  font-size: 9px;
+  font-size: 18px;
 
 }
 
