@@ -135,16 +135,16 @@ export async function toggleErregistratu() {
 
    
 
-    if (document.getElementById('Erregistratu').textContent === traducciones[idioma]['Erregistratu']) {
+    if (erregistratu.textContent === traducciones[idioma]['Erregistratu']) {
         posta.hidden = false;
         erregistratu.setAttribute('data-i18n', 'erre');
         erregistratu.textContent = traducciones[idioma]['erre'] || 'Erregistratuta zaude? Hasi saioa';
-        document.getElementById('Erregistratu').dataset.mode = 'Erregistratu';
+        erregistratu.dataset.mode = 'Erregistratu';
     } else {
         posta.hidden = true;
         erregistratu.setAttribute('data-i18n', 'Erregistratu');
         erregistratu.textContent = traducciones[idioma]['Erregistratu'] || 'Erregistratu';
-        document.getElementById('Erregistratu').dataset.mode = 'login';
+        erregistratu.dataset.mode = 'login';
     }
 }
 
