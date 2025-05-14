@@ -1,10 +1,11 @@
-import {API_URL, gridp6} from './konstanteak.js';
-import { getGelak, getGela } from './gela.js';
+
+import { getGelak, getGela, getWalkableSpots } from './gela.js';
 import PF from "https://esm.sh/pathfinding";
 
 
 
 export async function bideratzeAlgoritmoa(hasiera, amaiera) {
+    const gridp6 = await getWalkableSpots();
     const gela_h = await getGela(hasiera);
     const gela_a = await getGela(amaiera);
     const grid = new PF.Grid(gridp6);

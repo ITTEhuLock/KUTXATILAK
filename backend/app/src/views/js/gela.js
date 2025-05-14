@@ -62,3 +62,17 @@ export async function createNewGela (data){
         console.error('errorea ', error);
     }
 }
+
+export async function getWalkableSpots() {
+    try {
+        const response = await fetch(`${API_URL}/gela/lortu/mapa`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.mapa;
+        }
+        return false;
+    } catch (error) {
+        console.error('errorea ', error);
+        return false;
+    }
+}

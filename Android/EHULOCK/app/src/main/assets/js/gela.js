@@ -42,3 +42,17 @@ export const getKoordenatuak = async () => {
         return false;
     }
 };
+
+export const getWalkableSpots = async () => {
+    try {
+        const response = await fetch(`${API_URL}/gela/lortu/mapa`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.mapa;
+        }
+        return false;
+    } catch (error) {
+        console.error('errorea ', error);
+        return false;
+    }
+}

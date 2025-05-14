@@ -1,12 +1,10 @@
 import * as g from './gela.js';
-import { gridp6 } from './konstanteak.js';
+
 
 
 
 export async function ibilbideaBistaratu2() {
-const mapa = document.getElementById('mapa');
-
-
+ const gridp6 = await g.getWalkableSpots();
 const mapaContainer = document.getElementById('ibilbidea');
 const rows = gridp6.length;
 console.log(gridp6);
@@ -43,7 +41,6 @@ for (let y = 0; y < rows; y++) {
 
    
    export async function loadMapa(){
-        const grid = gridp6;
        const botoiak = document.getElementById("botoiak");
        const gelak = await g.getGelak();
        const mapa = document.getElementById("mapa");
@@ -81,6 +78,7 @@ document.getElementById('berria').addEventListener('submit', (event) => {
 });
 
 export async function gelaSortu(){
+    const gridp6 = await g.getWalkableSpots();
     const width = gridp6[0].length;
     const height = gridp6.length;
     const form = document.getElementById('berria');
