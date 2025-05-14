@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/hizkuntza.js" type="module"></script>
      <script src="../js/autentikazioa.js" type="module"></script>
+    <script src="../js/app.js" type="module"></script>
+    <script src="../js/kutxatilakKudeatu.js" type="module"></script>
 </head>
 <body>
     <div class="header" id="header"></div>
@@ -30,22 +32,6 @@
     </form>
 </div>
     <div id = "kutxatilak" class = "taulaDiv2" style="transform: scale(1);"></div>
-    <script type = "module">
-        import {loadKutxatilak, kutxatilaSortu} from '../js/kutxatilakKudeatu.js';
-        import{loadFooter, loadHeader} from '../js/app.js';
-        window.addEventListener('DOMContentLoaded', () => {
-            loadKutxatilak();
-        });
-        const toggle = document.getElementById('newButton');
-        toggle.addEventListener('click', () => {
-        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
-        document.getElementById('kutxatilak').style.transform === 'scale(1)' ? document.getElementById('kutxatilak').style.transform = 'scale(0.75)' : document.getElementById('kutxatilak').style.transform = 'scale(1)';
-    
-    });
-        document.getElementById('berriaForm').addEventListener('submit', (event) => {
-        kutxatilaSortu(event);
-    });
-    </script>
     <div class="footer" id="footer"></div>
 </body>
 </html>

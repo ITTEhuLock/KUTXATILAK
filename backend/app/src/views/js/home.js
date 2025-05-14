@@ -35,3 +35,9 @@ export async function loadOngiEtorria(){
     }
     
  
+
+window.addEventListener('DOMContentLoaded', () => {
+    
+    loadOngiEtorria();
+   
+});

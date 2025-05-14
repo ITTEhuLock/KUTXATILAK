@@ -112,3 +112,16 @@ export async function kutxatilaSortu(event){
     document.getElementById('berriaForm').reset();
     window.location.reload();
 }
+
+ window.addEventListener('DOMContentLoaded', () => {
+            loadKutxatilak();
+        });
+        const toggle = document.getElementById('newButton');
+        toggle.addEventListener('click', () => {
+        document.getElementById('berria').hidden = !document.getElementById('berria').hidden;
+        document.getElementById('kutxatilak').style.transform === 'scale(1)' ? document.getElementById('kutxatilak').style.transform = 'scale(0.75)' : document.getElementById('kutxatilak').style.transform = 'scale(1)';
+    
+    });
+        document.getElementById('berriaForm').addEventListener('submit', (event) => {
+        kutxatilaSortu(event);
+    });

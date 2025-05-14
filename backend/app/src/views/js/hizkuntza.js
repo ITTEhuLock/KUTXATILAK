@@ -43,7 +43,7 @@ export const traducciones = {
       kko:"Localización",
       keth:"Inicio del período de uso",
       keth2:"Fin del período de uso ",
-      c:"Codigo",
+      c:"Código",
       eg:"Estado",
       l:"Localización", 
       ekintza:"acción",

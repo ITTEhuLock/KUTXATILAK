@@ -47,6 +47,7 @@ export async function loadToggle(){
             event.preventDefault();
             document.getElementById('berria2').hidden = false;
             document.getElementById('berria').hidden = true;
+            document.getElementById('aux').style.display = 'none';
         });
 }
 
@@ -235,8 +236,8 @@ export async function loadZehaztapenak(idErreserba, i){
         const ku = await k.getKutxatila(erreserba.idKutxatila);
         if(idioma == 'eu'){
         lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
-        lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]) + erreserba.start_time.split('T')[1].substring(0, 5);
-        lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]) + erreserba.end_time.split('T')[1].substring(0, 5);
+        lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]) + erreserba.start_time.split('T')[1];
+        lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]) + erreserba.end_time.split('T')[1];
         lerroaSortu("Egoera",parseInt(erreserba.egoera) === 0
         ? "Hasigabea"
         : parseInt(erreserba.egoera) === 1
@@ -268,7 +269,7 @@ export async function loadZehaztapenak(idErreserba, i){
         erreserbaEditatu(data);
             });
             if(i == 1)
-                document.getElementById('editatuButton').remove();
+                document.getElementById('editatuButton') ? document.getElementById('editatuButton').remove() : null;
             
     const ezabatu = document.getElementById('ezabatuButton');
     ezabatu.addEventListener('click', (event) => {
