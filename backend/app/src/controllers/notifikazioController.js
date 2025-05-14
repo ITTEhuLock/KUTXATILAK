@@ -81,7 +81,7 @@ WHERE e.idErreserba = ?;
             var Obj = [
               'beteta',
               idErreserba,
-              mins
+              mins.toString()
             ];
             await dbConnection.query('UPDATE abisuak SET egoera = ? WHERE idErreserba = ? AND mota = ?',Obj);
            
@@ -108,7 +108,7 @@ export const checkNotifikazioak = async (idErreserba, mins) =>{
   try {
     const [result] = await dbConnection.execute(kutxSqlQuery, [idErreserba]);
     //Notifikazioa bidali bakarrik kutxatila beteta badago
-    if (result[0] && result[0].egoera == 1) {
+    if (result[0] ) {
       await notifikazioaBidali(idErreserba, mins);
     }
     
