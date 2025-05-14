@@ -50,7 +50,7 @@ export const traducciones = {
       ezabatu:"Eliminar",
       irekita:"Abierta",
       itxita:"Cerrada",
-      gbg:"Añade una nueva Aula",
+      gbg:"Añade una nueva aula",
       eraikina:"Edificio",
       gm:"Tipo de Aula",
       ikasgela:"Aula",
