@@ -2,7 +2,7 @@ import dbConnection from "../database/database.js";
 export const checkErreserba = async (req, res) => {
     const info = req.body;
     const infoObj = [
-        "5" , //hardkodeatuta dago, raspberry-aren id-a
+        "2" , //hardkodeatuta dago, raspberry-aren id-a
         info.idUser
         
     ];

@@ -28,12 +28,15 @@ const scheduledJobs = new Map();
               case '10':
                 const job10 = schedule.scheduleJob(ordua,() => checkNotifikazioak(idErreserba,10));
                 gehituJob(idErreserba,job10);
+                break;
               case '5':
                 const job5 = schedule.scheduleJob(ordua,() => checkNotifikazioak(idErreserba,5));
                 gehituJob(idErreserba,job5);
+                break;
               case '0':
                 const job0 = schedule.scheduleJob(ordua,() => checkNotifikazioak(idErreserba,0));
                 gehituJob(idErreserba,job0);  
+                break;
             } 
           }
         });
