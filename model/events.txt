@@ -1,24 +1,23 @@
 DROP TRIGGER IF EXISTS `update_egoera_on_abisua_update`;
-DROP EVENT IF EXISTS `erreserba_amaitu`;
-DROP EVENT IF EXISTS `erreserba_hasi`;
 DROP EVENT IF EXISTS `kutxatila_blokeatu`;
 DROP EVENT IF EXISTS `reset_zigorra`;
 
+DROP EVENT IF EXISTS erreserba_hasi;
+DROP EVENT IF EXISTS erreserba_amaitu;
 
 CREATE EVENT erreserba_hasi
 ON SCHEDULE EVERY 1 MINUTE
 DO
   UPDATE erreserba
   SET egoera = 1
-  WHERE start <= NOW() AND egoera = 0;
+  WHERE egoera = 0 AND start_time <= NOW();
 
 CREATE EVENT erreserba_amaitu
 ON SCHEDULE EVERY 1 MINUTE
 DO
   UPDATE erreserba
   SET egoera = 2
-  WHERE end_time <= NOW() AND egoera = 1;
-
+  WHERE egoera = 1 AND end_time <= NOW();
 
 CREATE EVENT kutxatila_blokeatu
 ON SCHEDULE EVERY 1 MINUTE

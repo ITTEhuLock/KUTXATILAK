@@ -1,5 +1,5 @@
 import * as u from './user.js';
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 export async function loadProfila(){
     const profila = document.getElementById('profila');
     const user = await u.getUser(localStorage.getItem('idUser'));
