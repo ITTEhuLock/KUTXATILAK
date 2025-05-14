@@ -1,5 +1,6 @@
  export const traducciones = {
     es: {
+      historiala: "Historial",
       titulo: "Bienvenid@,",
       descripcion: "Esta es una página de ejemplo con soporte multilingüe.",
       boton_inicio: "Inicio",
@@ -73,6 +74,7 @@
 
     },
     eu: { 
+      historiala: "Historiala",
       saioahasi: "Saioa hasi",
       hedatu: "Hedatu",
       ireki: "Ireki",
