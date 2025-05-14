@@ -1,6 +1,6 @@
  export const traducciones = {
     es: {
-      titulo: "Bienvenido,",
+      titulo: "Bienvenid@,",
       descripcion: "Esta es una página de ejemplo con soporte multilingüe.",
       boton_inicio: "Inicio",
       pk: "Administrar perfil",
@@ -66,6 +66,7 @@
       hedatu: "Ampliar",
       ireki: "Abrir",
       saioaahasi: "Iniciar sesión",
+      pad: "La contraseña ha sido cambiada",
 
 
 
@@ -88,6 +89,7 @@
       contra:"Pasahitza",
       cambiar:"Aldatu",
       pa:"Pasahitza aldatu",
+      pad: "Pasahitza aldatu da",
       ke:"Kontua ezabatu",
       ki:"Saioa itxi",
       pb:"Pasahitza berria",

@@ -74,7 +74,14 @@ if(document.getElementById('userDiv'))
         loadUsers();
         document.getElementById('berria').addEventListener('click', async (event) => {
             event.preventDefault();
-            document.getElementById('berriaDiv').style.display = 'block';
+            if(document.getElementById('berriaDiv').style.display == 'block'){
+                document.getElementById('berriaDiv').style.display = 'none';
+                document.getElementById('berriaDiv').style.transform = 'display(0)';
+            }
+            else{
+                document.getElementById('berriaDiv').style.display = 'block';
+                document.getElementById('berriaDiv').style.transform = 'display(0.8)';
+            }
            
         });
         document.getElementById('berriaForm').addEventListener('submit', async (event) => {
