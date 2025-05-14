@@ -2,7 +2,7 @@ import * as e from "./erreserba.js";
 import * as k from "./kutxatila.js";
 import * as u from "./user.js";
 import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
-
+const idioma =localStorage.getItem('idioma') || 'es';
 window.addEventListener('DOMContentLoaded', () => {
 
   loadErreserbaLaburpena(0);
@@ -56,7 +56,7 @@ async function baimenduta(){
     if(await u.baimenduta(localStorage.getItem('idUser'))) return;
 
     const mezua = document.createElement('h1');
-    idioma = localStorage.getItem('idioma') || 'es';
+
     mezua.dataset.i18n = 'zigortuta';
     mezua.textContent = traducciones[idioma]['zigortuta']||'Zigortuta zaude, ezin duzu erreserbarik egin';
     document.body.appendChild(mezua);
@@ -78,7 +78,7 @@ export async function loadErreserbaLaburpena(i){
             document.getElementById('newButton').hidden = true;
             loadErreserbaLaburpena(1);
             bZ.remove();
-            const idioma = localStorage.getItem('idioma') || 'es';
+           
             const itxi = document.createElement('button');
             itxi.dataset.i18n = 'i';
             itxi.textContent = traducciones[idioma]['i']||'Itxi';
@@ -104,7 +104,7 @@ export async function loadErreserbaLaburpena(i){
     if(!erreserbak){
         
         const abisua = document.createElement('h2');
-        const idioma = localStorage.getItem('idioma') || 'es';
+      
         abisua.dataset.i18n = 'ede';
        abisua.textContent = traducciones[idioma]['ede']||'Ez daukazu erreserbarik';
         
@@ -117,9 +117,9 @@ export async function loadErreserbaLaburpena(i){
     taula.className = 'taula';
     const l1 = taula.insertRow();
 
-    l1.insertCell().textContent = 'Hasiera';
-    l1.insertCell().textContent = 'Amaiera';
-    l1.insertCell().textContent = 'Ekintza';
+    l1.insertCell().textContent = traducciones[localStorage.getItem('idioma') || 'es']["hasiera"];
+    l1.insertCell().textContent = traducciones[localStorage.getItem('idioma') || 'es']["amaiera"];
+    l1.insertCell().textContent = traducciones[localStorage.getItem('idioma') || 'es']["ekintza"];
 
     erreserbak.forEach(async (erreserba) =>{
         console.log(erreserba.idKutxatila);
@@ -131,7 +131,7 @@ export async function loadErreserbaLaburpena(i){
         const eB = document.createElement('button');
         eB.name = 'hedatuButton';
         eB.id = erreserba.idErreserba;
-        eB.textContent = 'Hedatu';
+        eB.textContent = traducciones[localStorage.getItem('idioma') || 'es']["hedatu"];
         eB.addEventListener('click', (event) => {
             console.log(erreserba.idErreserba)
             event.preventDefault();
@@ -139,10 +139,10 @@ export async function loadErreserbaLaburpena(i){
             
         });
         if(parseInt(erreserba.egoera) === 1){
-            const idioma = localStorage.getItem('idioma') || 'es';
+           
             const iB = document.createElement('button');
 
-            iB.textContent = 'Ireki';
+            iB.textContent = traducciones[localStorage.getItem('idioma') || 'es']["ireki"];
             iB.addEventListener('click', (event) => {
                 event.preventDefault();
                 window.location.href = './kutxatilaIreki.html';
@@ -169,7 +169,7 @@ export async function erreserbaEditatu(erreserba){
     const u = await e.updateErreserba(erreserba);
     if(!u){
         const mezua = document.createElement('h1');
-        idioma = localStorage.getItem('idioma') || 'es';
+        idioma =idioma|| 'es';
         mezua.dataset.i18n = 'aukeratud';
         mezua.textContent = traducciones[idioma]['ekin']||'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm2').appendChild(mezua);
@@ -192,7 +192,7 @@ export async function erreserbaSortu(event){
     const a = await e.createErreserba(erreserba);
     if(!a){
         const mezua = document.createElement('h1');
-        idioma = localStorage.getItem('idioma') || 'es';
+        idioma =idioma|| 'es';
         mezua.dataset.i18n = 'aukeratud';
         mezua.textContent = traducciones[idioma]['ekin']||'Aukeratu duzun tarterako kutxatila ez dago eskuragarri';
         document.getElementById('berriaForm').appendChild(mezua);
@@ -233,7 +233,7 @@ export async function loadZehaztapenak(idErreserba, i){
    
         console.log(erreserba.idKutxatila);
         const ku = await k.getKutxatila(erreserba.idKutxatila);
-        
+        if(idioma == 'eu'){
         lerroaSortu("Kutxatila",ku.kodea+', '+ku.kokapena+' eraikinean');
         lerroaSortu("Hasiera data",erreserba.start_time.split('T')[0]);
         lerroaSortu("Amaiera data",erreserba.end_time.split('T')[0]);
@@ -242,7 +242,17 @@ export async function loadZehaztapenak(idErreserba, i){
         : parseInt(erreserba.egoera) === 1
         ? "Martxan"
         : "Amaituta");
-
+        }
+        else{
+            lerroaSortu("Taquilla",ku.kodea+', edificio: '+ku.kokapena+' ');
+            lerroaSortu("Fecha de inicio",erreserba.start_time.split('T')[0]);
+            lerroaSortu("Fecha de fin",erreserba.end_time.split('T')[0]);
+            lerroaSortu("Estado",parseInt(erreserba.egoera) === 0
+            ? "Sin iniciar"
+            : parseInt(erreserba.egoera) === 1
+            ? "En curso"
+            : "Finalizada");
+        }
     const edit = document.getElementById('berriaForm2');
     edit.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -281,7 +291,7 @@ export async function loadZehaztapenak(idErreserba, i){
         console.log(kutxatilak);
         if(!kutxatilak){
             const mezua = document.createElement('h2');
-            idioma = localStorage.getItem('idioma') || 'es';
+            idioma =idioma|| 'es';
             mezua.dataset.i18n = 'ezdago';
             mezua.textContent = traducciones[idioma]['ezdago']||'Ez dago kutxatila irekirik momentu honetan';
             berriaForm.appendChild(mezua);
@@ -331,7 +341,7 @@ export async function loadOpenKutxatilak(i, kokapena) {
     if (!kutxatilak) {
         const mezua = document.createElement('h2');
 
-        idioma = localStorage.getItem('idioma') || 'es';
+        idioma =idioma|| 'es';
         mezua.dataset.i18n = 'ezdago';
         mezua.textContent = traducciones[idioma]['ezdago']||'Ez dago kutxatila irekirik momentu honetan';
         berriaForm.appendChild(mezua);

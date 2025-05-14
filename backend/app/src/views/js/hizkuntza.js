@@ -88,10 +88,14 @@ export const traducciones = {
       aukera: "Selecciona el rol",
       erabiltzailea: "Usuario",
       administraria: "Administrador",
+      shbd: 'Debes iniciar sesión para acceder a esta parte de la aplicación',
+      saioahasi: "Iniciar sesión",
 
 
     },
     eu: { 
+      saioahasi: "Saioa hasi",
+      shbd: 'Aplikazioaren zati honetara sartzeko saioa hasi behar duzu',
       titulo: "Ongi Etorri,",
       descripcion: "Hau hizkuntza-aniztasunarekin lagundutako adibide orrialdea da.",
       boton_inicio: "Hasiera",

@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 export async function egiaztatu() {
-    if(document.getElementById('Erregistratu').textContent != traducciones[localStorage.getItem('idioma')].Erregistratu){
+    if(document.getElementById('Erregistratu').textContent != traducciones[localStorage.getItem('idioma') || 'es'].Erregistratu){
         erregistratu();
         return;
     }

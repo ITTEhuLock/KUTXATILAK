@@ -1,3 +1,4 @@
+import { traducciones } from "./hizkuntza.js";
 import { API_URL } from "./konstanteak.js";
 export async function verifyUser(username, password){
     
@@ -107,13 +108,13 @@ export async function autentikatu(){
     const username = localStorage.getItem('idUser');
     const div = document.createElement('div');
     const button = document.createElement('button');
-    button.textContent = 'Saioa hasi';
+    button.textContent = traducciones[localStorage.getItem('idioma') || 'es'].saioahasi;
     button.addEventListener('click',async (event)=>{
         event.preventDefault();
         window.location.href = '../index.html';
     });
     const mezua = document.createElement('h1');
-    mezua.textContent = 'Aplikazioaren zati honetara sartzeko saioa hasi behar duzu';
+    mezua.textContent = traducciones[localStorage.getItem('idioma') || 'es'].saioahasi;
     div.appendChild(mezua);
     div.appendChild(button);
     console.log("username"+username);

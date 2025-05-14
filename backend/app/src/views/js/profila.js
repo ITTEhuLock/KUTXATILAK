@@ -1,5 +1,5 @@
 import * as u from './user.js';
-
+import { aplicarTraduccion, traducciones } from "./hizkuntza.js";
 window.addEventListener('DOMContentLoaded', () => {
     loadProfila();
 
@@ -86,7 +86,7 @@ export async function pasahitzaAldatu(){
     const c = await u.changePassword(idUser, form.pasahitza.value);
     form.reset();
     if(c){
-    mezua.textContent = 'Pasahitza aldatu da';
+    mezua.textContent = traducciones[hizkuntza]['pa'] || 'Pasahitza aldatu da';
     document.getElementById('pasahitzaForm').appendChild(mezua);
     
 }
