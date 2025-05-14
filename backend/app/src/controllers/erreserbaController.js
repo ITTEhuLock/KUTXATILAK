@@ -16,9 +16,13 @@ const scheduledJobs = new Map();
       results.forEach(
         function(result){
           let ordua = new Date(result.ordua);
+          ordua.setHours(ordua.getHours() + 2);
+          console.log(Date.now() - ordua);
+          console.log(result.mota);
           //Bakarrik kargatuko dira data oraindik ailegatu ez bada, bestela galdutzat emango dira
           if ((Date.now() - ordua)<0){
             let mota = result.mota;
+            console.log(mota);
             let idErreserba = result.idErreserba;
             switch (mota){
               case '10':
@@ -36,6 +40,8 @@ const scheduledJobs = new Map();
     }else{
       console.log("Ez daude bete gabeko notifikaziorik datu basean");
     }
+
+
   } catch (error) {
     console.error('Errorea notifikazioak kargatzen DBtik:', error);
     throw error;

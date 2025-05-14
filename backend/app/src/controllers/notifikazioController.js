@@ -4,9 +4,6 @@ import { getMessaging } from 'firebase-admin/messaging';
 import { readFile } from 'fs/promises';
 import dbConnection from '../database/database.js';
 
-const titles = ["10 minutu geratzen dira erreserba amaitzeko!!","5 minutu geratzen dira erreserba amaitzeko!!","Erreserba amaitu da!!"];
-const bodies = ["Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Kutxatila hustu lehenbailehen"];
-
 
 let messaging;
 (async () => {
@@ -31,7 +28,10 @@ let messaging;
 
 
 const notifikazioaBidali = async (idErreserba, mins) => {
-    
+  let titles = ["10 minutu geratzen dira erreserba amaitzeko!!","5 minutu geratzen dira erreserba amaitzeko!!","Erreserba amaitu da!!"];
+  let bodies = ["Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Gogoratu kutxatila hustu behar duzula erreserba tartea amaitu baino lehen","Kutxatila hustu lehenbailehen"];
+  console.log(mins);
+
     const sqlQuery = `SELECT u.token
 FROM erreserba e
 JOIN user u ON e.idUser = u.iduser
@@ -55,18 +55,20 @@ WHERE e.idErreserba = ?;
     if(registrationToken != null ){
         try {
             var title, body;
-            switch (mins){
-              case '10':
-                title = titles[0];
-                body = bodies[0]; 
-              case '5':
-                title = titles[1];
-                body = bodies[1];
-              case '0':
-                title = titles[2];
-                body = bodies[2];
+            if (mins == '10') {
+              title = titles[0];
+              body = bodies[0];
             } 
-
+            else if (mins == '5') {
+              title = titles[1];
+              body = bodies[1];
+            } 
+            else if (mins == '0') {
+              title = titles[2];
+              body = bodies[2];
+            }
+            console.log(title);
+            console.log(body);
             const message = {
             notification: {
                 title: title,
@@ -77,11 +79,11 @@ WHERE e.idErreserba = ?;
         
             const response = await messaging.send(message);
             var Obj = [
-              "beteta",
+              'beteta',
               idErreserba,
               mins
             ];
-            await dbConnection.query('UPDATE abisuak SET egoera = ? WHERE idErreserba = ?, mota = ?',Obj);
+            await dbConnection.query('UPDATE abisuak SET egoera = ? WHERE idErreserba = ? AND mota = ?',Obj);
            
 
             return response;
