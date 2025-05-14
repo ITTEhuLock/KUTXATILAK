@@ -132,7 +132,7 @@ main {
   background-color: #ffffff; 
   padding: 20px;
   box-sizing: border-box;
-  max-height: 60%;
+  max-height: 80%;
   text-align: center;
   font-size: 15px;
   align-items: center;
@@ -253,7 +253,7 @@ button:hover {
   align-items: center;
   z-index: 1000;
   width: 85%;
-  height: 50%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
