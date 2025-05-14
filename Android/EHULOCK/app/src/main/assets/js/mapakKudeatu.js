@@ -215,7 +215,7 @@ export async function loadHistoriala(){
             event.preventDefault();
             if(!await i.deleteIbilbidea(ibilbidea.idIbilbidea))
                 return;
-            confirm("Ibilbidea ezabatu nahi duzu?");
+          
             window.location.reload();
         });
         const c = l.insertCell();
